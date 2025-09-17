@@ -63,7 +63,7 @@ trait HasBaseActionBindings
         app()->singleton(InvitesAccountParties::class, $class);
     }
 
-    public static function removeAccountParties(string $class): void
+    public static function removeAccountPartiesUsing(string $class): void
     {
         app()->singleton(RemovesAccountParties::class, $class);
     }

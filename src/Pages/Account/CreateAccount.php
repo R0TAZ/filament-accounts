@@ -1,6 +1,6 @@
 <?php
 
-namespace Rotaz\FilamentAccounts\Pages\Company;
+namespace Rotaz\FilamentAccounts\Pages\Account;
 
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;

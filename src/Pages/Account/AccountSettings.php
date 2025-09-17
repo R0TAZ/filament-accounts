@@ -1,6 +1,6 @@
 <?php
 
-namespace Rotaz\FilamentAccounts\Pages\Company;
+namespace Rotaz\FilamentAccounts\Pages\Account;
 
 use Filament\Facades\Filament;
 use Filament\Pages\Tenancy\EditTenantProfile as BaseEditTenantProfile;

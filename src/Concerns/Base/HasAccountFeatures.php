@@ -35,7 +35,7 @@ trait HasAccountFeatures
     /**
      * Determine if the account is supporting account features.
      */
-    public function companies(bool | Closure | null $condition = true, bool $invitations = false): static
+    public function accounts(bool | Closure | null $condition = true, bool $invitations = false): static
     {
         static::$hasAccountFeatures = $condition instanceof Closure ? $condition() : $condition;
         static::$sendsAccountInvitations = $invitations;
