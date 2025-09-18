@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Rotaz\FilamentAccounts\Party as FilamentCompaniesParty;
+use Rotaz\FilamentAccounts\Party as FilamentAccountParty;
 
-class Party extends FilamentCompaniesParty
+class Party extends FilamentAccountParty
 {
     /**
      * Indicates if the IDs are auto-incrementing.

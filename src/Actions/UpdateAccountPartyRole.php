@@ -5,6 +5,7 @@ namespace Rotaz\FilamentAccounts\Actions;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
+use Rotaz\FilamentAccounts\Events\AccountPartyUpdated;
 use Rotaz\FilamentAccounts\FilamentAccounts;
 use Rotaz\FilamentAccounts\Rules\Role;
 
@@ -12,7 +13,7 @@ use Rotaz\FilamentAccounts\Rules\Role;
 class UpdateAccountPartyRole
 {
     /**
-     * Update the role for the given company employee.
+     * Update the role for the given account employee.
      *
      * @throws AuthorizationException
      */

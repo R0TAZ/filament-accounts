@@ -17,7 +17,7 @@ use Rotaz\FilamentAccounts\FilamentAccounts;
 class AccountInvitationController extends Controller
 {
     /**
-     * Accept a company invitation.
+     * Accept a account invitation.
      */
     public function accept(Request $request, int|string $invitationId): Redirector | RedirectResponse | null
     {
@@ -48,7 +48,7 @@ class AccountInvitationController extends Controller
     }
 
     /**
-     * Cancel the given company invitation.
+     * Cancel the given account invitation.
      *
      * @throws AuthorizationException
      */

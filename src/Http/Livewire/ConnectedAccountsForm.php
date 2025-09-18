@@ -14,7 +14,7 @@ use Livewire\Features\SupportRedirects\Redirector;
 use Rotaz\FilamentAccounts\ConnectedAccount;
 use Rotaz\FilamentAccounts\Enums\Feature;
 use Rotaz\FilamentAccounts\FilamentAccounts;
-use Rotaz\FilamentAccounts\Pages\Profile;
+use Rotaz\FilamentAccounts\Pages\User\Profile;
 
 
 class ConnectedAccountsForm extends Component

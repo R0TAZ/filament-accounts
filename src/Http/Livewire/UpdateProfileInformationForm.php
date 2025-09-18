@@ -11,6 +11,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Rotaz\FilamentAccounts\Contracts\UpdatesUserProfileInformation;
 use Rotaz\FilamentAccounts\FilamentAccounts;
+use Rotaz\FilamentAccounts\Pages\User\Profile;
 
 
 class UpdateProfileInformationForm extends Component

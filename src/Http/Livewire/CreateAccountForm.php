@@ -25,9 +25,9 @@ class CreateAccountForm extends Component
     public array $state = [];
 
     /**
-     * Create a new company.
+     * Create a new account.
      */
-    public function createCompany(CreatesAccounts $creator): Response | Redirector | RedirectResponse
+    public function createAccount(CreatesAccounts $creator): Response | Redirector | RedirectResponse
     {
         $this->resetErrorBag();
 

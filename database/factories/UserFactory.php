@@ -68,7 +68,7 @@ class UserFactory extends Factory
                     'personal_account' => true,
                 ])
                 ->when(is_callable($callback), $callback),
-            'ownedAccount'
+            'ownedAccounts'
         );
     }
 }

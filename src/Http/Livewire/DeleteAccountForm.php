@@ -11,6 +11,7 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Livewire\Component;
+use Rotaz\FilamentAccounts\Actions\ValidateAccountDeletion;
 use Rotaz\FilamentAccounts\Contracts\DeletesAccounts;
 use Rotaz\FilamentAccounts\FilamentAccounts;
 use Rotaz\FilamentAccounts\RedirectsActions;
@@ -55,7 +56,7 @@ class DeleteAccountForm extends Component
     }
 
     /**
-     * Cancel the company deletion.
+     * Cancel the account deletion.
      */
     public function cancelAccountDeletion(): void
     {

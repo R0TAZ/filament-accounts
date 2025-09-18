@@ -6,7 +6,8 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Laravel\Socialite\Contracts\User as ProviderUser;
 use Rotaz\FilamentAccounts\ConnectedAccount;
 use Rotaz\FilamentAccounts\Contracts\CreatesConnectedAccounts;
-use Rotaz\FilamentAccounts\FilamentCompanies;
+use Rotaz\FilamentAccounts\FilamentAccounts;
+
 
 class CreateConnectedAccount implements CreatesConnectedAccounts
 {
@@ -15,7 +16,7 @@ class CreateConnectedAccount implements CreatesConnectedAccounts
      */
     public function create(Authenticatable $user, string $provider, ProviderUser $providerUser): ConnectedAccount
     {
-        return FilamentCompanies::connectedAccountModel()::forceCreate([
+        return FilamentAccounts::connectedAccountModel()::forceCreate([
             'user_id' => $user->getAuthIdentifier(),
             'provider' => strtolower($provider),
             'provider_id' => $providerUser->getId(),

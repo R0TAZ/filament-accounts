@@ -13,6 +13,7 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Livewire\Component;
+use Rotaz\FilamentAccounts\Actions\UpdateAccountPartyRole;
 use Rotaz\FilamentAccounts\Contracts\AddsAccountParties;
 use Rotaz\FilamentAccounts\Contracts\InvitesAccountParties;
 use Rotaz\FilamentAccounts\Contracts\RemovesAccountParties;
@@ -148,7 +149,7 @@ class AccountPartyManager extends Component
     }
 
     /**
-     * Remove the currently authenticated user from the company.
+     * Remove the currently authenticated user from the account.
      */
     public function leaveAccount(RemovesAccountParties $remover): Response | Redirector | RedirectResponse
     {
@@ -178,7 +179,7 @@ class AccountPartyManager extends Component
     }
 
     /**
-     * Confirm that the given company employee should be removed.
+     * Confirm that the given account employee should be removed.
      */
     public function confirmAccountPartyRemoval(int $userId): void
     {
@@ -187,7 +188,7 @@ class AccountPartyManager extends Component
     }
 
     /**
-     * Remove a company employee from the company.
+     * Remove a account employee from the account.
      */
     public function removeAccountParty(RemovesAccountParties $remover): void
     {
@@ -218,7 +219,7 @@ class AccountPartyManager extends Component
     }
 
     /**
-     * Get the available company employee roles.
+     * Get the available account employee roles.
      */
     public function getRolesProperty(): array
     {

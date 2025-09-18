@@ -192,7 +192,7 @@ class InstallCommand extends Command
     }
 
     /**
-     * Configure the session driver for Company.
+     * Configure the session driver for Account.
      */
     protected function configureSession(): void
     {
@@ -215,29 +215,33 @@ class InstallCommand extends Command
     }
 
     /**
-     * Ensure the installed user model is ready for company usage.
+     * Ensure the installed user model is ready for account usage.
      */
     protected function ensureApplicationIsOnlyAccountCompatible(): void
     {
         // Service Providers...
         $this->copyStubFiles('app/Providers', app_path('Providers'), ['FilamentAccountsServiceProvider.php']);
+        $this->copyStubFiles('app/Providers/Filament', app_path('Providers/Filament'), ['UserPanelProvider.php']);
         ServiceProvider::addProviderToBootstrapFile('App\Providers\FilamentAccountsServiceProvider');
+        ServiceProvider::addProviderToBootstrapFile('App\Providers\Filament\UserPanelProvider');
 
         // Models...
         $this->copyStubFiles('app/Models', app_path('Models'), ['User.php']);
 
-        // FilamentCompanies Actions...
+        // FilamentAccounts Actions...
         $this->copyStubFiles('app/Actions/FilamentAccounts', app_path('Actions/FilamentAccounts'), ['DeleteUser.php']);
     }
 
     protected function ensureApplicationIsSocialiteCompatible(): void
     {
-        // Publish FilamentCompanies Socialite Migrations...
+        // Publish FilamentAccounts Socialite Migrations...
         $this->callSilent('vendor:publish', ['--tag' => 'filament-accounts-socialite-migrations', '--force' => true]);
 
         // Service Providers...
         copy(__DIR__ . '/../../stubs/app/Providers/FilamentAccountsWithSocialiteServiceProvider.php', app_path('Providers/FilamentAccountsServiceProvider.php'));
+        copy(__DIR__ . '/../../stubs/app/Providers/Filament/UserPanelProvider.php', app_path('Providers/Filament/UserPanelProvider.php'));
         ServiceProvider::addProviderToBootstrapFile('App\Providers\FilamentAccountsServiceProvider');
+        ServiceProvider::addProviderToBootstrapFile('App\Providers\Filament\UserPanelProvider');
 
         // Models...
         copy(__DIR__ . '/../../stubs/app/Models/UserWithSocialite.php', app_path('Models/User.php'));

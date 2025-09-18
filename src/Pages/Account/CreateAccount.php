@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
+use Rotaz\FilamentAccounts\Events\AddingAccount;
 use Rotaz\FilamentAccounts\FilamentAccounts;
 
 class CreateAccount extends FilamentRegisterTenant

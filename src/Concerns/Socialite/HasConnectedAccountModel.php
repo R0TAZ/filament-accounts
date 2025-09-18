@@ -7,7 +7,7 @@ use App\Models\ConnectedAccount;
 trait HasConnectedAccountModel
 {
     /**
-     * The user model that should be used by FilamentCompanies.
+     * The user model that should be used by FilamentAccounts.
      */
     public static string $connectedAccountModel = ConnectedAccount::class;
 
@@ -30,7 +30,7 @@ trait HasConnectedAccountModel
     }
 
     /**
-     * Specify the connected account model that should be used by FilamentCompanies.
+     * Specify the connected account model that should be used by FilamentAccounts.
      */
     public static function useConnectedAccountModel(string $model): static
     {

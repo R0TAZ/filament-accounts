@@ -1,38 +1,38 @@
 @php
-    $modals = \Wallo\FilamentCompanies\FilamentCompanies::getModals();
+    $modals = \Rotaz\FilamentAccounts\FilamentAccounts::getModals();
 @endphp
 
 <div>
-    @if (Gate::check('addCompanyEmployee', $company))
-        <x-filament-companies::section-border />
+    @if (Gate::check('addAccountParty', $account))
+        <x-filament-accounts::section-border />
 
-        <!-- Add Company Employee -->
-        <x-filament-companies::grid-section md="2">
+        <!-- Add Account Employee -->
+        <x-filament-accounts::grid-section md="2">
             <x-slot name="title">
-                {{ __('filament-companies::default.grid_section_titles.add_company_employee') }}
+                {{ __('filament-accounts::default.grid_section_titles.add_account_party') }}
             </x-slot>
 
             <x-slot name="description">
-                {{ __('filament-companies::default.grid_section_descriptions.add_company_employee') }}
+                {{ __('filament-accounts::default.grid_section_descriptions.add_account_party') }}
             </x-slot>
 
             <x-filament::section>
-                <x-filament-panels::form wire:submit="addCompanyEmployee">
+                <x-filament-panels::form wire:submit="addAccountParty">
                     <p class="text-sm text-gray-600 dark:text-gray-400">
-                        {{ __('filament-companies::default.subheadings.companies.company_employee_manager') }}
+                        {{ __('filament-accounts::default.subheadings.accounts.account_party_manager') }}
                     </p>
 
                     <!-- Employee Email -->
-                    <x-filament-forms::field-wrapper id="email" statePath="email" required="required" label="{{ __('filament-companies::default.fields.email') }}">
+                    <x-filament-forms::field-wrapper id="email" statePath="email" required="required" label="{{ __('filament-accounts::default.fields.email') }}">
                         <x-filament::input.wrapper class="overflow-hidden">
-                            <x-filament::input id="email" type="email" wire:model="addCompanyEmployeeForm.email" />
+                            <x-filament::input id="email" type="email" wire:model="addAccountPartyForm.email" />
                         </x-filament::input.wrapper>
                     </x-filament-forms::field-wrapper>
 
                     <!-- Role -->
                     @if (count($this->roles) > 0)
-                        <x-filament-forms::field-wrapper id="role" statePath="role" required="required" label="{{ __('filament-companies::default.labels.role') }}">
-                            <div x-data="{ role: @entangle('addCompanyEmployeeForm.role').live }" class="relative z-0 mt-1 cursor-pointer rounded-lg border border-gray-200 dark:border-gray-700">
+                        <x-filament-forms::field-wrapper id="role" statePath="role" required="required" label="{{ __('filament-accounts::default.labels.role') }}">
+                            <div x-data="{ role: @entangle('addAccountPartyForm.role').live }" class="relative z-0 mt-1 cursor-pointer rounded-lg border border-gray-200 dark:border-gray-700">
                                 @foreach ($this->roles as $index => $role)
                                     <button type="button"
                                             @click="role = '{{ $role->key }}'"
@@ -67,25 +67,25 @@
 
                     <div class="text-left">
                         <x-filament::button type="submit">
-                            {{ __('filament-companies::default.buttons.add') }}
+                            {{ __('filament-accounts::default.buttons.add') }}
                         </x-filament::button>
                     </div>
                 </x-filament-panels::form>
             </x-filament::section>
-        </x-filament-companies::grid-section>
+        </x-filament-accounts::grid-section>
     @endif
 
-    @if ($company->companyInvitations->isNotEmpty() && Gate::check('addCompanyEmployee', $company))
-        <x-filament-companies::section-border />
+    @if ($account->accountInvitations->isNotEmpty() && Gate::check('addAccountParty', $account))
+        <x-filament-accounts::section-border />
 
         <!-- Pending Employee Invitations -->
-        <x-filament-companies::grid-section md="2">
+        <x-filament-accounts::grid-section md="2">
             <x-slot name="title">
-                {{ __('filament-companies::default.action_section_titles.pending_company_invitations') }}
+                {{ __('filament-accounts::default.action_section_titles.pending_account_invitations') }}
             </x-slot>
 
             <x-slot name="description">
-                {{ __('filament-companies::default.action_section_descriptions.pending_company_invitations') }}
+                {{ __('filament-accounts::default.action_section_descriptions.pending_account_invitations') }}
             </x-slot>
 
             <div class="overflow-x-auto space-y-2 bg-white rounded-xl shadow dark:border-gray-600 dark:bg-gray-800 col-span-2 mt-5 sm:col-span-1 md:col-start-2 md:mt-0">
@@ -93,12 +93,12 @@
                     <thead class="bg-gray-100 dark:bg-gray-800">
                     <tr>
                         <th colspan="3" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                            {{ __('filament-companies::default.fields.email') }}
+                            {{ __('filament-accounts::default.fields.email') }}
                         </th>
                     </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                    @foreach ($company->companyInvitations as $invitation)
+                    @foreach ($account->accountInvitations as $invitation)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
@@ -109,10 +109,10 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-right">
-                                    <!-- Manage Company Employee Role -->
-                                    @if (Gate::check('removeCompanyEmployee', $company))
-                                        <x-filament::button size="sm" color="danger" outlined="true" wire:click="cancelCompanyInvitation({{ $invitation->id }})">
-                                            {{ __('filament-companies::default.buttons.cancel') }}
+                                    <!-- Manage Account Employee Role -->
+                                    @if (Gate::check('removeAccountParty', $account))
+                                        <x-filament::button size="sm" color="danger" outlined="true" wire:click="cancelAccountInvitation({{ $invitation->id }})">
+                                            {{ __('filament-accounts::default.buttons.cancel') }}
                                         </x-filament::button>
                                     @endif
                                 </div>
@@ -122,34 +122,34 @@
                     </tbody>
                 </table>
             </div>
-        </x-filament-companies::grid-section>
+        </x-filament-accounts::grid-section>
     @endif
 
-    @if ($company->users->isNotEmpty())
-        <x-filament-companies::section-border />
+    @if ($account->users->isNotEmpty())
+        <x-filament-accounts::section-border />
 
-        <!-- Manage Company Employees -->
-        <x-filament-companies::grid-section md="2">
+        <!-- Manage Account Employees -->
+        <x-filament-accounts::grid-section md="2">
             <x-slot name="title">
-                {{ __('filament-companies::default.action_section_titles.company_employees') }}
+                {{ __('filament-accounts::default.action_section_titles.account_partys') }}
             </x-slot>
 
             <x-slot name="description">
-                {{ __('filament-companies::default.action_section_descriptions.company_employees') }}
+                {{ __('filament-accounts::default.action_section_descriptions.account_partys') }}
             </x-slot>
 
-            <!-- Company Employee List -->
+            <!-- Account Employee List -->
             <div class="overflow-x-auto space-y-2 bg-white rounded-xl shadow dark:border-gray-600 dark:bg-gray-800 col-span-2 mt-5 sm:col-span-1 md:col-start-2 md:mt-0">
                 <table class="w-full divide-y divide-gray-200 dark:divide-gray-700">
                     <thead class="bg-white dark:bg-gray-800">
                     <tr>
                         <th scope="col" colspan="3" class="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                            {{ __('filament-companies::default.fields.name') }}
+                            {{ __('filament-accounts::default.fields.name') }}
                         </th>
                     </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                    @foreach ($company->users->sortBy('name') as $user)
+                    @foreach ($account->users->sortBy('name') as $user)
                         <tr>
                             <td colspan="2" class="px-6 py-4 text-left whitespace-nowrap">
                                 <div class="flex items-center text-sm">
@@ -164,27 +164,27 @@
                             </td>
                             <td colspan="1" class="px-6 py-4 whitespace-nowrap">
                                 <div class="space-x-2 text-right">
-                                    <!-- Manage Company Employee Role -->
-                                    @if (Gate::check('updateCompanyEmployee', $company) && Wallo\FilamentCompanies\FilamentCompanies::hasRoles())
+                                    <!-- Manage Account Employee Role -->
+                                    @if (Gate::check('updateAccountParty', $account) && Rotaz\FilamentAccounts\FilamentAccounts::hasRoles())
                                         <x-filament::button size="sm" outlined="true" color="primary" wire:click="manageRole('{{ $user->id }}')">
-                                            {{ Wallo\FilamentCompanies\FilamentCompanies::findRole($user->employeeship->role)->name }}
+                                            {{ Rotaz\FilamentAccounts\FilamentAccounts::findRole($user->employeeship->role)->name }}
                                         </x-filament::button>
-                                    @elseif (Wallo\FilamentCompanies\FilamentCompanies::hasRoles())
+                                    @elseif (Rotaz\FilamentAccounts\FilamentAccounts::hasRoles())
                                         <x-filament::button size="sm" disabled="true" outlined="true" color="gray">
-                                            {{ Wallo\FilamentCompanies\FilamentCompanies::findRole($user->employeeship->role)->name }}
+                                            {{ Rotaz\FilamentAccounts\FilamentAccounts::findRole($user->employeeship->role)->name }}
                                         </x-filament::button>
                                     @endif
 
-                                    <!-- Leave Company -->
+                                    <!-- Leave Account -->
                                     @if ($this->user->id === $user->id)
-                                        <x-filament::button size="sm" color="danger" wire:click="confirmLeavingCompany">
-                                            {{ __('filament-companies::default.buttons.leave') }}
+                                        <x-filament::button size="sm" color="danger" wire:click="confirmLeavingAccount">
+                                            {{ __('filament-accounts::default.buttons.leave') }}
                                         </x-filament::button>
 
-                                        <!-- Remove Company Employee -->
-                                    @elseif (Gate::check('removeCompanyEmployee', $company))
-                                        <x-filament::button size="sm" color="danger" wire:click="confirmCompanyEmployeeRemoval('{{ $user->id }}')">
-                                            {{ __('filament-companies::default.buttons.remove') }}
+                                        <!-- Remove Account Employee -->
+                                    @elseif (Gate::check('removeAccountParty', $account))
+                                        <x-filament::button size="sm" color="danger" wire:click="confirmAccountPartyRemoval('{{ $user->id }}')">
+                                            {{ __('filament-accounts::default.buttons.remove') }}
                                         </x-filament::button>
                                     @endif
                                 </div>
@@ -194,13 +194,13 @@
                     </tbody>
                 </table>
             </div>
-        </x-filament-companies::grid-section>
+        </x-filament-accounts::grid-section>
     @endif
 
     <!-- Role Management Modal -->
     <x-filament::modal id="currentlyManagingRole" icon="heroicon-o-shield-check" icon-color="primary" alignment="{{ $modals['alignment'] }}" footer-actions-alignment="{{ $modals['formActionsAlignment'] }}" width="{{ $modals['width'] }}">
         <x-slot name="heading">
-            {{ __('filament-companies::default.modal_titles.manage_role') }}
+            {{ __('filament-accounts::default.modal_titles.manage_role') }}
         </x-slot>
 
         <div x-data="{ role: @entangle('currentRole').live }"
@@ -238,58 +238,58 @@
         <x-slot name="footerActions">
             @if($modals['cancelButtonAction'])
                 <x-filament::button color="gray" wire:click="stopManagingRole">
-                    {{ __('filament-companies::default.buttons.cancel') }}
+                    {{ __('filament-accounts::default.buttons.cancel') }}
                 </x-filament::button>
             @endif
 
             <x-filament::button wire:click="updateRole">
-                {{ __('filament-companies::default.buttons.save') }}
+                {{ __('filament-accounts::default.buttons.save') }}
             </x-filament::button>
         </x-slot>
     </x-filament::modal>
 
-    <!-- Leave Company Confirmation Modal -->
-    <x-filament::modal id="confirmingLeavingCompany" icon="heroicon-o-exclamation-triangle" icon-color="danger" alignment="{{ $modals['alignment'] }}" footer-actions-alignment="{{ $modals['formActionsAlignment'] }}" width="{{ $modals['width'] }}">
+    <!-- Leave Account Confirmation Modal -->
+    <x-filament::modal id="confirmingLeavingAccount" icon="heroicon-o-exclamation-triangle" icon-color="danger" alignment="{{ $modals['alignment'] }}" footer-actions-alignment="{{ $modals['formActionsAlignment'] }}" width="{{ $modals['width'] }}">
         <x-slot name="heading">
-            {{ __('filament-companies::default.modal_titles.leave_company') }}
+            {{ __('filament-accounts::default.modal_titles.leave_account') }}
         </x-slot>
 
         <x-slot name="description">
-            {{ __('filament-companies::default.modal_descriptions.leave_company') }}
+            {{ __('filament-accounts::default.modal_descriptions.leave_account') }}
         </x-slot>
 
         <x-slot name="footerActions">
             @if($modals['cancelButtonAction'])
-                <x-filament::button color="gray" wire:click="cancelLeavingCompany">
-                    {{ __('filament-companies::default.buttons.cancel') }}
+                <x-filament::button color="gray" wire:click="cancelLeavingAccount">
+                    {{ __('filament-accounts::default.buttons.cancel') }}
                 </x-filament::button>
             @endif
 
-            <x-filament::button color="danger" wire:click="leaveCompany">
-                {{ __('filament-companies::default.buttons.leave') }}
+            <x-filament::button color="danger" wire:click="leaveAccount">
+                {{ __('filament-accounts::default.buttons.leave') }}
             </x-filament::button>
         </x-slot>
     </x-filament::modal>
 
-    <!-- Remove Company Employee Confirmation Modal -->
-    <x-filament::modal id="confirmingCompanyEmployeeRemoval" icon="heroicon-o-exclamation-triangle" icon-color="danger" alignment="{{ $modals['alignment'] }}" footer-actions-alignment="{{ $modals['formActionsAlignment'] }}" width="{{ $modals['width'] }}">
+    <!-- Remove Account Employee Confirmation Modal -->
+    <x-filament::modal id="confirmingAccountPartyRemoval" icon="heroicon-o-exclamation-triangle" icon-color="danger" alignment="{{ $modals['alignment'] }}" footer-actions-alignment="{{ $modals['formActionsAlignment'] }}" width="{{ $modals['width'] }}">
         <x-slot name="heading">
-            {{ __('filament-companies::default.modal_titles.remove_company_employee') }}
+            {{ __('filament-accounts::default.modal_titles.remove_account_party') }}
         </x-slot>
 
         <x-slot name="description">
-            {{ __('filament-companies::default.modal_descriptions.remove_company_employee') }}
+            {{ __('filament-accounts::default.modal_descriptions.remove_account_party') }}
         </x-slot>
 
         <x-slot name="footerActions">
             @if($modals['cancelButtonAction'])
-                <x-filament::button color="gray" wire:click="cancelCompanyEmployeeRemoval">
-                    {{ __('filament-companies::default.buttons.cancel') }}
+                <x-filament::button color="gray" wire:click="cancelAccountPartyRemoval">
+                    {{ __('filament-accounts::default.buttons.cancel') }}
                 </x-filament::button>
             @endif
 
-            <x-filament::button color="danger" wire:click="removeCompanyEmployee">
-                {{ __('filament-companies::default.buttons.remove') }}
+            <x-filament::button color="danger" wire:click="removeAccountParty">
+                {{ __('filament-accounts::default.buttons.remove') }}
             </x-filament::button>
         </x-slot>
     </x-filament::modal>

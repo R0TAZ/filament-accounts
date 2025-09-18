@@ -9,78 +9,72 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 use Rotaz\FilamentAccounts\Contracts\AddsAccountParties;
-use Rotaz\FilamentAccounts\Contracts\AddsCompanyEmployees;
-use Rotaz\FilamentAccounts\Events\AddingCompanyEmployee;
-use Rotaz\FilamentAccounts\Events\CompanyEmployeeAdded;
-use Rotaz\FilamentAccounts\FilamentCompanies;
+use Rotaz\FilamentAccounts\Events\AddingAccountParty;
+use Rotaz\FilamentAccounts\Events\AccountPartyAdded;
+use Rotaz\FilamentAccounts\FilamentAccounts;
 use Rotaz\FilamentAccounts\Rules\Role;
 
 class AddAccountParty implements AddsAccountParties
 {
     /**
-     * Add a new company employee to the given company.
-     *
      * @throws AuthorizationException
      */
-    public function add(User $user, Company $company, string $email, ?string $role = null): void
+    public function add(User $user, Account $account, string $email, ?string $role = null): void
     {
-        Gate::forUser($user)->authorize('addCompanyEmployee', $company);
+        Gate::forUser($user)->authorize('addAccountParty', $account);
 
-        $this->validate($company, $email, $role);
+        $this->validate($account, $email, $role);
 
-        $newCompanyEmployee = FilamentCompanies::findUserByEmailOrFail($email);
+        $newAccountParty = FilamentAccounts::findUserByEmailOrFail($email);
 
-        AddingCompanyEmployee::dispatch($company, $newCompanyEmployee);
+        AddingAccountParty::dispatch($account, $newAccountParty);
 
-        $company->users()->attach(
-            $newCompanyEmployee,
+        $account->users()->attach(
+            $newAccountParty,
             ['role' => $role]
         );
 
-        CompanyEmployeeAdded::dispatch($company, $newCompanyEmployee);
+        AccountPartyAdded::dispatch($account, $newAccountParty);
     }
 
+
     /**
-     * Validate the add employee operation.
+     * @throws ValidationException
      */
-    protected function validate(Company $company, string $email, ?string $role): void
+    protected function validate(Account $account, string $email, ?string $role): void
     {
         Validator::make([
             'email' => $email,
             'role' => $role,
         ], $this->rules(), [
-            'email.exists' => __('filament-companies::default.errors.email_not_found'),
+            'email.exists' => __('filament-accounts::default.errors.email_not_found'),
         ])->after(
-            $this->ensureUserIsNotAlreadyOnCompany($company, $email)
-        )->validateWithBag('addCompanyEmployee');
+            $this->ensureUserIsNotAlreadyOnAccount($account, $email)
+        )->validateWithBag('addAccountParty');
     }
 
     /**
-     * Get the validation rules for adding a company employee.
-     *
      * @return array<string, Rule|array|string>
      */
     protected function rules(): array
     {
         return array_filter([
             'email' => ['required', 'email', 'exists:users'],
-            'role' => FilamentCompanies::hasRoles()
+            'role' => FilamentAccounts::hasRoles()
                             ? ['required', 'string', new Role]
                             : null,
         ]);
     }
 
-    /**
-     * Ensure that the user is not already on the company.
-     */
-    protected function ensureUserIsNotAlreadyOnCompany(Company $company, string $email): Closure
+    protected function ensureUserIsNotAlreadyOnAccount(Account $account, string $email): Closure
     {
-        return static function ($validator) use ($company, $email) {
+        return static function ($validator) use ($account, $email) {
             $validator->errors()->addIf(
-                $company->hasUserWithEmail($email),
+                $account->hasUserWithEmail($email),
                 'email',
-                __('filament-companies::default.errors.user_belongs_to_company')
+                __('filament-accounts::default.errors.user_belongs_to_account')
             );
         };
     }

@@ -2,13 +2,13 @@
 
 namespace App\Actions\FilamentAccounts;
 
-use App\Models\Company;
+use App\Models\Account;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Rotaz\FilamentAccounts\Contracts\CreatesNewUsers;
-use Rotaz\FilamentAccounts\FilamentCompanies;
+use Rotaz\FilamentAccounts\FilamentAccounts;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -23,7 +23,7 @@ class CreateNewUser implements CreatesNewUsers
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'terms' => FilamentCompanies::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+            'terms' => FilamentAccounts::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
         return DB::transaction(function () use ($input) {
@@ -32,20 +32,20 @@ class CreateNewUser implements CreatesNewUsers
                 'email' => $input['email'],
                 'password' => Hash::make($input['password']),
             ]), function (User $user) {
-                $this->createCompany($user);
+                $this->createAccount($user);
             });
         });
     }
 
     /**
-     * Create a personal company for the user.
+     * Create a personal account for the user.
      */
-    protected function createCompany(User $user): void
+    protected function createAccount(User $user): void
     {
-        $user->ownedCompanies()->save(Company::forceCreate([
+        $user->ownedAccounts()->save(Account::forceCreate([
             'user_id' => $user->id,
-            'name' => explode(' ', $user->name, 2)[0] . "'s Company",
-            'personal_company' => true,
+            'name' => explode(' ', $user->name, 2)[0] . " ACCOUNT",
+            'personal_account' => true,
         ]));
     }
 }

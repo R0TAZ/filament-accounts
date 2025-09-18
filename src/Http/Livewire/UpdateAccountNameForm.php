@@ -33,9 +33,9 @@ class UpdateAccountNameForm extends Component
     }
 
     /**
-     * Update the company's name.
+     * Update the account's name.
      */
-    public function updateCompanyName(UpdatesAccountNames $updater): void
+    public function updateAccountName(UpdatesAccountNames $updater): void
     {
         $this->resetErrorBag();
 

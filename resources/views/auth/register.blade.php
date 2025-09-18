@@ -20,7 +20,7 @@
 
     {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::AUTH_REGISTER_FORM_AFTER, scopes: $this->getRenderHookScopes()) }}
 
-    @if (\Wallo\FilamentCompanies\FilamentCompanies::hasSocialiteFeatures())
-        <x-filament-companies::socialite :error-message="$errors->first('filament-companies')" />
+    @if (\Rotaz\FilamentAccounts\FilamentAccounts::hasSocialiteFeatures())
+        <x-filament-accounts::socialite :error-message="$errors->first('filament-accounts')" />
     @endif
 </x-filament-panels::page.simple>

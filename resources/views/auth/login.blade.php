@@ -18,8 +18,8 @@
         />
     </x-filament-panels::form>
 
-    @if (Wallo\FilamentCompanies\FilamentCompanies::hasSocialiteFeatures())
-        <x-filament-companies::socialite :error-message="$errors->first('filament-companies')" />
+    @if (Rotaz\FilamentAccounts\FilamentAccounts::hasSocialiteFeatures())
+        <x-filament-accounts::socialite :error-message="$errors->first('filament-accounts')" />
     @endif
 
     {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::AUTH_LOGIN_FORM_AFTER, scopes: $this->getRenderHookScopes()) }}

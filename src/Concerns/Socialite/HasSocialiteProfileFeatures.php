@@ -3,6 +3,8 @@
 namespace Rotaz\FilamentAccounts\Concerns\Socialite;
 
 use Closure;
+use Rotaz\FilamentAccounts\Http\Livewire\ConnectedAccountsForm;
+use Rotaz\FilamentAccounts\Http\Livewire\SetPasswordForm;
 
 trait HasSocialiteProfileFeatures
 {

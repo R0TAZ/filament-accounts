@@ -1,8 +1,8 @@
 @component('mail::message')
-{{ __('You have been invited to join the :company company!', ['company' => $invitation->company->name]) }}
+{{ __('You have been invited to join the :account account!', ['account' => $invitation->account->name]) }}
 
 @if (filament()->getRegistrationUrl())
-{{ __('If you do not have an account, you may create one by clicking the button below. After creating an account, you may click the invitation acceptance button in this email to accept the company invitation:') }}
+{{ __('If you do not have an account, you may create one by clicking the button below. After creating an account, you may click the invitation acceptance button in this email to accept the account invitation:') }}
 
 @component('mail::button', ['url' => url(filament()->getRegistrationUrl())])
     {{ __('Create Account') }}
@@ -19,5 +19,5 @@
 {{ __('Accept Invitation') }}
 @endcomponent
 
-{{ __('If you did not expect to receive an invitation to this company, you may discard this email.') }}
+{{ __('If you did not expect to receive an invitation to this account, you may discard this email.') }}
 @endcomponent

@@ -3,18 +3,21 @@
 namespace App\Providers;
 
 use App\Actions\FilamentAccounts\AddAccountParty;
-use App\Actions\FilamentAccounts\CreateAccount;
 use App\Actions\FilamentAccounts\CreateConnectedAccount;
 use App\Actions\FilamentAccounts\CreateNewUser;
 use App\Actions\FilamentAccounts\CreateUserFromProvider;
+use App\Actions\FilamentAccounts\DeleteAccount;
 use App\Actions\FilamentAccounts\DeleteUser;
 use App\Actions\FilamentAccounts\HandleInvalidState;
+use App\Actions\FilamentAccounts\InviteAccountParty;
+use App\Actions\FilamentAccounts\RemoveAccountParty;
 use App\Actions\FilamentAccounts\ResolveSocialiteUser;
 use App\Actions\FilamentAccounts\SetUserPassword;
-use App\Actions\FilamentAccounts\UpdateCompanyName;
+use App\Actions\FilamentAccounts\UpdateAccountName;
 use App\Actions\FilamentAccounts\UpdateConnectedAccount;
 use App\Actions\FilamentAccounts\UpdateUserPassword;
 use App\Actions\FilamentAccounts\UpdateUserProfileInformation;
+
 use App\Models\Account;
 use Filament\Facades\Filament;
 use Filament\Http\Middleware\Authenticate;
@@ -35,16 +38,14 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Rotaz\FilamentAccounts\Actions\GenerateRedirectForProvider;
-use Rotaz\FilamentAccounts\Contracts\DeletesAccounts;
-use Rotaz\FilamentAccounts\Contracts\InvitesAccountParties;
-use Rotaz\FilamentAccounts\Contracts\RemovesAccountParties;
 use Rotaz\FilamentAccounts\Enums\Feature;
 use Rotaz\FilamentAccounts\Enums\Provider;
 use Rotaz\FilamentAccounts\FilamentAccounts;
 use Rotaz\FilamentAccounts\Pages\Account\AccountSettings;
+use Rotaz\FilamentAccounts\Pages\Account\CreateAccount;
 use Rotaz\FilamentAccounts\Pages\Auth\Login;
 use Rotaz\FilamentAccounts\Pages\Auth\Register;
-
+use Rotaz\FilamentAccounts\Pages\User\Profile;
 
 class FilamentAccountsServiceProvider extends PanelProvider
 {
@@ -103,7 +104,7 @@ class FilamentAccountsServiceProvider extends PanelProvider
                 'profile' => MenuItem::make()
                     ->label('Profile')
                     ->icon('heroicon-o-user-circle')
-                    ->url(static fn () => \Rotaz\FilamentAccounts\Pages\User\Profile::getUrl(panel: FilamentAccounts::getUserPanel())),
+                    ->url(static fn () => Profile::getUrl(panel: FilamentAccounts::getUserPanel())),
             ])
             ->authGuard('web')
             ->discoverWidgets(in: app_path('Filament/Account/Widgets'), for: 'App\\Filament\\Account\\Widgets')
@@ -139,11 +140,11 @@ class FilamentAccountsServiceProvider extends PanelProvider
         FilamentAccounts::updateUserPasswordsUsing(UpdateUserPassword::class);
 
         FilamentAccounts::createAccountsUsing(CreateAccount::class);
-        FilamentAccounts::updateAccountNamesUsing(UpdateCompanyName::class);
+        FilamentAccounts::updateAccountNamesUsing(UpdateAccountName::class);
         FilamentAccounts::addAccountPartiesUsing(AddAccountParty::class);
-        FilamentAccounts::inviteAccountPartiesUsing(InvitesAccountParties::class);
-        FilamentAccounts::removeAccountPartiesUsing(RemovesAccountParties::class);
-        FilamentAccounts::deleteAccountsUsing(DeletesAccounts::class);
+        FilamentAccounts::inviteAccountPartiesUsing(InviteAccountParty::class);
+        FilamentAccounts::removeAccountPartiesUsing(RemoveAccountParty::class);
+        FilamentAccounts::deleteAccountsUsing(DeleteAccount::class);
         FilamentAccounts::deleteUsersUsing(DeleteUser::class);
 
         FilamentAccounts::resolvesSocialiteUsersUsing(ResolveSocialiteUser::class);

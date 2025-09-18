@@ -9,7 +9,7 @@ class AddingAccount
     use Dispatchable;
 
     /**
-     * The company owner.
+     * The account owner.
      */
     public mixed $owner;
 

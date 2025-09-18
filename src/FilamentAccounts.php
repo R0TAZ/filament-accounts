@@ -14,9 +14,10 @@ use Rotaz\FilamentAccounts\Contracts\UpdatesConnectedAccounts;
 use Rotaz\FilamentAccounts\Http\Controllers\OAuthController;
 use Rotaz\FilamentAccounts\Http\Responses\Auth\FilamentAccountsRegistrationResponse;
 use Rotaz\FilamentAccounts\Listeners\SwitchCurrentAccount;
-use Rotaz\FilamentAccounts\Pages\Company\AccountSettings;
-use Rotaz\FilamentAccounts\Pages\Company\CreateAccount;
 use Illuminate\Contracts\Foundation\Application;
+use Rotaz\FilamentAccounts\Pages\Account\AccountSettings;
+use Rotaz\FilamentAccounts\Pages\Account\CreateAccount;
+
 class FilamentAccounts implements Plugin
 {
     use Concerns\Base\HasAddedProfileComponents;

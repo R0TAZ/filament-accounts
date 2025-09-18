@@ -2,14 +2,14 @@
 
 namespace App\Actions\FilamentAccounts;
 
-use App\Models\Company;
+use App\Models\Account;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Contracts\User as ProviderUserContract;
 use Rotaz\FilamentAccounts\Contracts\CreatesConnectedAccounts;
 use Rotaz\FilamentAccounts\Contracts\CreatesUserFromProvider;
 use Rotaz\FilamentAccounts\Enums\Feature;
-use Rotaz\FilamentAccounts\FilamentCompanies;
+use Rotaz\FilamentAccounts\FilamentAccounts;
 
 class CreateUserFromProvider implements CreatesUserFromProvider
 {
@@ -46,7 +46,7 @@ class CreateUserFromProvider implements CreatesUserFromProvider
                     $this->createsConnectedAccounts->create($user, $provider, $providerUser)
                 );
 
-                $this->createCompany($user);
+                $this->createAccount($user);
             });
         });
     }
@@ -54,19 +54,19 @@ class CreateUserFromProvider implements CreatesUserFromProvider
     private function shouldSetProfilePhoto(ProviderUserContract $providerUser): bool
     {
         return Feature::ProviderAvatars->isEnabled() &&
-            FilamentCompanies::managesProfilePhotos() &&
+            FilamentAccounts::managesProfilePhotos() &&
             $providerUser->getAvatar();
     }
 
     /**
-     * Create a personal company for the user.
+     * Create a personal account for the user.
      */
-    protected function createCompany(User $user): void
+    protected function createAccount(User $user): void
     {
-        $user->ownedCompanies()->save(Company::forceCreate([
+        $user->ownedAccounts()->save(Account::forceCreate([
             'user_id' => $user->id,
-            'name' => explode(' ', $user->name, 2)[0] . "'s Company",
-            'personal_company' => true,
+            'name' => explode(' ', $user->name, 2)[0] . "'s Account",
+            'personal_account' => true,
         ]));
     }
 }

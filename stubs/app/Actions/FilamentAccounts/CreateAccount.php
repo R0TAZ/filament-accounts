@@ -2,7 +2,7 @@
 
 namespace App\Actions\FilamentAccounts;
 
-use App\Models\Company;
+use App\Models\Account;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Gate;
@@ -20,7 +20,7 @@ class CreateAccount implements CreatesAccounts
      *
      * @throws AuthorizationException
      */
-    public function create(User $user, array $input): Company
+    public function create(User $user, array $input): Account
     {
         Gate::forUser($user)->authorize('create', FilamentAccounts::newAccountModel());
 

@@ -23,7 +23,7 @@ class AccountFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->unique()->account(),
+            'name' => $this->faker->unique()->name(),
             'user_id' => User::factory(),
             'personal_account' => true,
         ];

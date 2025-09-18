@@ -2,25 +2,25 @@
 
 namespace App\Actions\FilamentAccounts;
 
-use App\Models\Company;
+use App\Models\Account;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use Rotaz\FilamentAccounts\Contracts\DeletesCompanies;
+use Rotaz\FilamentAccounts\Contracts\DeletesAccounts;
 use Rotaz\FilamentAccounts\Contracts\DeletesUsers;
 
 class DeleteUser implements DeletesUsers
 {
     /**
-     * The company deleter implementation.
+     * The account deleter implementation.
      */
-    protected DeletesCompanies $deletesCompanies;
+    protected DeletesAccounts $deletesAccounts;
 
     /**
      * Create a new action instance.
      */
-    public function __construct(DeletesCompanies $deletesCompanies)
+    public function __construct(DeletesAccounts $deletesAccounts)
     {
-        $this->deletesCompanies = $deletesCompanies;
+        $this->deletesAccounts = $deletesAccounts;
     }
 
     /**
@@ -29,7 +29,7 @@ class DeleteUser implements DeletesUsers
     public function delete(User $user): void
     {
         DB::transaction(function () use ($user) {
-            $this->deleteCompanies($user);
+            $this->deleteAccounts($user);
             $user->deleteProfilePhoto();
             $user->connectedAccounts->each(static fn ($account) => $account->delete());
             $user->tokens->each(static fn ($token) => $token->delete());
@@ -38,14 +38,14 @@ class DeleteUser implements DeletesUsers
     }
 
     /**
-     * Delete the companies and company associations attached to the user.
+     * Delete the accounts and account associations attached to the user.
      */
-    protected function deleteCompanies(User $user): void
+    protected function deleteAccounts(User $user): void
     {
-        $user->companies()->detach();
+        $user->accounts()->detach();
 
-        $user->ownedCompanies->each(function (Company $company) {
-            $this->deletesCompanies->delete($company);
+        $user->ownedAccounts->each(function (Account $account) {
+            $this->deletesAccounts->delete($account);
         });
     }
 }

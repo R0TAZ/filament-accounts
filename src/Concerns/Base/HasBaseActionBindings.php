@@ -56,7 +56,7 @@ trait HasBaseActionBindings
     }
 
     /**
-     * Register a class / callback that should be used to add company employees.
+     * Register a class / callback that should be used to add account employees.
      */
     public static function inviteAccountPartiesUsing(string $class): void
     {

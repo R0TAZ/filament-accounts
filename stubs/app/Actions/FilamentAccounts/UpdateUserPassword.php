@@ -20,7 +20,7 @@ class UpdateUserPassword implements UpdatesUserPasswords
             'current_password' => ['required', 'string', 'current_password:web'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ], [
-            'current_password.current_password' => __('filament-companies::default.errors.password_does_not_match'),
+            'current_password.current_password' => __('filament-accounts::default.errors.password_does_not_match'),
         ])->validateWithBag('updatePassword');
 
         $user->forceFill([

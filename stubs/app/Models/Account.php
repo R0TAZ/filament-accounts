@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Filament\Models\Contracts\HasAvatar;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Rotaz\FilamentAccounts\Account as FilamentAccountsAccount;
 use Rotaz\FilamentAccounts\Events\AccountCreated;
@@ -12,6 +13,7 @@ use Rotaz\FilamentAccounts\Events\AccountUpdated;
 class Account extends FilamentAccountsAccount implements HasAvatar
 {
     use HasFactory;
+    use HasUlids;
 
     /**
      * The attributes that are mass assignable.

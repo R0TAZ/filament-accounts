@@ -22,22 +22,22 @@ trait HasBaseProfileFeatures
     public static bool $canUpdatePasswords = false;
 
     /**
-     * Determine if the company is managing profile photos.
+     * Determine if the account is managing profile photos.
      */
     public static bool $managesProfilePhotos = false;
 
     /**
-     * Determine if the company has a profile photo disk.
+     * Determine if the account has a profile photo disk.
      */
     public static string $profilePhotoDisk = 'public';
 
     /**
-     * Determine if the company has a profile photo storage path.
+     * Determine if the account has a profile photo storage path.
      */
     public static string $profilePhotoStoragePath = 'profile-photos';
 
     /**
-     * Determine if the company is supporting API features.
+     * Determine if the account is supporting API features.
      */
     public static bool $hasApiFeatures = false;
 
@@ -100,7 +100,7 @@ trait HasBaseProfileFeatures
     }
 
     /**
-     * Determine if the company is managing profile photos.
+     * Determine if the account is managing profile photos.
      */
     public function profilePhotos(bool | Closure | null $condition = true, string $disk = 'public', string $storagePath = 'profile-photos'): static
     {
@@ -112,7 +112,7 @@ trait HasBaseProfileFeatures
     }
 
     /**
-     * Determine if the company is supporting API features.
+     * Determine if the account is supporting API features.
      */
     public function api(bool | Closure | null $condition = true): static
     {
@@ -154,7 +154,7 @@ trait HasBaseProfileFeatures
     }
 
     /**
-     * Determine if Company is managing profile photos.
+     * Determine if Account is managing profile photos.
      */
     public static function managesProfilePhotos(): bool
     {
@@ -178,7 +178,7 @@ trait HasBaseProfileFeatures
     }
 
     /**
-     * Determine if Company is supporting API features.
+     * Determine if Account is supporting API features.
      */
     public static function hasApiFeatures(): bool
     {
