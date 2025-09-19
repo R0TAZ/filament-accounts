@@ -107,8 +107,8 @@ add_composer_repository() {
 LARAMENT_PATH="/home/devops/projects/laravel/cloud/larament-3.x.zip"
 EXPERIMENTAL_PATH="/home/devops/projects/laravel/cloud/tmp"
 PROJECT_PATH="/home/devops/projects/laravel/cloud/tmp"
-#PROJECT_NAME="$1"
-PROJECT_NAME="OK"
+PROJECT_NAME="$1"
+#PROJECT_NAME="OK"
 
 log "Starting the runner script..." "info"
 unzip_file "$LARAMENT_PATH" "$EXPERIMENTAL_PATH"
