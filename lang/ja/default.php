@@ -83,8 +83,8 @@ return [
         'account_deletion' => 'デフォルトの会社は削除できません。',
         'email_already_associated' => 'ご指定のメールアドレスはすでに登録されています。 :Providerアカウントにログインしてください。',
         'email_not_found' => 'ご指定のメールアドレスで登録されているユーザーは見つかりませんでした。',
-        'employee_already_belongs_to_account' => 'このユーザーは社員として登録済みです。',
-        'employee_already_invited' => 'このユーザーは社員として招待済みです。',
+        'party_already_belongs_to_account' => 'このユーザーは社員として登録済みです。',
+        'party_already_invited' => 'このユーザーは社員として招待済みです。',
         'invalid_password' => 'パスワードが無効です。',
         'no_email_with_account' => ':Providerに該当するメールアドレスは見つかりませんでした。別のアカウントをお試しください。',
         'password_does_not_match' => 'パスワードが間違っています。',
@@ -206,7 +206,7 @@ return [
     ],
 
     'grid_section_titles' => [
-        'add_account_employee' => '社員追加',
+        'add_account_party' => '社員追加',
         'browser_sessions' => 'ブラウザセッション',
         'account_name' => '社名',
         'create_token' => 'APIトークン発行',
@@ -219,7 +219,7 @@ return [
     ],
 
     'grid_section_descriptions' => [
-        'add_account_employee' => '会社に社員を追加し、共同でプロジェクトを行えるようにします。',
+        'add_account_party' => '会社に社員を追加し、共同でプロジェクトを行えるようにします。',
         'browser_sessions' => 'その他デバイスやブラウザにおけるアカウントのセッションを管理します。',
         'account_name' => '会社の名前とオーナー情報',
         'create_token' => 'APIトークンは第三者にあなたを代表して情報アクセス権限を付与します。',
@@ -232,14 +232,14 @@ return [
     ],
 
     'action_section_titles' => [
-        'account_employees' => '社員一覧',
+        'account_party' => '社員一覧',
         'connected_accounts' => '連携中アカウント一覧',
         'delete_account' => '会社削除',
         'pending_account_invitations' => '未受諾の招待',
     ],
 
     'action_section_descriptions' => [
-        'account_employees' => '社員一覧',
+        'account_party' => '社員一覧',
         'connected_accounts' => '連携アカウントを管理する',
         'delete_account' => '会社登録情報を完全に削除する',
         'pending_account_invitations' => 'あなたの会社への招待をまだ受諾していないアカウント一覧です。該当のユーザーは受信したメールからあなたの会社へ参加することができます。',
@@ -255,7 +255,7 @@ return [
         'leave_account' => '退社する',
         'logout_browser_sessions' => 'その他のブラウザからログアウトする',
         'manage_role' => '役割設定',
-        'remove_account_employee' => '社員削除',
+        'remove_account_party' => '社員削除',
         'remove_connected_account' => 'アカウント連携解除',
         'revoke_tokens' => 'トークンの無効化',
     ],
@@ -268,7 +268,7 @@ return [
         'delete_account' => '本当に会社を削除してもよろしいですか？',
         'leave_account' => '本当にこの会社から退社してもよろしいですか？',
         'logout_browser_sessions' => 'その他のブラウザにおけるセッションを無効にするためにパスワード認証を行ってください。',
-        'remove_account_employee' => 'このユーザーを社員リストから削除してもよろしいですか？',
+        'remove_account_party' => 'このユーザーを社員リストから削除してもよろしいですか？',
         'remove_connected_account' => '本当にアカウントを削除しますか？復元は出来ません。',
         'revoke_tokens' => 'パスワード認証が必要です。',
     ],
@@ -314,8 +314,8 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => [
-                'manage_employees' => '社員を管理',
+            'account_party_manager' => [
+                'manage_party' => '社員を管理',
                 'pending_invitations' => '受諾待ちの招待',
             ],
         ],
@@ -342,7 +342,7 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => '招待したいユーザーのメールアドレスを入力してください。',
+            'account_party_manager' => '招待したいユーザーのメールアドレスを入力してください。',
             'delete_account' => '会社を削除したら、すべての関連データは抹消されます。実行する前に必要なバックアップを行ってください。',
         ],
     ],

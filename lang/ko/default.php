@@ -83,8 +83,8 @@ return [
         'account_deletion' => '개인 회사를 삭제할 수 없습니다.',
         'email_already_associated' => '해당 이메일 주소로 이미 계정이 존재합니다. :Provider 계정을 연결하려면 로그인하십시오.',
         'email_not_found' => '등록된 사용자 이메일 주소를 찾을 수 없습니다.',
-        'employee_already_belongs_to_account' => '이 직원은 이미 회사에 속해 있습니다.',
-        'employee_already_invited' => '이 직원은 이미 회사로 초대되었습니다.',
+        'party_already_belongs_to_account' => '이 직원은 이미 회사에 속해 있습니다.',
+        'party_already_invited' => '이 직원은 이미 회사로 초대되었습니다.',
         'invalid_password' => '제공된 비밀번호가 잘못되었습니다.',
         'no_email_with_account' => '해당 :Provider 계정에 연결된 이메일 주소가 없습니다. 다른 계정을 시도하십시오.',
         'password_does_not_match' => '제공된 비밀번호가 현재 비밀번호와 일치하지 않습니다.',
@@ -206,7 +206,7 @@ return [
     ],
 
     'grid_section_titles' => [
-        'add_account_employee' => '회사 직원 추가',
+        'add_account_party' => '회사 직원 추가',
         'browser_sessions' => '브라우저 세션',
         'account_name' => '회사 이름',
         'create_token' => '개인 액세스 토큰 생성',
@@ -219,7 +219,7 @@ return [
     ],
 
     'grid_section_descriptions' => [
-        'add_account_employee' => '회사에 새 직원을 추가하여 협업을 할 수 있습니다.',
+        'add_account_party' => '회사에 새 직원을 추가하여 협업을 할 수 있습니다.',
         'browser_sessions' => '다른 브라우저 및 장치에서 활성 세션을 관리하고 로그아웃합니다.',
         'account_name' => "회사 이름 및 소유자 정보입니다.",
         'create_token' => '개인 액세스 토큰을 사용하여 타사 서비스가 응용 프로그램에 대해 사용자를 인증할 수 있습니다.',
@@ -232,14 +232,14 @@ return [
     ],
 
     'action_section_titles' => [
-        'account_employees' => '회사 직원',
+        'account_party' => '회사 직원',
         'connected_accounts' => '연결된 계정',
         'delete_account' => '회사 삭제',
         'pending_account_invitations' => '대기 중인 회사 초대',
     ],
 
     'action_section_descriptions' => [
-        'account_employees' => '이 회사에 속한 모든 사람들입니다.',
+        'account_party' => '이 회사에 속한 모든 사람들입니다.',
         'connected_accounts' => '연결된 계정을 관리하고 제거합니다.',
         'delete_account' => '이 회사를 영구적으로 삭제합니다.',
         'pending_account_invitations' => '이 사람들은 회사로 초대되었으며 초대 이메일이 전송되었습니다. 이메일 초대를 수락하여 회사에 가입할 수 있습니다.',
@@ -255,7 +255,7 @@ return [
         'leave_account' => '회사 나가기',
         'logout_browser_sessions' => '다른 브라우저 세션 로그아웃',
         'manage_role' => '역할 관리',
-        'remove_account_employee' => '회사 직원 제거',
+        'remove_account_party' => '회사 직원 제거',
         'remove_connected_account' => '연결된 계정 제거',
         'revoke_tokens' => '토큰 폐지',
     ],
@@ -268,7 +268,7 @@ return [
         'delete_account' => '이 회사를 삭제하시겠습니까?',
         'leave_account' => '이 회사를 나가시겠습니까?',
         'logout_browser_sessions' => '다른 브라우저 세션에서 로그아웃하려면 비밀번호를 입력하십시오.',
-        'remove_account_employee' => '이 사람을 회사에서 제거하시겠습니까?',
+        'remove_account_party' => '이 사람을 회사에서 제거하시겠습니까?',
         'remove_connected_account' => '이 계정을 제거하시겠습니까? 이 작업은 되돌릴 수 없습니다.',
         'revoke_tokens' => '확인하려면 비밀번호를 입력하십시오.',
     ],
@@ -314,8 +314,8 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => [
-                'manage_employees' => '직원 관리',
+            'account_party_manager' => [
+                'manage_party' => '직원 관리',
                 'pending_invitations' => '대기 중인 초대',
             ],
         ],
@@ -342,7 +342,7 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => '이 회사에 추가하려는 사람의 이메일 주소를 제공하십시오.',
+            'account_party_manager' => '이 회사에 추가하려는 사람의 이메일 주소를 제공하십시오.',
             'delete_account' => '회사를 삭제하면 모든 리소스와 데이터가 영구적으로 삭제됩니다. 이 회사를 삭제하기 전에 보존할 데이터나 정보를 다운로드하세요.',
         ],
     ],

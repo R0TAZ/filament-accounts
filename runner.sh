@@ -81,6 +81,8 @@ setup_laravel() {
 
   php artisan migrate:refresh --seed || handle_error $? "Database refresh and seeding failed"
 
+  npm install && npm run build || handle_error $? "NPM install or build failed"
+
   log "Filament Accounts installed and database refreshed with seeding." "success"
 
 }

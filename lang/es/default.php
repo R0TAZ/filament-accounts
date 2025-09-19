@@ -98,7 +98,7 @@ return [
         'create_token' => 'Crear Personal Access Token',
         'account_name' => 'Nombre de la empresa',
         'create_account' => 'Crear Conta',
-        'add_account_employee' => 'Agregar empleado de la empresa',
+        'add_account_party' => 'Agregar empleado de la empresa',
     ],
 
     'grid_section_descriptions' => [
@@ -110,18 +110,18 @@ return [
         'create_token' => 'Los tokens del API permiten que los servicios de terceros se autentiquen con nuestra aplicación en su nombre.',
         'account_name' => 'El nombre de la empresa y la información del propietario.',
         'create_account' => 'Crea una nueva empresa para colaborar con otros en sus proyectos.',
-        'add_account_employee' => 'Agregar un nuevo empleado a la empresa para que pueda colaborar con usted.',
+        'add_account_party' => 'Agregar un nuevo empleado a la empresa para que pueda colaborar con usted.',
     ],
 
     'action_section_titles' => [
         'pending_account_invitations' => 'Invitaciones de empresa pendientes',
-        'account_employees' => 'Empleados de la empresa',
+        'account_party' => 'Empleados de la empresa',
         'delete_account' => 'Eliminar empresa',
     ],
 
     'action_section_descriptions' => [
         'pending_account_invitations' => 'Estas personas han sido invitadas a su empresa y se les ha enviado un correo electrónico de invitación. Pueden unirse a la empresa si aceptan la invitación por correo electrónico.',
-        'account_employees' => 'Todas las personas que forman parte de esta empresa.',
+        'account_party' => 'Todas las personas que forman parte de esta empresa.',
         'delete_account' => 'Eliminar esta empresa de forma permanente.',
     ],
 
@@ -131,7 +131,7 @@ return [
         'delete_token' => 'Borrar Personal Access Token',
         'manage_role' => 'Gestionar Rol',
         'leave_account' => 'Salir de la empresa',
-        'remove_account_employee' => 'Eliminar empleado de la empresa',
+        'remove_account_party' => 'Eliminar empleado de la empresa',
         'logout_browser_sessions' => 'Cerrar sesión de otras sesiones del navegador',
         'delete_account' => 'Eliminar cuenta',
         'delete_account' => 'Eliminar empresa',
@@ -141,7 +141,7 @@ return [
         'copy_token' => 'Guarde su nuevo token API. Por su seguridad, no se volverá a mostrar',
         'delete_token' => '¿Está seguro de que desea eliminar este token de API?',
         'leave_account' => '¿Está seguro de que desea dejar esta empresa?',
-        'remove_account_employee' => '¿Está seguro de que desea eliminar a esta persona de la empresa?',
+        'remove_account_party' => '¿Está seguro de que desea eliminar a esta persona de la empresa?',
         'logout_browser_sessions' => 'Ingrese su contraseña para confirmar que desea cerrar sesión en sus otras sesiones de navegador en todos sus dispositivos.',
         'delete_account' => '¿Está seguro de que desea eliminar su cuenta? Una vez que se elimine su cuenta, todos sus recursos y datos se eliminarán de forma permanente. Ingrese su contraseña para confirmar que desea eliminar su cuenta de forma permanente.',
         'delete_account' => '¿Está seguro de que desea eliminar esta empresa? Una vez que se elimine una empresa, todos sus recursos y datos se eliminarán de forma permanente.',
@@ -183,9 +183,9 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => [
+            'account_party_manager' => [
                 'pending_invitations' => 'Invitaciones pendientes',
-                'manage_employees' => 'Gestionar empleados',
+                'manage_party' => 'Gestionar empleados',
             ],
         ],
     ],
@@ -210,7 +210,7 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => 'Proporcione la dirección de correo electrónico de la persona que desea agregar a esta empresa.',
+            'account_party_manager' => 'Proporcione la dirección de correo electrónico de la persona que desea agregar a esta empresa.',
             'delete_account' => 'Una vez que se elimine una empresa, todos sus recursos y datos se eliminarán de forma permanente. Antes de eliminar esta empresa, descargue cualquier dato o información sobre esta empresa que desee conservar.',
         ],
     ],

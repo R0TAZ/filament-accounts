@@ -83,8 +83,8 @@ return [
         'account_deletion' => 'Ihre persönliche Firma kann nicht gelöscht werden.',
         'email_already_associated' => 'Ein Konto mit dieser E-Mail-Adresse existiert bereits. Bitte melden Sie sich an, um Ihr :Provider Konto zu verbinden.',
         'email_not_found' => 'Wir konnten keinen registrierten Benutzer mit dieser E-Mail-Adresse finden.',
-        'employee_already_belongs_to_account' => 'Dieser Mitarbeiter gehört bereits zur Firma.',
-        'employee_already_invited' => 'Dieser Mitarbeiter wurde bereits zur Firma eingeladen.',
+        'party_already_belongs_to_account' => 'Dieser Mitarbeiter gehört bereits zur Firma.',
+        'party_already_invited' => 'Dieser Mitarbeiter wurde bereits zur Firma eingeladen.',
         'invalid_password' => 'Das eingegebene Passwort ist ungültig.',
         'no_email_with_account' => 'Diesem :Provider Konto ist keine E-Mail-Adresse zugeordnet. Bitte versuchen Sie es mit einem anderen Konto.',
         'password_does_not_match' => 'Das angegebene Passwort stimmt nicht mit Ihrem aktuellen Passwort überein.',
@@ -206,7 +206,7 @@ return [
     ],
 
     'grid_section_titles' => [
-        'add_account_employee' => 'Firmenmitarbeiter hinzufügen',
+        'add_account_party' => 'Firmenmitarbeiter hinzufügen',
         'browser_sessions' => 'Browsersitzungen',
         'account_name' => 'Firmenname',
         'create_token' => 'Persönlichen Zugangstoken erstellen',
@@ -219,7 +219,7 @@ return [
     ],
 
     'grid_section_descriptions' => [
-        'add_account_employee' => 'Fügen Sie einen neuen Firmenmitarbeiter zu Ihrer Firma hinzu, damit er mit Ihnen zusammenarbeiten kann.',
+        'add_account_party' => 'Fügen Sie einen neuen Firmenmitarbeiter zu Ihrer Firma hinzu, damit er mit Ihnen zusammenarbeiten kann.',
         'browser_sessions' => 'Verwalten und melden Sie sich von Ihren aktiven Sitzungen auf anderen Browsern und Geräten ab.',
         'account_name' => 'Der Name der Firma und Informationen zum Inhaber.',
         'create_token' => 'Persönliche Zugangstokens erlauben es Drittanbieterdiensten, sich in Ihrem Namen bei unserer Anwendung zu authentifizieren.',
@@ -232,14 +232,14 @@ return [
     ],
 
     'action_section_titles' => [
-        'account_employees' => 'Firmenmitarbeiter',
+        'account_party' => 'Firmenmitarbeiter',
         'connected_accounts' => 'Verbundene Konten',
         'delete_account' => 'Firma löschen',
         'pending_account_invitations' => 'Ausstehende Firmeneinladungen',
     ],
 
     'action_section_descriptions' => [
-        'account_employees' => 'Alle Personen, die Teil dieser Firma sind.',
+        'account_party' => 'Alle Personen, die Teil dieser Firma sind.',
         'connected_accounts' => 'Verwalten und entfernen Sie Ihre verbundenen Konten.',
         'delete_account' => 'Diese Firma dauerhaft löschen.',
         'pending_account_invitations' => 'Diese Personen wurden zu Ihrer Firma eingeladen und haben eine Einladungs-E-Mail erhalten. Sie können der Firma beitreten, indem sie die Einladung per E-Mail annehmen.',
@@ -255,7 +255,7 @@ return [
         'leave_account' => 'Firma verlassen',
         'logout_browser_sessions' => 'Andere Browsersitzungen abmelden',
         'manage_role' => 'Rolle verwalten',
-        'remove_account_employee' => 'Firmenmitarbeiter entfernen',
+        'remove_account_party' => 'Firmenmitarbeiter entfernen',
         'remove_connected_account' => 'Verbundenes Konto entfernen',
         'revoke_tokens' => 'Tokens widerrufen',
     ],
@@ -267,7 +267,7 @@ return [
         'delete_account' => 'Sind Sie sicher, dass Sie diese Firma löschen möchten?',
         'leave_account' => 'Sind Sie sicher, dass Sie diese Firma verlassen möchten?',
         'logout_browser_sessions' => 'Bitte geben Sie Ihr Passwort ein, um zu bestätigen, dass Sie sich von Ihren anderen Browsersitzungen abmelden möchten.',
-        'remove_account_employee' => 'Sind Sie sicher, dass Sie diese Person aus der Firma entfernen möchten?',
+        'remove_account_party' => 'Sind Sie sicher, dass Sie diese Person aus der Firma entfernen möchten?',
         'remove_connected_account' => 'Bitte bestätigen Sie die Entfernung dieses Kontos - diese Aktion kann nicht rückgängig gemacht werden.',
         'revoke_tokens' => 'Bitte geben Sie Ihr Passwort ein, um zu bestätigen.',
     ],
@@ -313,8 +313,8 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => [
-                'manage_employees' => 'Mitarbeiter verwalten',
+            'account_party_manager' => [
+                'manage_party' => 'Mitarbeiter verwalten',
                 'pending_invitations' => 'Ausstehende Einladungen',
             ],
         ],
@@ -341,7 +341,7 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => 'Bitte geben Sie die E-Mail-Adresse der Person an, die Sie zu dieser Firma hinzufügen möchten.',
+            'account_party_manager' => 'Bitte geben Sie die E-Mail-Adresse der Person an, die Sie zu dieser Firma hinzufügen möchten.',
             'delete_account' => 'Sobald eine Firma gelöscht wird, werden alle ihre Ressourcen und Daten dauerhaft gelöscht. Bevor Sie diese Firma löschen, laden Sie bitte alle Daten oder Informationen herunter, die Sie behalten möchten.',
         ],
     ],

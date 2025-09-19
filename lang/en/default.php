@@ -83,8 +83,8 @@ return [
         'account_deletion' => 'You may not delete your personal account.',
         'email_already_associated' => 'An account with that email address already exists. Please login to connect your :Provider account.',
         'email_not_found' => 'We were unable to find a registered user with this email address.',
-        'employee_already_belongs_to_account' => 'This employee already belongs to the account.',
-        'employee_already_invited' => 'This employee has already been invited to the account.',
+        'party_already_belongs_to_account' => 'This party already belongs to the account.',
+        'party_already_invited' => 'This party has already been invited to the account.',
         'generic_error' => 'An error occurred while processing your request.',
         'invalid_password' => 'The password you entered is invalid.',
         'no_email_with_account' => 'No email address is associated with this :Provider account. Please try a different account.',
@@ -208,7 +208,7 @@ return [
     ],
 
     'grid_section_titles' => [
-        'add_account_employee' => 'Add Account Employee',
+        'add_account_party' => 'Add Account Employee',
         'browser_sessions' => 'Browser Sessions',
         'account_name' => 'Account Name',
         'create_token' => 'Create Personal Access Token',
@@ -221,7 +221,7 @@ return [
     ],
 
     'grid_section_descriptions' => [
-        'add_account_employee' => 'Add a new account employee to your account, allowing them to collaborate with you.',
+        'add_account_party' => 'Add a new account party to your account, allowing them to collaborate with you.',
         'browser_sessions' => 'Manage and log out your active sessions on other browsers and devices.',
         'account_name' => "The account's name and owner information.",
         'create_token' => 'Personal Access Tokens allow third-party services to authenticate with our application on your behalf.',
@@ -234,14 +234,14 @@ return [
     ],
 
     'action_section_titles' => [
-        'account_employees' => 'Account Employees',
+        'account_party' => 'Account Employees',
         'connected_accounts' => 'Connected Accounts',
         'delete_account' => 'Delete Account',
         'pending_account_invitations' => 'Pending Account Invitations',
     ],
 
     'action_section_descriptions' => [
-        'account_employees' => 'All of the people that are part of this account.',
+        'account_party' => 'All of the people that are part of this account.',
         'connected_accounts' => 'Manage and remove your connected accounts.',
         'delete_account' => 'Permanently delete this account.',
         'pending_account_invitations' => 'These people have been invited to your account and have been sent an invitation email. They may join the account by accepting the email invitation.',
@@ -257,7 +257,7 @@ return [
         'leave_account' => 'Leave Account',
         'logout_browser_sessions' => 'Log Out Other Browser Sessions',
         'manage_role' => 'Manage Role',
-        'remove_account_employee' => 'Remove Account Employee',
+        'remove_account_party' => 'Remove Account Employee',
         'remove_connected_account' => 'Remove Connected Account',
         'revoke_tokens' => 'Revoke Tokens',
     ],
@@ -270,7 +270,7 @@ return [
         'delete_account' => 'Are you sure you want to delete this account?',
         'leave_account' => 'Are you sure you would like to leave this account?',
         'logout_browser_sessions' => 'Please enter your password to confirm you would like to log out of your other browser sessions.',
-        'remove_account_employee' => 'Are you sure you would like to remove this person from the account?',
+        'remove_account_party' => 'Are you sure you would like to remove this person from the account?',
         'remove_connected_account' => 'Please confirm your removal of this account - this action cannot be undone.',
         'revoke_tokens' => 'Please enter your password to confirm.',
     ],
@@ -316,8 +316,8 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => [
-                'manage_employees' => 'Manage Employees',
+            'account_party_manager' => [
+                'manage_party' => 'Manage Employees',
                 'pending_invitations' => 'Pending Invitations',
             ],
         ],
@@ -344,7 +344,7 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => 'Please provide the email address of the person you would like to add to this account.',
+            'account_party_manager' => 'Please provide the email address of the person you would like to add to this account.',
             'delete_account' => 'Once a account is deleted, all of its resources and data will be permanently deleted. Before deleting this account, please download any data or information regarding this account that you wish to retain.',
         ],
     ],

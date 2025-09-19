@@ -83,8 +83,8 @@ return [
         'account_deletion' => 'Não pode eliminar a sua empresa pessoal.',
         'email_already_associated' => 'Uma conta com este endereço de email já existe. Por favor, faça login para conectar a sua conta :Provider.',
         'email_not_found' => 'Não conseguimos encontrar um utilizador registado com este endereço de email.',
-        'employee_already_belongs_to_account' => 'Este funcionário já pertence à empresa.',
-        'employee_already_invited' => 'Este funcionário já foi convidado para a empresa.',
+        'party_already_belongs_to_account' => 'Este funcionário já pertence à empresa.',
+        'party_already_invited' => 'Este funcionário já foi convidado para a empresa.',
         'generic_error' => 'Ocorreu um erro ao processar o seu pedido.',
         'invalid_password' => 'A palavra-passe que introduziu é inválida.',
         'no_email_with_account' => 'Nenhum endereço de email está associado a esta conta :Provider. Por favor, tente uma conta diferente.',
@@ -208,7 +208,7 @@ return [
     ],
 
     'grid_section_titles' => [
-        'add_account_employee' => 'Adicionar Funcionário da Conta',
+        'add_account_party' => 'Adicionar Funcionário da Conta',
         'browser_sessions' => 'Sessões do Navegador',
         'account_name' => 'Nome da Conta',
         'create_token' => 'Criar Token de Acesso Pessoal',
@@ -221,7 +221,7 @@ return [
     ],
 
     'grid_section_descriptions' => [
-        'add_account_employee' => 'Adicione um novo funcionário da empresa à sua empresa, permitindo que ele colabore consigo.',
+        'add_account_party' => 'Adicione um novo funcionário da empresa à sua empresa, permitindo que ele colabore consigo.',
         'browser_sessions' => 'Gerir e desligar as suas sessões ativas em outros navegadores e dispositivos.',
         'account_name' => 'Nome da empresa e informações do proprietário.',
         'create_token' => 'Tokens de Acesso Pessoal permitem que serviços de terceiros autentiquem com a nossa aplicação em seu nome.',
@@ -234,14 +234,14 @@ return [
     ],
 
     'action_section_titles' => [
-        'account_employees' => 'Funcionários da Conta',
+        'account_party' => 'Funcionários da Conta',
         'connected_accounts' => 'Contas Conectadas',
         'delete_account' => 'Eliminar Conta',
         'pending_account_invitations' => 'Convites Pendentes para a Conta',
     ],
 
     'action_section_descriptions' => [
-        'account_employees' => 'Todas as pessoas que fazem parte desta empresa.',
+        'account_party' => 'Todas as pessoas que fazem parte desta empresa.',
         'connected_accounts' => 'Gerir e remover as suas contas conectadas.',
         'delete_account' => 'Eliminar permanentemente esta empresa.',
         'pending_account_invitations' => 'Estas pessoas foram convidadas para a sua empresa e receberam um email de convite. Podem juntar-se à empresa aceitando o convite do email.',
@@ -257,7 +257,7 @@ return [
         'leave_account' => 'Sair da Conta',
         'logout_browser_sessions' => 'Sair de Outras Sessões do Navegador',
         'manage_role' => 'Gerir Função',
-        'remove_account_employee' => 'Remover Funcionário da Conta',
+        'remove_account_party' => 'Remover Funcionário da Conta',
         'remove_connected_account' => 'Remover Conta Conectada',
         'revoke_tokens' => 'Revogar Tokens',
     ],
@@ -270,7 +270,7 @@ return [
         'delete_account' => 'Tem a certeza de que deseja eliminar esta empresa?',
         'leave_account' => 'Tem a certeza de que deseja sair desta empresa?',
         'logout_browser_sessions' => 'Por favor, insira a sua palavra-passe para confirmar que deseja sair das suas outras sessões do navegador.',
-        'remove_account_employee' => 'Tem a certeza de que deseja remover esta pessoa da empresa?',
+        'remove_account_party' => 'Tem a certeza de que deseja remover esta pessoa da empresa?',
         'remove_connected_account' => 'Por favor, confirme a remoção desta conta - esta ação não pode ser desfeita.',
         'revoke_tokens' => 'Por favor, insira a sua palavra-passe para confirmar.',
     ],
@@ -316,8 +316,8 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => [
-                'manage_employees' => 'Gerir Funcionários',
+            'account_party_manager' => [
+                'manage_party' => 'Gerir Funcionários',
                 'pending_invitations' => 'Convites Pendentes',
             ],
         ],
@@ -344,7 +344,7 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => 'Por favor, forneça o endereço de email da pessoa que gostaria de adicionar a esta empresa.',
+            'account_party_manager' => 'Por favor, forneça o endereço de email da pessoa que gostaria de adicionar a esta empresa.',
             'delete_account' => 'Uma vez que uma empresa é eliminada, todos os seus recursos e dados serão permanentemente apagados. Antes de eliminar esta empresa, por favor, faça o download de qualquer dado ou informação sobre esta empresa que queira manter.',
         ],
     ],

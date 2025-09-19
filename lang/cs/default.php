@@ -88,8 +88,8 @@ return [
         'account_deletion' => 'Nemůžete smazat svou osobní společnost.',
         'email_already_associated' => 'Účet s touto e-mailovou adresou již existuje. Přihlaste se prosím pro připojení vašeho :Provider účtu.',
         'email_not_found' => 'Nepodařilo se nám najít registrovaného uživatele s touto e-mailovou adresou.',
-        'employee_already_belongs_to_account' => 'Tento zaměstnanec již patří do společnosti.',
-        'employee_already_invited' => 'Tento zaměstnanec již byl pozván do společnosti.',
+        'party_already_belongs_to_account' => 'Tento zaměstnanec již patří do společnosti.',
+        'party_already_invited' => 'Tento zaměstnanec již byl pozván do společnosti.',
         'invalid_password' => 'Zadané heslo je neplatné.',
         'no_email_with_account' => 'S tímto :Provider účtem není spojena žádná e-mailová adresa. Zkuste prosím jiný účet.',
         'password_does_not_match' => 'Zadané heslo neodpovídá vašemu aktuálnímu heslu.',
@@ -212,7 +212,7 @@ return [
     ],
 
     'grid_section_titles' => [
-        'add_account_employee' => 'Přidat zaměstnance společnosti',
+        'add_account_party' => 'Přidat zaměstnance společnosti',
         'browser_sessions' => 'Relace prohlížeče',
         'account_name' => 'Název společnosti',
         'create_token' => 'Vytvořit osobní přístupový token',
@@ -225,7 +225,7 @@ return [
     ],
 
     'grid_section_descriptions' => [
-        'add_account_employee' => 'Přidejte nového zaměstnance společnosti, který bude s vámi spolupracovat.',
+        'add_account_party' => 'Přidejte nového zaměstnance společnosti, který bude s vámi spolupracovat.',
         'browser_sessions' => 'Spravujte a odhlašujte své aktivní relace na jiných prohlížečích a zařízeních.',
         'account_name' => "Název společnosti a informace o vlastníkovi.",
         'create_token' => 'Osobní přístupové tokeny umožňují ověření třetích stran s naší aplikací vaším jménem.',
@@ -238,14 +238,14 @@ return [
     ],
 
     'action_section_titles' => [
-        'account_employees' => 'Zaměstnanci společnosti',
+        'account_party' => 'Zaměstnanci společnosti',
         'connected_accounts' => 'Připojené účty',
         'delete_account' => 'Smazat společnost',
         'pending_account_invitations' => 'Čekající pozvánky do společnosti',
     ],
 
     'action_section_descriptions' => [
-        'account_employees' => 'Všichni lidé, kteří jsou součástí této společnosti.',
+        'account_party' => 'Všichni lidé, kteří jsou součástí této společnosti.',
         'connected_accounts' => 'Spravujte a odstraňujte své připojené účty.',
         'delete_account' => 'Trvale smazat tuto společnost.',
         'pending_account_invitations' => 'Tito lidé byli pozváni do vaší společnosti a byli jim zaslány pozvánkové e-maily. Mohou se připojit k společnosti přijetím pozvánky z e-mailu.',
@@ -261,7 +261,7 @@ return [
         'leave_account' => 'Opustit společnost',
         'logout_browser_sessions' => 'Odhlásit se z ostatních relací prohlížeče',
         'manage_role' => 'Spravovat roli',
-        'remove_account_employee' => 'Odstranit zaměstnance společnosti',
+        'remove_account_party' => 'Odstranit zaměstnance společnosti',
         'remove_connected_account' => 'Odstranit připojený účet',
         'revoke_tokens' => 'Zrušit tokeny',
     ],
@@ -274,7 +274,7 @@ return [
         'delete_account' => 'Opravdu chcete smazat tuto společnost?',
         'leave_account' => 'Opravdu chcete opustit tuto společnost?',
         'logout_browser_sessions' => 'Prosím, zadejte své heslo pro potvrzení, že chcete odhlásit své ostatní relace v prohlížeči.',
-        'remove_account_employee' => 'Opravdu chcete odstranit tuto osobu ze společnosti?',
+        'remove_account_party' => 'Opravdu chcete odstranit tuto osobu ze společnosti?',
         'remove_connected_account' => 'Prosím, potvrďte odstranění tohoto účtu - tato akce nemůže být vrácena.',
         'revoke_tokens' => 'Prosím, zadejte své heslo pro potvrzení.',
     ],
@@ -320,8 +320,8 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => [
-                'manage_employees' => 'Spravovat zaměstnance',
+            'account_party_manager' => [
+                'manage_party' => 'Spravovat zaměstnance',
                 'pending_invitations' => 'Čekající pozvánky',
             ],
         ],
@@ -348,7 +348,7 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => 'Prosím, uveďte e-mailovou adresu osoby, kterou byste chtěli přidat do této společnosti.',
+            'account_party_manager' => 'Prosím, uveďte e-mailovou adresu osoby, kterou byste chtěli přidat do této společnosti.',
             'delete_account' => 'Jakmile je společnost smazána, všechny její zdroje a data budou trvale smazány. Před smazáním této společnosti si prosím stáhněte všechna data nebo informace o této společnosti, které chcete zachovat.',
         ],
     ],

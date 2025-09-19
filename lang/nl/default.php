@@ -86,8 +86,8 @@ return [
         'account_deletion' => 'Je kan je eigen persoonlijke bedrijf niet verwijderen.',
         'email_already_associated' => 'Er bestaat al een account met dat e-mailadres. Log in om uw :Provider account te koppelen.',
         'email_not_found' => 'We konden geen geregistreerde gebruiker met dit e-mailadres vinden.',
-        'employee_already_belongs_to_account' => 'Deze werknemer behoort al tot het bedrijf.',
-        'employee_already_invited' => 'Deze medewerker is al uitgenodigd voor het bedrijf.',
+        'party_already_belongs_to_account' => 'Deze werknemer behoort al tot het bedrijf.',
+        'party_already_invited' => 'Deze medewerker is al uitgenodigd voor het bedrijf.',
         'invalid_password' => 'Het door jou ingevoerde wachtwoord is ongeldig.',
         'no_email_with_account' => 'Er is geen e-mailadres gekoppeld aan dit :Provider account. Probeer een ander account.',
         'password_does_not_match' => 'Het opgegeven wachtwoord komt niet overeen met jouw huidige wachtwoord.',
@@ -209,7 +209,7 @@ return [
     ],
 
     'grid_section_titles' => [
-        'add_account_employee' => 'Medewerker toevoegen',
+        'add_account_party' => 'Medewerker toevoegen',
         'browser_sessions' => 'Browser Sessies',
         'account_name' => 'Bedrijfsnaam',
         'create_token' => 'Persoonlijke toegangstoken aanmaken',
@@ -222,7 +222,7 @@ return [
     ],
 
     'grid_section_descriptions' => [
-        'add_account_employee' => 'Voeg een nieuwe bedrijfsmedewerker toe aan jouw bedrijf, zodat deze met je kan samenwerken.',
+        'add_account_party' => 'Voeg een nieuwe bedrijfsmedewerker toe aan jouw bedrijf, zodat deze met je kan samenwerken.',
         'browser_sessions' => 'Beheer en log jouw actieve sessies uit op andere browsers en apparaten.',
         'account_name' => 'De naam van het bedrijf en informatie over de eigenaar.',
         'create_token' => 'Met persoonlijke toegangstokens kunnen services van derden zich namens jou bij onze applicatie aanmelden.',
@@ -235,14 +235,14 @@ return [
     ],
 
     'action_section_titles' => [
-        'account_employees' => 'Bedrijf werknemers',
+        'account_party' => 'Bedrijf werknemers',
         'connected_accounts' => 'Verbonden accounts',
         'delete_account' => 'Verwijder bedrijf',
         'pending_account_invitations' => 'Bedrijfsuitnodiging(en) in behandeling',
     ],
 
     'action_section_descriptions' => [
-        'account_employees' => 'Al deze personen maken onderdeel uit van dit bedrijf.',
+        'account_party' => 'Al deze personen maken onderdeel uit van dit bedrijf.',
         'connected_accounts' => 'Beheer en verwijder jouw verbonden accounts.',
         'delete_account' => 'Verwijder dit bedrijf definitief.',
         'pending_account_invitations' => 'Deze mensen zijn uitgenodigd voor jouw bedrijf en hebben een uitnodigingsmail ontvangen. Ze kunnen zich bij het bedrijf aansluiten door de e-mailuitnodiging te accepteren.',
@@ -258,7 +258,7 @@ return [
         'leave_account' => 'Verlaat bedrijf',
         'logout_browser_sessions' => 'Uitloggen op andere Browser sessies',
         'manage_role' => 'Beheer rol',
-        'remove_account_employee' => 'Verwijder bedrijfswerknemers',
+        'remove_account_party' => 'Verwijder bedrijfswerknemers',
         'remove_connected_account' => 'Verwijder verbonden account',
         'revoke_tokens' => 'Tokens intrekken',
     ],
@@ -271,7 +271,7 @@ return [
         'delete_account' => 'Weet je zeker dat je dit bedrijf wilt verwijderen?',
         'leave_account' => 'Weet je zeker dat je dit bedrijf wilt verlaten?',
         'logout_browser_sessions' => 'Geef je wachtwoord in om te bevestigen dat jezelf wilt afmelden bij jouw andere browsersessies.',
-        'remove_account_employee' => 'Weet je het zeker dat je deze persoon wilt verwijderen uit het bedrijf?',
+        'remove_account_party' => 'Weet je het zeker dat je deze persoon wilt verwijderen uit het bedrijf?',
         'remove_connected_account' => 'Bevestig de verwijdering van dit account. Deze actie kan niet ongedaan gemaakt worden.',
         'revoke_tokens' => 'Voer jouw wachtwoord in om te bevestigen.',
     ],
@@ -317,8 +317,8 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => [
-                'manage_employees' => 'Beheer medewerkers',
+            'account_party_manager' => [
+                'manage_party' => 'Beheer medewerkers',
                 'pending_invitations' => 'Openstaande uitnodigingen',
             ],
         ],
@@ -345,7 +345,7 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => 'Vul het e-mailadres in van de persoon die je aan dit bedrijf wil toevoegen.',
+            'account_party_manager' => 'Vul het e-mailadres in van de persoon die je aan dit bedrijf wil toevoegen.',
             'delete_account' => 'Zodra een bedrijf wordt verwijderd, worden alle bronnen en gegevens permanent verwijderd. Voordat je dit bedrijf verwijdert, downloadt dan alle gegevens of informatie over dit bedrijf die je wilt behouden.',
         ],
     ],

@@ -83,8 +83,8 @@ return [
         'account_deletion' => 'Vous ne pouvez pas supprimer votre entreprise personnelle.',
         'email_already_associated' => 'Un compte avec cette adresse email existe déjà. Veuillez vous connecter pour associer votre compte :Provider.',
         'email_not_found' => 'Nous n\'avons pas pu trouver d\'utilisateur enregistré avec cette adresse email.',
-        'employee_already_belongs_to_account' => 'Cet employé appartient déjà à l\'entreprise.',
-        'employee_already_invited' => 'Cet employé a déjà été invité à l\'entreprise.',
+        'party_already_belongs_to_account' => 'Cet employé appartient déjà à l\'entreprise.',
+        'party_already_invited' => 'Cet employé a déjà été invité à l\'entreprise.',
         'invalid_password' => 'Le mot de passe que vous avez entré est invalide.',
         'no_email_with_account' => 'Aucune adresse email n\'est associée à ce compte :Provider. Veuillez essayer un autre compte.',
         'password_does_not_match' => 'Le mot de passe fourni ne correspond pas à votre mot de passe actuel.',
@@ -206,7 +206,7 @@ return [
     ],
 
     'grid_section_titles' => [
-        'add_account_employee' => 'Ajouter un employé de l\'entreprise',
+        'add_account_party' => 'Ajouter un employé de l\'entreprise',
         'browser_sessions' => 'Sessions Navigateur',
         'account_name' => 'Nom de l\'entreprise',
         'create_token' => 'Créer un jeton d\'accès personnel',
@@ -219,7 +219,7 @@ return [
     ],
 
     'grid_section_descriptions' => [
-        'add_account_employee' => 'Ajoutez un nouvel employé à votre entreprise pour collaborer avec vous.',
+        'add_account_party' => 'Ajoutez un nouvel employé à votre entreprise pour collaborer avec vous.',
         'browser_sessions' => 'Gérez et déconnectez vos sessions actives sur d\'autres navigateurs et appareils.',
         'account_name' => 'Le nom de l\'entreprise et les informations du propriétaire.',
         'create_token' => 'Les jetons d\'accès personnel permettent à des services tiers de s\'authentifier auprès de notre application en votre nom.',
@@ -232,14 +232,14 @@ return [
     ],
 
     'action_section_titles' => [
-        'account_employees' => 'Employés de l\'entreprise',
+        'account_party' => 'Employés de l\'entreprise',
         'connected_accounts' => 'Comptes connectés',
         'delete_account' => 'Supprimer l\'entreprise',
         'pending_account_invitations' => 'Invitations d\'entreprise en attente',
     ],
 
     'action_section_descriptions' => [
-        'account_employees' => 'Toutes les personnes qui font partie de cette entreprise.',
+        'account_party' => 'Toutes les personnes qui font partie de cette entreprise.',
         'connected_accounts' => 'Gérez et supprimez vos comptes connectés.',
         'delete_account' => 'Supprimez définitivement cette entreprise.',
         'pending_account_invitations' => 'Ces personnes ont été invitées dans votre entreprise et ont reçu une invitation par email. Ils peuvent rejoindre l\'entreprise en acceptant l\'invitation par email.',
@@ -255,7 +255,7 @@ return [
         'leave_account' => 'Quitter l\'entreprise',
         'logout_browser_sessions' => 'Déconnecter les autres sessions navigateur',
         'manage_role' => 'Gérer le rôle',
-        'remove_account_employee' => 'Supprimer un employé de l\'entreprise',
+        'remove_account_party' => 'Supprimer un employé de l\'entreprise',
         'remove_connected_account' => 'Supprimer le compte connecté',
         'revoke_tokens' => 'Révoquer les jetons',
     ],
@@ -268,7 +268,7 @@ return [
         'delete_account' => 'Êtes-vous sûr de vouloir supprimer cette entreprise ?',
         'leave_account' => 'Êtes-vous sûr de vouloir quitter cette entreprise ?',
         'logout_browser_sessions' => 'Veuillez entrer votre mot de passe pour confirmer que vous souhaitez vous déconnecter de vos autres sessions de navigateur.',
-        'remove_account_employee' => 'Êtes-vous sûr de vouloir supprimer cette personne de l\'entreprise ?',
+        'remove_account_party' => 'Êtes-vous sûr de vouloir supprimer cette personne de l\'entreprise ?',
         'remove_connected_account' => 'Veuillez confirmer la suppression de ce compte - cette action ne peut pas être annulée.',
         'revoke_tokens' => 'Veuillez entrer votre mot de passe pour confirmer.',
     ],
@@ -314,8 +314,8 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => [
-                'manage_employees' => 'Gérer les employés',
+            'account_party_manager' => [
+                'manage_party' => 'Gérer les employés',
                 'pending_invitations' => 'Invitations en attente',
             ],
         ],
@@ -342,7 +342,7 @@ return [
         ],
 
         'accounts' => [
-            'account_employee_manager' => 'Veuillez fournir l\'adresse e-mail de la personne que vous souhaitez ajouter à cette entreprise.',
+            'account_party_manager' => 'Veuillez fournir l\'adresse e-mail de la personne que vous souhaitez ajouter à cette entreprise.',
             'delete_account' => 'Une fois une entreprise supprimée, toutes ses ressources et données seront définitivement supprimées. Avant de supprimer cette entreprise, veuillez télécharger toutes les données ou informations concernant cette entreprise que vous souhaitez conserver.',
         ],
     ],

@@ -56,7 +56,7 @@ class UserPanelProvider extends PanelProvider
             ])
             ->navigationItems([
                 NavigationItem::make('Personal Access Tokens')
-                    ->label(static fn (): string => __('filament-companies::default.navigation.links.tokens'))
+                    ->label(static fn (): string => __('filament-accounts::default.navigation.links.tokens'))
                     ->icon('heroicon-o-key')
                     ->url(static fn () => PersonalAccessTokens::getUrl()),
             ])
