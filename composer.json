@@ -1,5 +1,5 @@
 {
-  "name": "rotazapp/filament-accounts",
+  "name": "rotaz/filament-accounts",
   "description": "Laravel authentication and authorization system designed for Filament, focusing on multi-tenant account management.",
   "keywords": [
     "rotazapp",
@@ -14,12 +14,12 @@
     "subscription",
     "saas"
   ],
-  "homepage": "https://github.com/rotazapp/filament-accounts",
+  "homepage": "https://github.com/R0TAZ/filament-accounts",
   "license": "MIT",
   "authors": [
     {
       "name": "Rodrigo Souza",
-      "email": "devops@rotaz.app.br",
+      "email": "dev@rotaz.app.br",
       "role": "Developer"
     }
   ],
