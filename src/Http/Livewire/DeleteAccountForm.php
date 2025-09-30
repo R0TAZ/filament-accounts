@@ -71,7 +71,7 @@ class DeleteAccountForm extends Component
         return view('filament-accounts::accounts.delete-account-form');
     }
 
-    public function accountsDeleted($account): void
+    public function accountDeleted($account): void
     {
         $name = $account->name;
 

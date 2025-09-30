@@ -56,7 +56,7 @@ class CreateAccountForm extends Component
         return view('filament-accounts::accounts.create-account-form');
     }
 
-    public function accountsCreated($name): void
+    public function accountCreated($name): void
     {
         Notification::make()
             ->title(__('filament-accounts::default.notifications.account_created.title'))
