@@ -44,3 +44,27 @@ A shell script is provided to assist with common tasks. You can find it in the s
 ```bash 
   /bin/bash /home/devops/projects/laravel/cloud/filament-account/runner.sh
 ```
+GITHUB
+ID=Ov23lif6XhK1DH1rzX4G
+SECRET=194883fbd69149f05df69e4ff45659067f9d64df
+
+
+Pass your Provider's credentials in the provider's array in `config/services.php`:
+```php
+    /*
+    |--------------------------------------------------------------------------
+    | Third Party Services
+    |--------------------------------------------------------------------------
+    |
+    | This file is for storing the credentials for third party services such
+    | as Mailgun, Postmark, AWS and more. This file provides the de facto
+    | location for this type of information, allowing packages to have
+    | a conventional file to locate the various service credentials.
+    |
+    */
+    
+    'github' => [
+        'client_id' => env('GITHUB_CLIENT_ID'),
+        'client_secret' => env('GITHUB_CLIENT_SECRET'),
+        'redirect' => 'https://filament.test/company/oauth/github/callback',
+    ],

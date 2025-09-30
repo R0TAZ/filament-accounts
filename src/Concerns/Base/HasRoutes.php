@@ -2,11 +2,11 @@
 
 namespace Rotaz\FilamentAccounts\Concerns\Base;
 
+use App\Models\AccountInvitation;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Rotaz\FilamentAccounts\Http\Controllers\AccountInvitationController;
 use Rotaz\FilamentAccounts\Http\Controllers\OAuthController;
-use Rotaz\FilamentAccounts\Mail\AccountInvitation;
 use Rotaz\FilamentAccounts\Pages\Auth\PrivacyPolicy;
 use Rotaz\FilamentAccounts\Pages\Auth\Terms;
 

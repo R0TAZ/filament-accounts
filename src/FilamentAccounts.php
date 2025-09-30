@@ -4,9 +4,10 @@ namespace Rotaz\FilamentAccounts;
 
 use Filament\Contracts\Plugin;
 use Filament\Events\TenantSet;
-use Livewire\Livewire;
-use Illuminate\Support\Facades\Event;
 use Filament\Http\Responses\Auth\Contracts\RegistrationResponse as RegistrationResponseContract;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Facades\Event;
+use Livewire\Livewire;
 use Rotaz\FilamentAccounts\Contracts\CreatesConnectedAccounts;
 use Rotaz\FilamentAccounts\Contracts\CreatesUserFromProvider;
 use Rotaz\FilamentAccounts\Contracts\HandlesInvalidState;
@@ -14,19 +15,18 @@ use Rotaz\FilamentAccounts\Contracts\UpdatesConnectedAccounts;
 use Rotaz\FilamentAccounts\Http\Controllers\OAuthController;
 use Rotaz\FilamentAccounts\Http\Responses\Auth\FilamentAccountsRegistrationResponse;
 use Rotaz\FilamentAccounts\Listeners\SwitchCurrentAccount;
-use Illuminate\Contracts\Foundation\Application;
 use Rotaz\FilamentAccounts\Pages\Account\AccountSettings;
 use Rotaz\FilamentAccounts\Pages\Account\CreateAccount;
 
 class FilamentAccounts implements Plugin
 {
+    use Concerns\Base\HasAccountFeatures;
     use Concerns\Base\HasAddedProfileComponents;
     use Concerns\Base\HasAutoAcceptInvitations;
     use Concerns\Base\HasBaseActionBindings;
     use Concerns\Base\HasBaseModels;
     use Concerns\Base\HasBaseProfileComponents;
     use Concerns\Base\HasBaseProfileFeatures;
-    use Concerns\Base\HasAccountFeatures;
     use Concerns\Base\HasModals;
     use Concerns\Base\HasNotifications;
     use Concerns\Base\HasPanels;
@@ -46,10 +46,12 @@ class FilamentAccounts implements Plugin
     {
         return 'accounts';
     }
+
     public static function make(): static
     {
         return app(static::class);
     }
+
     public function register(\Filament\Panel $panel): void
     {
         static::$accountPanel = $panel->getId();

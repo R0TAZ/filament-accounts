@@ -19,14 +19,14 @@ class AccountInvitationController extends Controller
     /**
      * Accept a account invitation.
      */
-    public function accept(Request $request, int|string $invitationId): Redirector | RedirectResponse | null
+    public function accept(Request $request, int | string $invitationId): Redirector | RedirectResponse | null
     {
         $model = FilamentAccounts::accountInvitationModel();
 
         $invitation = $model::whereKey($invitationId)->firstOrFail();
         $user = FilamentAccounts::userModel()::where('email', $invitation->email)->first();
 
-        app(AddsAccountParties::class::class)->add(
+        app(AddsAccountParties::class)->add(
             $invitation->account->owner,
             $invitation->account,
             $invitation->email,
