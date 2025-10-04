@@ -2,39 +2,25 @@
 
 namespace Rotaz\FilamentAccounts\Pages\Account;
 
+use App\Models\User;
+use Filament\Facades\Filament;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
-use Filament\Pages\Tenancy\RegisterTenant as FilamentRegisterTenant;
+use Filament\Support\Exceptions\Halt;
+use Illuminate\Auth\EloquentUserProvider;
+use Illuminate\Auth\SessionGuard;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Rotaz\FilamentAccounts\Events\AddingAccount;
 use Rotaz\FilamentAccounts\FilamentAccounts;
-
-class CreateAccount extends FilamentRegisterTenant
+use Filament\Pages\Auth\Register as FilamentRegister;
+class CreateAccount extends FilamentRegister
 {
-    protected static string $view = 'filament-accounts::filament.pages.accounts.create_account';
 
-    public static function getLabel(): string
-    {
-        return __('filament-accounts::default.pages.titles.create_account');
-    }
-
-    public function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                TextInput::make('name')
-                    ->label(__('filament-accounts::default.labels.account_name'))
-                    ->autofocus()
-                    ->maxLength(255)
-                    ->required(),
-            ])
-            ->model(FilamentAccounts::accountModel())
-            ->statePath('data');
-    }
 
     protected function handleRegistration(array $data): Model
     {
@@ -60,6 +46,21 @@ class CreateAccount extends FilamentRegisterTenant
         return $account;
     }
 
+    protected function getUserModel(): string
+    {
+        if (isset($this->userModel)) {
+            return $this->userModel;
+        }
+
+        /** @var SessionGuard $authGuard */
+        $authGuard = Filament::auth();
+
+        /** @var EloquentUserProvider $provider */
+        $provider = $authGuard->getProvider();
+
+        return $this->userModel = $provider->getModel();
+    }
+
     protected function accountCreated($name): void
     {
         Notification::make()
@@ -68,4 +69,5 @@ class CreateAccount extends FilamentRegisterTenant
             ->body(Str::inlineMarkdown(__('filament-accounts::default.notifications.account_created.body', compact('name'))))
             ->send();
     }
+
 }
