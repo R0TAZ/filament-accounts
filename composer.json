@@ -28,6 +28,7 @@
     "ext-json": "*",
     "filament/filament": "^3.2.29",
     "illuminate/console": "^11.0|^12.0",
+    "joinapi/filament-utility": "^1.0",
     "illuminate/contracts": "^11.0|^12.0",
     "illuminate/support": "^11.0|^12.0",
     "laravel/socialite": "^5.12",

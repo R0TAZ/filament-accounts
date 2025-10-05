@@ -14,15 +14,19 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Laravel\Sanctum\HasApiTokens;
 use Rotaz\FilamentAccounts\HasAccounts;
+use Rotaz\FilamentAccounts\HasConnectedAccounts;
 use Rotaz\FilamentAccounts\HasProfilePhoto;
+use Rotaz\FilamentAccounts\SetsProfilePhotoFromUrl;
 
 class User extends Authenticatable implements FilamentUser, HasAvatar, HasDefaultTenant, HasTenants
 {
     use HasApiTokens;
     use HasAccounts;
+    use HasConnectedAccounts;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
+    use SetsProfilePhotoFromUrl;
 
     /**
      * The attributes that are mass assignable.

@@ -33,6 +33,11 @@ unzip_file() {
   if [ ! -f "$zip_path" ]; then
     handle_error 1 "Zip file not found: $zip_path"
   fi
+
+    if [ -f "$dest_path" ]; then
+      rm -Rf "$dest_path"
+    fi
+
   mkdir -p "$dest_path"
   unzip -o "$zip_path" -d "$dest_path" || handle_error $? "Failed to unzip $zip_path"
   log "Unzipped $zip_path to $dest_path" "success"
@@ -104,7 +109,7 @@ add_composer_repository() {
 
 
 # Define experimental features
-LARAMENT_PATH="/media/rotaz/projects/rotaz/tmp/larament-3.x.zip"
+LARAMENT_PATH="/media/rotaz/projects/rotaz/tmp/larament-3.3.zip"
 EXPERIMENTAL_PATH="/media/rotaz/projects/rotaz/tmp/work"
 PROJECT_PATH="/media/rotaz/projects/rotaz/tmp/work"
 PROJECT_NAME="$1"
@@ -112,7 +117,7 @@ PROJECT_NAME="$1"
 
 log "Starting the runner script..." "info"
 unzip_file "$LARAMENT_PATH" "$EXPERIMENTAL_PATH"
-move_files "$EXPERIMENTAL_PATH/larament-3.x" "$PROJECT_PATH/$PROJECT_NAME"
+move_files "$EXPERIMENTAL_PATH/larament" "$PROJECT_PATH/$PROJECT_NAME"
 setup_laravel "$PROJECT_PATH/$PROJECT_NAME"
 
 log "Runner script completed successfully." "success"

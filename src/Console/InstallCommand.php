@@ -12,7 +12,6 @@ use Illuminate\Support\Str;
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\info;
-use function Laravel\Prompts\select;
 
 class InstallCommand extends Command
 {
@@ -21,7 +20,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'filament-accounts:install {--socialite : Install with Socialite support} {--force : Overwrite existing files}';
+    protected $signature = 'filament-accounts:install {--force : Overwrite existing files}';
 
     /**
      * The console command description.
@@ -29,8 +28,6 @@ class InstallCommand extends Command
      * @var string|null
      */
     protected $description = 'Install the Filament Accounts package';
-
-    private bool $withSocialite = false;
 
     /**
      * Execute the console command.
@@ -40,8 +37,6 @@ class InstallCommand extends Command
         if ($this->checkExistingInstallation() === static::FAILURE) {
             return static::FAILURE;
         }
-
-        $this->determineInstallationType();
 
         info('Installing Filament Accounts...');
 
@@ -83,24 +78,6 @@ class InstallCommand extends Command
         return static::SUCCESS;
     }
 
-    protected function determineInstallationType(): void
-    {
-        $this->withSocialite = $this->option('socialite');
-
-        if ($this->withSocialite === false) {
-            $installationType = select(
-                label: 'Which installation type would you like to use?',
-                options: [
-                    'base' => 'Base Package',
-                    'socialite' => 'With Socialite Support',
-                ],
-                default: 'base',
-            );
-
-            $this->withSocialite = $installationType === 'socialite';
-        }
-    }
-
     protected function commonInstallation(): void
     {
         // Storage...
@@ -132,12 +109,14 @@ class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(app_path('Actions/FilamentAccounts'));
         (new Filesystem)->ensureDirectoryExists(app_path('Policies'));
         (new Filesystem)->ensureDirectoryExists(resource_path('markdown'));
+        (new Filesystem)->ensureDirectoryExists(public_path('images/icons'));
 
         // Delete Directories...
         (new Filesystem)->deleteDirectory(resource_path('sass'));
 
         // Terms Of Service / Privacy Policy...
         $this->copyStubFiles('resources/markdown', resource_path('markdown'), ['terms.md', 'policy.md']);
+        $this->copyStubFiles('public/images/icons', public_path('images/icons'), ['icone-organization.png', 'icone-personal.png']);
 
         // Factories...
         copy(__DIR__ . '/../../database/factories/UserFactory.php', base_path('database/factories/UserFactory.php'));
@@ -205,13 +184,10 @@ class InstallCommand extends Command
      */
     protected function installFilamentAccounts(): void
     {
-        if ($this->withSocialite) {
-            $this->ensureApplicationIsSocialiteCompatible();
-            info('Filament Accounts with Socialite support installed successfully.');
-        } else {
-            $this->ensureApplicationIsOnlyAccountCompatible();
-            info('Filament Accounts installed successfully.');
-        }
+
+        $this->ensureApplicationIsSocialiteCompatible();
+        info('Filament Accounts with Socialite support installed successfully.');
+
     }
 
     /**
@@ -238,13 +214,13 @@ class InstallCommand extends Command
         $this->callSilent('vendor:publish', ['--tag' => 'filament-accounts-socialite-migrations', '--force' => true]);
 
         // Service Providers...
-        copy(__DIR__ . '/../../stubs/app/Providers/FilamentAccountsWithSocialiteServiceProvider.php', app_path('Providers/FilamentAccountsServiceProvider.php'));
-        copy(__DIR__ . '/../../stubs/app/Providers/Filament/UserPanelProvider.php', app_path('Providers/Filament/UserPanelProvider.php'));
+        $this->copyStubFiles('app/Providers', app_path('Providers'), ['FilamentAccountsServiceProvider.php']);
+        $this->copyStubFiles('app/Providers/Filament', app_path('Providers/Filament'), ['UserPanelProvider.php']);
         ServiceProvider::addProviderToBootstrapFile('App\Providers\FilamentAccountsServiceProvider');
         ServiceProvider::addProviderToBootstrapFile('App\Providers\Filament\UserPanelProvider');
 
         // Models...
-        copy(__DIR__ . '/../../stubs/app/Models/UserWithSocialite.php', app_path('Models/User.php'));
+        $this->copyStubFiles('app/Models', app_path('Models'), ['User.php']);
 
         $this->copyStubFiles('app/Models', app_path('Models'), ['ConnectedAccount.php']);
 

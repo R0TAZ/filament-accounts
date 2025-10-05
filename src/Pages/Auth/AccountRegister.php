@@ -13,11 +13,8 @@ use Filament\Pages\Concerns\CanUseDatabaseTransactions;
 use Filament\Pages\Concerns\InteractsWithFormActions;
 use Filament\Pages\SimplePage;
 use Illuminate\Contracts\Support\Htmlable;
-use Rotaz\FilamentAccounts\Pages\Auth\Trait;
-/**
- * @property Form $form
- */
-class Register extends SimplePage
+
+class AccountRegister extends SimplePage
 {
     use CanUseDatabaseTransactions;
     use InteractsWithFormActions;
@@ -25,9 +22,6 @@ class Register extends SimplePage
     use Trait\WithAccountRegisterForm;
     use WithRateLimiting;
 
-    /**
-     * @var view-string
-     */
     protected static string $view = 'filament-panels::pages.auth.register';
 
     /**

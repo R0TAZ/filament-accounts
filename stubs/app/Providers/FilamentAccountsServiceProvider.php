@@ -43,8 +43,8 @@ use Rotaz\FilamentAccounts\Enums\Provider;
 use Rotaz\FilamentAccounts\FilamentAccounts;
 use Rotaz\FilamentAccounts\Pages\Account\AccountSettings;
 use Rotaz\FilamentAccounts\Pages\Account\CreateAccount;
+use Rotaz\FilamentAccounts\Pages\Auth\AccountRegister;
 use Rotaz\FilamentAccounts\Pages\Auth\Login;
-use Rotaz\FilamentAccounts\Pages\Auth\Register;
 use Rotaz\FilamentAccounts\Pages\User\Profile;
 
 class FilamentAccountsServiceProvider extends PanelProvider
@@ -72,6 +72,8 @@ class FilamentAccountsServiceProvider extends PanelProvider
                     ->switchCurrentAccount()
                     ->updateProfileInformation()
                     ->updatePasswords()
+                    ->setPasswords()
+                    ->connectedAccounts()
                     ->manageBrowserSessions()
                     ->accountDeletion()
                     ->profilePhotos()
@@ -80,17 +82,19 @@ class FilamentAccountsServiceProvider extends PanelProvider
                     ->autoAcceptInvitations()
                     ->termsAndPrivacyPolicy()
                     ->notifications()
-                    ->modals(),
+                    ->modals()
+                    ->socialite(
+                        providers: [Provider::Github],
+                        features: [Feature::RememberSession, Feature::ProviderAvatars],
+                    ),
             )
-            ->registration(Register::class)
+            ->registration(AccountRegister::class)
             ->colors([
                 'primary' => Color::Amber,
             ])
             ->tenant(Account::class)
-            ->tenantProfile(AccountSettings::class)
-            ->tenantRegistration(CreateAccount::class)
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+            ->discoverResources(in: app_path('Filament/Account/Resources'), for: 'App\\Filament\\Account\\Resources')
+            ->discoverPages(in: app_path('Filament/Account/Pages'), for: 'App\\Filament\\Account\\Pages')
             ->pages([
                 Pages\Dashboard::class,
             ])
@@ -140,6 +144,14 @@ class FilamentAccountsServiceProvider extends PanelProvider
         FilamentAccounts::removeAccountPartiesUsing(RemoveAccountParty::class);
         FilamentAccounts::deleteAccountsUsing(DeleteAccount::class);
         FilamentAccounts::deleteUsersUsing(DeleteUser::class);
+
+        FilamentAccounts::resolvesSocialiteUsersUsing(ResolveSocialiteUser::class);
+        FilamentAccounts::createUsersFromProviderUsing(CreateUserFromProvider::class);
+        FilamentAccounts::createConnectedAccountsUsing(CreateConnectedAccount::class);
+        FilamentAccounts::updateConnectedAccountsUsing(UpdateConnectedAccount::class);
+        FilamentAccounts::setUserPasswordsUsing(SetUserPassword::class);
+        FilamentAccounts::handlesInvalidStateUsing(HandleInvalidState::class);
+        FilamentAccounts::generatesProvidersRedirectsUsing(GenerateRedirectForProvider::class);
     }
 
     /**
