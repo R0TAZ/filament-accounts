@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c6dd2da82df6f38119a0f282a41930ec",
+    "content-hash": "fb8e7752d719e933b87b5eefccbda276",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -71,111 +71,6 @@
                 "source": "https://github.com/AnourValar/eloquent-serialize/tree/1.3.4"
             },
             "time": "2025-07-30T15:45:57+00:00"
-        },
-        {
-            "name": "archtechx/helpers",
-            "version": "v0.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/archtechx/helpers.git",
-                "reference": "26253e1cbb6530a79a16dbca517b87db4660bf07"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/archtechx/helpers/zipball/26253e1cbb6530a79a16dbca517b87db4660bf07",
-                "reference": "26253e1cbb6530a79a16dbca517b87db4660bf07",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^10.0|^11.0|^12.0",
-                "php": "^8.2"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^8.0|^9.0|^10.0",
-                "pestphp/pest": "^2.0|^3.0",
-                "pestphp/pest-plugin-laravel": "^2.0|^3.1"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Samuel Štancl",
-                    "email": "samuel@archte.ch"
-                }
-            ],
-            "description": "A collection of helpers we commonly use.",
-            "support": {
-                "source": "https://github.com/archtechx/helpers/tree/v0.3.3"
-            },
-            "time": "2025-03-11T12:12:07+00:00"
-        },
-        {
-            "name": "archtechx/money",
-            "version": "v0.5.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/archtechx/money.git",
-                "reference": "f5011bce685fe9f5a7a10a211af24cdc1e093f86"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/archtechx/money/zipball/f5011bce685fe9f5a7a10a211af24cdc1e093f86",
-                "reference": "f5011bce685fe9f5a7a10a211af24cdc1e093f86",
-                "shasum": ""
-            },
-            "require": {
-                "archtechx/helpers": "^0.3.2",
-                "illuminate/support": "^10.0|^11.0|^12.0",
-                "php": "^8.2"
-            },
-            "require-dev": {
-                "larastan/larastan": "^2.4|^3.0",
-                "orchestra/testbench": "^8.0|^9.0|^10.0",
-                "pestphp/pest": "^2.0|^3.7",
-                "pestphp/pest-plugin-laravel": "^2.0|^3.1",
-                "phpstan/phpstan": "^1.9.8|^2.1"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "ArchTech\\Money\\MoneyServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/helpers.php",
-                    "src/Wireable.php"
-                ],
-                "psr-4": {
-                    "ArchTech\\Money\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Samuel Štancl",
-                    "email": "samuel@archte.ch"
-                }
-            ],
-            "description": "A lightweight package for handling money math in PHP.",
-            "support": {
-                "issues": "https://github.com/archtechx/money/issues",
-                "source": "https://github.com/archtechx/money/tree/v0.5.3"
-            },
-            "time": "2025-03-11T16:38:43+00:00"
         },
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -1088,6 +983,270 @@
                 }
             ],
             "time": "2025-03-06T22:45:56+00:00"
+        },
+        {
+            "name": "filabiz/common",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "/home/rotaz/rotaz-projects/filabiz/app-modules/common",
+                "reference": "47fd975dea13ae600c519acba90a7a3dc8f610a8"
+            },
+            "require": {
+                "filabiz/fundation": "*",
+                "filament/filament": "^3.2",
+                "laravel/framework": "^11.36",
+                "php": "^8.2||^8.3||^8.4",
+                "rotaz/php-regex": "^1.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.25",
+                "orchestra/testbench": "^9.0",
+                "pestphp/pest": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Filabiz\\Common\\Providers\\CommonServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Filabiz\\Common\\": "src/",
+                    "Filabiz\\Common\\Tests\\": "tests/",
+                    "Filabiz\\Common\\Database\\Factories\\": "database/factories/",
+                    "Filabiz\\Common\\Database\\Seeders\\": "database/seeders/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/pest"
+                ],
+                "format": [
+                    "vendor/bin/pint"
+                ],
+                "format:test": [
+                    "vendor/bin/pint --test"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "This component enables organisations to extend the elements of the framework common component.",
+            "transport-options": {
+                "symlink": true,
+                "relative": false
+            }
+        },
+        {
+            "name": "filabiz/filabiz",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "/home/rotaz/rotaz-projects/filabiz/app-modules/filabiz",
+                "reference": "c1dd5a8ba6ce427aff25c5fbc37358d6689b8b48"
+            },
+            "require": {
+                "filabiz/common": "*",
+                "filabiz/fundation": "1.0",
+                "filabiz/party": "*",
+                "filabiz/security": "*",
+                "filament/filament": "^3.2",
+                "laravel/framework": "^11.36",
+                "php": "^8.2||^8.3||^8.4",
+                "rotaz/php-regex": "^1.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.25",
+                "orchestra/testbench": "^9.0",
+                "pestphp/pest": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Filabiz\\FilabizServiceProvider"
+                    ]
+                },
+                "alias": {
+                    "Filabiz": "Filabiz\\Facades\\Filabiz"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Filabiz\\": "src/",
+                    "Filabiz\\Tests\\": "tests/"
+                },
+                "files": [
+                    "src/helpers.php",
+                    "src/global_helpers.php"
+                ]
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/pest"
+                ],
+                "format": [
+                    "vendor/bin/pint"
+                ],
+                "format:test": [
+                    "vendor/bin/pint --test"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "This is the main package that includes all Filabiz components.",
+            "transport-options": {
+                "symlink": true,
+                "relative": false
+            }
+        },
+        {
+            "name": "filabiz/fundation",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "/home/rotaz/rotaz-projects/filabiz/app-modules/fundation",
+                "reference": "2f9dc38d368d8b1e49c78941a36e9705e315a4c0"
+            },
+            "require": {
+                "php": "^8.0|^8.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Filabiz\\Fundation\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Fundation package for Filabiz",
+            "transport-options": {
+                "symlink": true,
+                "relative": false
+            }
+        },
+        {
+            "name": "filabiz/party",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "/home/rotaz/rotaz-projects/filabiz/app-modules/party",
+                "reference": "0be042cc56fac9d1d326ea5b010a184a25b5ac63"
+            },
+            "require": {
+                "filament/filament": "^3.2",
+                "laravel/framework": "^11.36",
+                "php": "^8.2||^8.3||^8.4"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.25",
+                "orchestra/testbench": "^9.0",
+                "pestphp/pest": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Filabiz\\Party\\Providers\\PartyServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Filabiz\\Party\\": "src/",
+                    "Filabiz\\Party\\Tests\\": "tests/",
+                    "Filabiz\\Party\\Database\\Factories\\": "database/factories/",
+                    "Filabiz\\Party\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/pest"
+                ],
+                "format": [
+                    "vendor/bin/pint"
+                ],
+                "format:test": [
+                    "vendor/bin/pint --test"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "This component enables organisations to extend the elements of the framework party component.",
+            "transport-options": {
+                "symlink": true,
+                "relative": false
+            }
+        },
+        {
+            "name": "filabiz/security",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "/home/rotaz/rotaz-projects/filabiz/app-modules/security",
+                "reference": "68b4790b04294d51a20d05d6d66061cb8c47f5af"
+            },
+            "require": {
+                "filabiz/common": "1.0",
+                "filabiz/fundation": "1.0",
+                "filament/filament": "^3.2",
+                "laravel/framework": "^11.36",
+                "php": "^8.2||^8.3||^8.4",
+                "rotaz/php-regex": "^1.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.25",
+                "orchestra/testbench": "^9.0",
+                "pestphp/pest": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Filabiz\\Security\\Providers\\SecurityServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Filabiz\\Security\\": "src/",
+                    "Filabiz\\Security\\Tests\\": "tests/",
+                    "Filabiz\\Security\\Database\\Factories\\": "database/factories/",
+                    "Filabiz\\Security\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/pest"
+                ],
+                "format": [
+                    "vendor/bin/pint"
+                ],
+                "format:test": [
+                    "vendor/bin/pint --test"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "This component enables organisations to extend the elements of the framework security component.",
+            "transport-options": {
+                "symlink": true,
+                "relative": false
+            }
         },
         {
             "name": "filament/actions",
@@ -2129,74 +2288,6 @@
             "time": "2025-08-22T14:27:06+00:00"
         },
         {
-            "name": "joinapi/filament-utility",
-            "version": "v1.0.22",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/joinapi/filament-utility.git",
-                "reference": "bf771eaf24bf8f54d5e648ac61cc41db3fc776e7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/joinapi/filament-utility/zipball/bf771eaf24bf8f54d5e648ac61cc41db3fc776e7",
-                "reference": "bf771eaf24bf8f54d5e648ac61cc41db3fc776e7",
-                "shasum": ""
-            },
-            "require": {
-                "archtechx/money": "^0.5.1",
-                "filament/filament": "^3.0",
-                "illuminate/contracts": "^10.0 || ^11.0",
-                "laravellegends/pt-br-validator": "^10.0 || ^11.0",
-                "php": "^8.2"
-            },
-            "require-dev": {
-                "laravel/pint": "^1.14",
-                "nunomaduro/collision": "^8.1.1||^7.10.0",
-                "pestphp/pest": "^3.0",
-                "pestphp/pest-plugin-arch": "^3.0",
-                "pestphp/pest-plugin-laravel": "^3.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "aliases": {
-                        "FilamentUtility": "Joinapi\\FilamentUtility\\Facades\\FilamentUtility"
-                    },
-                    "providers": [
-                        "Joinapi\\FilamentUtility\\FilamentUtilityServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Joinapi\\FilamentUtility\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "JOIN API",
-                    "email": "devops@joinapi.io",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Filament package utility",
-            "homepage": "https://github.com/join-api/filament-utility",
-            "keywords": [
-                "JOIN API",
-                "filament-utility",
-                "laravel"
-            ],
-            "support": {
-                "issues": "https://github.com/joinapi/filament-utility/issues",
-                "source": "https://github.com/joinapi/filament-utility/tree/v1.0.22"
-            },
-            "time": "2025-03-19T17:53:14+00:00"
-        },
-        {
             "name": "kirschbaum-development/eloquent-power-joins",
             "version": "4.2.8",
             "source": {
@@ -2665,57 +2756,6 @@
                 "source": "https://github.com/laravel/socialite"
             },
             "time": "2025-07-23T14:16:08+00:00"
-        },
-        {
-            "name": "laravellegends/pt-br-validator",
-            "version": "11.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/LaravelLegends/pt-br-validator.git",
-                "reference": "ab89fcb32661bc1a95c5836489ddc68f61a95d34"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/LaravelLegends/pt-br-validator/zipball/ab89fcb32661bc1a95c5836489ddc68f61a95d34",
-                "reference": "ab89fcb32661bc1a95c5836489ddc68f61a95d34",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^6.0 || ^7.0 || ^8.0 || ^9.0 || ^10.0 || ^11.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0",
-                "phpunit/phpunit": "^8.3 || ^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "LaravelLegends\\PtBrValidator\\ValidatorProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "LaravelLegends\\PtBrValidator\\": "src/pt-br-validator"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Wallace de Souza Vizerra",
-                    "email": "wallacemaxters@gmail.com"
-                }
-            ],
-            "description": "Uma biblioteca contendo validações de formatos Brasileiros, para o Laravel",
-            "support": {
-                "issues": "https://github.com/LaravelLegends/pt-br-validator/issues",
-                "source": "https://github.com/LaravelLegends/pt-br-validator/tree/11.0.0"
-            },
-            "time": "2024-03-18T20:18:50+00:00"
         },
         {
             "name": "league/commonmark",
@@ -4437,16 +4477,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "3.0.46",
+            "version": "3.0.47",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "56483a7de62a6c2a6635e42e93b8a9e25d4f0ec6"
+                "reference": "9d6ca36a6c2dd434765b1071b2644a1c683b385d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/56483a7de62a6c2a6635e42e93b8a9e25d4f0ec6",
-                "reference": "56483a7de62a6c2a6635e42e93b8a9e25d4f0ec6",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/9d6ca36a6c2dd434765b1071b2644a1c683b385d",
+                "reference": "9d6ca36a6c2dd434765b1071b2644a1c683b385d",
                 "shasum": ""
             },
             "require": {
@@ -4527,7 +4567,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.46"
+                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.47"
             },
             "funding": [
                 {
@@ -4543,7 +4583,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-06-26T16:29:55+00:00"
+            "time": "2025-10-06T01:07:24+00:00"
         },
         {
             "name": "psr/cache",
@@ -5203,6 +5243,49 @@
                 "source": "https://github.com/ramsey/uuid/tree/4.9.1"
             },
             "time": "2025-09-04T20:59:21+00:00"
+        },
+        {
+            "name": "rotaz/php-regex",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rotaz-dev/php-regex.git",
+                "reference": "1b6dce5e612f7efe399a9407b37d06710bc36fb5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rotaz-dev/php-regex/zipball/1b6dce5e612f7efe399a9407b37d06710bc36fb5",
+                "reference": "1b6dce5e612f7efe399a9407b37d06710bc36fb5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Rotaz\\Support\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "rotaz-dev",
+                    "email": "seu@email.com"
+                }
+            ],
+            "description": "Coleção de expressões regulares e validadores PHP para dados do cotidiano.",
+            "support": {
+                "issues": "https://github.com/rotaz-dev/php-regex/issues",
+                "source": "https://github.com/rotaz-dev/php-regex/tree/v1.0.0"
+            },
+            "time": "2025-10-05T00:49:58+00:00"
         },
         {
             "name": "ryangjchandler/blade-capture-directive",
@@ -11266,7 +11349,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.2",
+        "php": "^8.2||^8.3||^8.4",
         "ext-json": "*"
     },
     "platform-dev": {},

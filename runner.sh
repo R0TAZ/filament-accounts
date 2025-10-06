@@ -76,9 +76,9 @@ setup_laravel() {
 
   php artisan db:seed --force || handle_error $? "Database seeding failed"
 
-  add_local_composer_repository_on_composer_json_seed "/media/rotaz/projects/rotaz/repos/filament-accounts"
+  #add_local_composer_repository_on_composer_json_seed "/home/rotaz/rotaz-projects/filament-accounts"
 
-  composer require rotaz/filament-accounts:dev-main || handle_error $? "Failed to require filament-accounts package"
+  composer require rotaz/filament-accounts:* || handle_error $? "Failed to require filament-accounts package"
 
   log "Laravel setup completed successfully in $project_path" "success"
 
@@ -109,9 +109,9 @@ add_composer_repository() {
 
 
 # Define experimental features
-LARAMENT_PATH="/media/rotaz/projects/rotaz/tmp/larament-3.3.zip"
-EXPERIMENTAL_PATH="/media/rotaz/projects/rotaz/tmp/work"
-PROJECT_PATH="/media/rotaz/projects/rotaz/tmp/work"
+LARAMENT_PATH="/home/rotaz/rotaz-projects/workspace/larament-3.3.zip"
+EXPERIMENTAL_PATH="/home/rotaz/rotaz-projects/workspace/build"
+PROJECT_PATH="/home/rotaz/rotaz-projects/workspace/build"
 PROJECT_NAME="$1"
 #PROJECT_NAME="OK"
 

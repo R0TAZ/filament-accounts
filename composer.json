@@ -14,6 +14,7 @@
     "subscription",
     "saas"
   ],
+  "version": "1.0.0",
   "homepage": "https://github.com/R0TAZ/filament-accounts",
   "license": "MIT",
   "authors": [
@@ -27,10 +28,10 @@
     "php": "^8.2",
     "ext-json": "*",
     "filament/filament": "^3.2.29",
-    "illuminate/console": "^11.0|^12.0",
-    "joinapi/filament-utility": "^1.0",
-    "illuminate/contracts": "^11.0|^12.0",
-    "illuminate/support": "^11.0|^12.0",
+    "illuminate/console": "^11.0",
+    "filabiz/filabiz": "*",
+    "illuminate/contracts": "^11.0",
+    "illuminate/support": "^11.0",
     "laravel/socialite": "^5.12",
     "matomo/device-detector": "^6.1"
   },
@@ -42,6 +43,15 @@
     "orchestra/testbench": "^9.0|^10.0",
     "phpunit/phpunit": "^10.5|^11.5.3"
   },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "/home/rotaz/rotaz-projects/filabiz/app-modules/*",
+      "options": {
+        "symlink": true
+      }
+    }
+  ],
   "autoload": {
     "psr-4": {
       "Rotaz\\FilamentAccounts\\": "src/"

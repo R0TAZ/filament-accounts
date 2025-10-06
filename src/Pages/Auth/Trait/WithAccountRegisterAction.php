@@ -34,7 +34,6 @@ trait WithAccountRegisterAction
 
         $data = $this->form->getState();
 
-        dd($data);
 
         $user = $this->wrapInDatabaseTransaction(function () {
             $this->callHook('beforeValidate');
