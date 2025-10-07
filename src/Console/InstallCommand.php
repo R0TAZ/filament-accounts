@@ -222,13 +222,13 @@ class InstallCommand extends Command
         ]);
 
         ServiceProvider::addProviderToBootstrapFile('App\Providers\FilamentAccountsServiceProvider');
+        ServiceProvider::addProviderToBootstrapFile('Rotaz\FilamentAccounts\Panels\UserPanelProvider');
 
         // Models...
         $this->copyStubFiles('app/Models', app_path('Models'), ['User.php']);
 
         $this->copyStubFiles('app/Models', app_path('Models'), ['ConnectedAccount.php']);
 
-        copy(__DIR__ . '/../../stubs/app/Providers/Filament/UserPanelProvider.php', app_path('Providers/Filament/UserPanelProvider.php'));
 
         // Actions...
         copy(__DIR__ . '/../../stubs/app/Actions/FilamentAccounts/DeleteUserWithSocialite.php', app_path('Actions/FilamentAccounts/DeleteUser.php'));

@@ -4,9 +4,8 @@ export default {
     presets: [preset],
     content: [
         './app/Filament/Account/**/*.php',
-        './resources/views/vendor/filament-accounts/**/*.blade.php',
-        './vendor/filament/**/*.blade.php',
         './resources/views/filament/account/**/*.blade.php',
-        './vendor/filament-accounts/**/*.blade.php'
+        './vendor/filament/**/*.blade.php',
+        './vendor/rotaz/filament-accounts/resources/views/**/*.blade.php'
     ],
 }

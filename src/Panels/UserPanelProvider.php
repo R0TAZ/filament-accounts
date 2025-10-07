@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers\Filament;
+namespace Rotaz\FilamentAccounts\Panels;
 
 use Filament\Facades\Filament;
 use Filament\Http\Middleware\Authenticate;
