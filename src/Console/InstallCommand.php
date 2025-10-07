@@ -219,16 +219,16 @@ class InstallCommand extends Command
         // Service Providers...
         $this->copyStubFiles('app/Providers', app_path('Providers'), [
             'FilamentAccountsServiceProvider.php',
-            'Filament/UserPanelProvider.php',
         ]);
 
         ServiceProvider::addProviderToBootstrapFile('App\Providers\FilamentAccountsServiceProvider');
-        //ServiceProvider::addProviderToBootstrapFile('App\Providers\Filament\UserPanelProvider');
 
         // Models...
         $this->copyStubFiles('app/Models', app_path('Models'), ['User.php']);
 
         $this->copyStubFiles('app/Models', app_path('Models'), ['ConnectedAccount.php']);
+
+        copy(__DIR__ . '/../../stubs/app/Providers/Filament/UserPanelProvider.php', app_path('Providers/Filament/UserPanelProvider.php'));
 
         // Actions...
         copy(__DIR__ . '/../../stubs/app/Actions/FilamentAccounts/DeleteUserWithSocialite.php', app_path('Actions/FilamentAccounts/DeleteUser.php'));
