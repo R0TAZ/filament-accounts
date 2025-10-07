@@ -57,8 +57,6 @@ class FilamentAccountsServiceProvider extends PanelProvider
             ->default()
             ->login(Login::class)
             ->passwordReset()
-            ->brandLogo(fn () => view('components.filabiz-logo'))
-            ->brandLogoHeight('2rem')
             ->homeUrl(static function (): ?string {
                 $user = Auth::user();
 

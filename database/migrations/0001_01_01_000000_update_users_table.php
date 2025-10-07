@@ -23,7 +23,7 @@ return new class extends Migration
                 $table->timestamp('email_verified_at')->nullable();
                 $table->string('password')->nullable();
                 $table->rememberToken();
-                $table->foreignId('current_company_id')->nullable();
+                $table->foreignId('current_account_id')->nullable();
                 $table->foreignId('current_connected_account_id')->nullable();
                 $table->string('profile_photo_path', 2048)->nullable();
                 $table->timestamps();
@@ -36,8 +36,8 @@ return new class extends Migration
                 if (!Schema::hasColumn('users', 'profile_photo_path')) {
                     $table->string('profile_photo_path', 2048)->nullable();
                 }
-                if (!Schema::hasColumn('users', 'current_company_id')) {
-                    $table->foreignId('current_company_id')->nullable();
+                if (!Schema::hasColumn('users', 'current_account_id')) {
+                    $table->foreignId('current_account_id')->nullable();
                 }
                 if (!Schema::hasColumn('users', 'current_connected_account_id')) {
                     $table->foreignId('current_connected_account_id')->nullable();
