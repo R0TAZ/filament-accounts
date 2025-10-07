@@ -217,10 +217,13 @@ class InstallCommand extends Command
         info('Filament Accounts support installed successfully.');
 
         // Service Providers...
-        $this->copyStubFiles('app/Providers', app_path('Providers'), ['FilamentAccountsServiceProvider.php']);
-        $this->copyStubFiles('app/Providers/Filament', app_path('Providers/Filament'), ['UserPanelProvider.php']);
+        $this->copyStubFiles('app/Providers', app_path('Providers'), [
+            'FilamentAccountsServiceProvider.php',
+            'Filament/UserPanelProvider.php',
+        ]);
+
         ServiceProvider::addProviderToBootstrapFile('App\Providers\FilamentAccountsServiceProvider');
-        ServiceProvider::addProviderToBootstrapFile('App\Providers\Filament\UserPanelProvider');
+        //ServiceProvider::addProviderToBootstrapFile('App\Providers\Filament\UserPanelProvider');
 
         // Models...
         $this->copyStubFiles('app/Models', app_path('Models'), ['User.php']);
