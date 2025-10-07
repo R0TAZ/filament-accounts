@@ -77,7 +77,7 @@ class FilamentAccountsServiceProvider extends ServiceProvider
 
         $this->publishesMigrations([
             __DIR__ . '/../database/migrations' => database_path('migrations'),
-        ]);
+        ], 'filament-accounts-migrations');
 
         $this->publishes([
             __DIR__ . '/../database/seeders' => database_path('seeders'),
