@@ -98,6 +98,11 @@ class InstallCommand extends Command
         ]);
 
         $this->callSilent('vendor:publish', [
+            '--tag' => 'filament-accounts-styles',
+            '--force' => true,
+        ]);
+
+        $this->callSilent('vendor:publish', [
             '--tag' => 'filament-accounts-seeder',
             '--force' => true,
         ]);

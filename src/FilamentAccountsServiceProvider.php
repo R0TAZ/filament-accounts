@@ -68,6 +68,10 @@ class FilamentAccountsServiceProvider extends ServiceProvider
         ], 'filament-accounts-views');
 
         $this->publishes([
+            __DIR__ . '/../resources/css' => resource_path('css'),
+        ], 'filament-accounts-styles');
+
+        $this->publishes([
             __DIR__ . '/../lang' => $this->app->langPath('vendor/filament-accounts'),
         ], 'filament-accounts-translations');
 
