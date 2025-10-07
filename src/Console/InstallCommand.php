@@ -40,10 +40,10 @@ class InstallCommand extends Command
 
         info('Installing Filament Accounts...');
 
-        // Install Filament Accounts...
         try {
             $this->commonInstallation();
             $this->installFilamentAccounts();
+
         } catch (\Exception $e) {
             Log::error('Installation error while installing Filament Accounts: ' . $e->getMessage());
 
@@ -86,6 +86,8 @@ class InstallCommand extends Command
         // Update Welcome Page...
         $this->updateWelcomePage();
 
+        $this->updateVite();
+
         // Configure Session...
         $this->configureSession();
 
@@ -96,7 +98,12 @@ class InstallCommand extends Command
         ]);
 
         $this->callSilent('vendor:publish', [
-            '--tag' => 'filament-accounts-account-migrations',
+            '--tag' => 'filament-accounts-seeder',
+            '--force' => true,
+        ]);
+
+        $this->callSilent('vendor:publish', [
+            '--tag' => 'filament-accounts-public',
             '--force' => true,
         ]);
 
@@ -109,14 +116,12 @@ class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(app_path('Actions/FilamentAccounts'));
         (new Filesystem)->ensureDirectoryExists(app_path('Policies'));
         (new Filesystem)->ensureDirectoryExists(resource_path('markdown'));
-        (new Filesystem)->ensureDirectoryExists(public_path('images/icons'));
 
         // Delete Directories...
         (new Filesystem)->deleteDirectory(resource_path('sass'));
 
         // Terms Of Service / Privacy Policy...
         $this->copyStubFiles('resources/markdown', resource_path('markdown'), ['terms.md', 'policy.md']);
-        $this->copyStubFiles('public/images/icons', public_path('images/icons'), ['icone-organization.png', 'icone-personal.png']);
 
         // Factories...
         copy(__DIR__ . '/../../database/factories/UserFactory.php', base_path('database/factories/UserFactory.php'));
@@ -137,9 +142,6 @@ class InstallCommand extends Command
 
         // Policies...
         $this->copyStubFiles('app/Policies', app_path('Policies'), ['AccountPolicy.php']);
-
-        // Seeders...
-        copy(__DIR__ . '/../../database/seeders/DatabaseSeeder.php', base_path('database/seeders/DatabaseSeeder.php'));
 
         // Models...
         $this->copyStubFiles('app/Models', app_path('Models'), ['Account.php', 'AccountInvitation.php', 'Party.php']);
@@ -170,6 +172,33 @@ class InstallCommand extends Command
         }
     }
 
+    protected function updateVite(): void
+    {
+        $filePath = base_path('vite.config.js');
+
+        if (file_exists($filePath)) {
+
+            $fileContents = file_get_contents($filePath);
+
+            $alreadyExists = Str::contains($fileContents, 'resources/css/filament/account/theme.css');
+
+            if ($alreadyExists) {
+                return;
+            }
+
+            $viteExists = Str::contains($fileContents, "'resources/js/app.js'],");
+
+            if ($viteExists) {
+                $this->replaceInFile(
+                    "'resources/js/app.js'],",
+                    "'resources/js/app.js','resources/css/filament/account/theme.css'],",
+                    $filePath
+                );
+            }
+
+        }
+    }
+
     /**
      * Configure the session driver for Account.
      */
@@ -185,33 +214,7 @@ class InstallCommand extends Command
     protected function installFilamentAccounts(): void
     {
 
-        $this->ensureApplicationIsSocialiteCompatible();
-        info('Filament Accounts with Socialite support installed successfully.');
-
-    }
-
-    /**
-     * Ensure the installed user model is ready for account usage.
-     */
-    protected function ensureApplicationIsOnlyAccountCompatible(): void
-    {
-        // Service Providers...
-        $this->copyStubFiles('app/Providers', app_path('Providers'), ['FilamentAccountsServiceProvider.php']);
-        $this->copyStubFiles('app/Providers/Filament', app_path('Providers/Filament'), ['UserPanelProvider.php']);
-        ServiceProvider::addProviderToBootstrapFile('App\Providers\FilamentAccountsServiceProvider');
-        ServiceProvider::addProviderToBootstrapFile('App\Providers\Filament\UserPanelProvider');
-
-        // Models...
-        $this->copyStubFiles('app/Models', app_path('Models'), ['User.php']);
-
-        // FilamentAccounts Actions...
-        $this->copyStubFiles('app/Actions/FilamentAccounts', app_path('Actions/FilamentAccounts'), ['DeleteUser.php']);
-    }
-
-    protected function ensureApplicationIsSocialiteCompatible(): void
-    {
-        // Publish FilamentAccounts Socialite Migrations...
-        $this->callSilent('vendor:publish', ['--tag' => 'filament-accounts-socialite-migrations', '--force' => true]);
+        info('Filament Accounts support installed successfully.');
 
         // Service Providers...
         $this->copyStubFiles('app/Providers', app_path('Providers'), ['FilamentAccountsServiceProvider.php']);
@@ -238,6 +241,7 @@ class InstallCommand extends Command
 
         // Policies...
         $this->copyStubFiles('app/Policies', app_path('Policies'), ['ConnectedAccountPolicy.php']);
+
     }
 
     protected function copyStubFiles(string $sourceSubPath, string $destinationPath, array $files): void

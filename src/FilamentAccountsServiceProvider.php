@@ -28,6 +28,7 @@ class FilamentAccountsServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__ . '/../lang', 'filament-accounts');
 
         $this->configurePublishing();
+
         $this->configureCommands();
 
         $this->app->booted(function () {
@@ -67,22 +68,25 @@ class FilamentAccountsServiceProvider extends ServiceProvider
         ], 'filament-accounts-views');
 
         $this->publishes([
-            __DIR__ . '/../lang' => lang_path('vendor/filament-accounts'),
+            __DIR__ . '/../lang' => $this->app->langPath('vendor/filament-accounts'),
         ], 'filament-accounts-translations');
 
         $this->publishes([
-            __DIR__ . '/../database/migrations/0001_01_01_000000_create_users_table.php' => database_path('migrations/0001_01_01_000000_create_users_table.php'),
-        ], 'filament-accounts-migrations');
+            __DIR__ . '/../config/filament-accounts.php' => config_path('filament-accounts.php'),
+        ], 'filament-accounts-config');
 
         $this->publishesMigrations([
-            __DIR__ . '/../database/migrations/2024_05_21_100000_create_accounts_table.php' => database_path('migrations/2024_05_21_100000_create_accounts_table.php'),
-            __DIR__ . '/../database/migrations/2024_05_21_200000_create_account_user_table.php' => database_path('migrations/2024_05_21_200000_create_account_user_table.php'),
-            __DIR__ . '/../database/migrations/2024_05_21_300000_create_account_invitations_table.php' => database_path('migrations/2024_05_21_300000_create_account_invitations_table.php'),
-        ], 'filament-accounts-account-migrations');
+            __DIR__ . '/../database/migrations' => database_path('migrations'),
+        ]);
 
-        $this->publishesMigrations([
-            __DIR__ . '/../database/migrations/2024_12_22_000000_create_connected_accounts_table.php' => database_path('migrations/2024_12_22_000000_create_connected_accounts_table.php'),
-        ], 'filament-accounts-socialite-migrations');
+        $this->publishes([
+            __DIR__ . '/../database/seeders' => database_path('seeders'),
+        ], 'filament-accounts-seeder');
+
+        $this->publishes([
+            __DIR__ . '/../public' => public_path('vendor/filament-accounts'),
+        ], 'filament-accounts-public');
+
     }
 
     protected function configureCommands(): void

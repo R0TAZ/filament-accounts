@@ -5,8 +5,9 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
-class DatabaseSeeder extends Seeder
+class FilamentAccountsSeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -15,8 +16,9 @@ class DatabaseSeeder extends Seeder
     {
 
         User::factory()->withPersonalAccount()->create([
-            'name' => 'ADMIN',
-            'email' => 'devops@rotaz.app.br',
+            'email' => config('app.default_user.email'),
+            'password' => Hash::make(config('app.default_user.password')),
+            'name' => config('app.default_user.name'),
         ]);
     }
 }

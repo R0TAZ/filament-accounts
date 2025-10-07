@@ -28,10 +28,10 @@
     "php": "^8.2",
     "ext-json": "*",
     "filament/filament": "^3.2.29",
-    "illuminate/console": "^11.0",
+    "illuminate/console": "^11.36",
     "filabiz/filabiz": "*",
-    "illuminate/contracts": "^11.0",
-    "illuminate/support": "^11.0",
+    "illuminate/contracts": "^11.36",
+    "illuminate/support": "^11.36",
     "laravel/socialite": "^5.12",
     "matomo/device-detector": "^6.1"
   },

@@ -64,6 +64,7 @@ class UserFactory extends Factory
             Account::factory()
                 ->state(fn (array $attributes, User $user) => [
                     'name' => $user->name . ' Account',
+                    'contact_name' => $user->name,
                     'user_id' => $user->id,
                     'personal_account' => true,
                 ])

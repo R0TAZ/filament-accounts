@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb8e7752d719e933b87b5eefccbda276",
+    "content-hash": "b58da86111b63d5b147651133305b95a",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -985,12 +985,69 @@
             "time": "2025-03-06T22:45:56+00:00"
         },
         {
-            "name": "filabiz/common",
+            "name": "filabiz/accounting",
             "version": "1.0",
             "dist": {
                 "type": "path",
+                "url": "/home/rotaz/rotaz-projects/filabiz/app-modules/accounting",
+                "reference": "4adf47278dcd6973f486b236bb269a1b7f75fda1"
+            },
+            "require": {
+                "filabiz/common": "1.0",
+                "filabiz/fundation": "1.0",
+                "filament/filament": "^3.2",
+                "laravel/framework": "^11.36",
+                "php": "^8.2||^8.3||^8.4"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.25",
+                "orchestra/testbench": "^9.0",
+                "pestphp/pest": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Filabiz\\Accounting\\Providers\\AccountingServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Filabiz\\Accounting\\": "src/",
+                    "Filabiz\\Accounting\\Tests\\": "tests/",
+                    "Filabiz\\Accounting\\Database\\Factories\\": "database/factories/",
+                    "Filabiz\\Accounting\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/pest"
+                ],
+                "format": [
+                    "vendor/bin/pint"
+                ],
+                "format:test": [
+                    "vendor/bin/pint --test"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "This component enables organisations to extend the elements of the framework accounting component.",
+            "transport-options": {
+                "symlink": true,
+                "relative": false
+            }
+        },
+        {
+            "name": "filabiz/common",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
                 "url": "/home/rotaz/rotaz-projects/filabiz/app-modules/common",
-                "reference": "47fd975dea13ae600c519acba90a7a3dc8f610a8"
+                "reference": "46324311bbe22767b7a1c650c17a50493e2d3063"
             },
             "require": {
                 "filabiz/fundation": "*",
@@ -1045,6 +1102,27 @@
             }
         },
         {
+            "name": "filabiz/deps",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "/home/rotaz/rotaz-projects/filabiz/app-modules/deps",
+                "reference": "5c0f8c6f6c803b451569e91b273c3acd7b77549e"
+            },
+            "require": {
+                "filabiz/common": "*",
+                "filabiz/fundation": "*",
+                "laravel/framework": "^11.36",
+                "php": "^8.2||^8.3||^8.4"
+            },
+            "type": "metapackage",
+            "description": "Shared dependencies and repositories for Filabiz modules.",
+            "transport-options": {
+                "symlink": true,
+                "relative": false
+            }
+        },
+        {
             "name": "filabiz/filabiz",
             "version": "1.0",
             "dist": {
@@ -1053,6 +1131,7 @@
                 "reference": "c1dd5a8ba6ce427aff25c5fbc37358d6689b8b48"
             },
             "require": {
+                "filabiz/accounting": "*",
                 "filabiz/common": "*",
                 "filabiz/fundation": "1.0",
                 "filabiz/party": "*",
@@ -1111,11 +1190,11 @@
         },
         {
             "name": "filabiz/fundation",
-            "version": "1.0",
+            "version": "1.0.0",
             "dist": {
                 "type": "path",
                 "url": "/home/rotaz/rotaz-projects/filabiz/app-modules/fundation",
-                "reference": "2f9dc38d368d8b1e49c78941a36e9705e315a4c0"
+                "reference": "2c34e8a6518ccf494298787aae3e353359296a23"
             },
             "require": {
                 "php": "^8.0|^8.2"
@@ -1144,9 +1223,8 @@
                 "reference": "0be042cc56fac9d1d326ea5b010a184a25b5ac63"
             },
             "require": {
-                "filament/filament": "^3.2",
-                "laravel/framework": "^11.36",
-                "php": "^8.2||^8.3||^8.4"
+                "filabiz/common": "*",
+                "filabiz/fundation": "^1.0"
             },
             "require-dev": {
                 "laravel/pint": "^1.25",
@@ -1196,15 +1274,11 @@
             "dist": {
                 "type": "path",
                 "url": "/home/rotaz/rotaz-projects/filabiz/app-modules/security",
-                "reference": "68b4790b04294d51a20d05d6d66061cb8c47f5af"
+                "reference": "de03b87b6bfc8d6423f100dccbacc09061a23073"
             },
             "require": {
-                "filabiz/common": "1.0",
-                "filabiz/fundation": "1.0",
-                "filament/filament": "^3.2",
-                "laravel/framework": "^11.36",
-                "php": "^8.2||^8.3||^8.4",
-                "rotaz/php-regex": "^1.0"
+                "filabiz/deps": "^1.0.0",
+                "php": "^8.2||^8.3||^8.4"
             },
             "require-dev": {
                 "laravel/pint": "^1.25",
@@ -1250,7 +1324,7 @@
         },
         {
             "name": "filament/actions",
-            "version": "v3.3.42",
+            "version": "v3.3.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/actions.git",
@@ -1303,7 +1377,7 @@
         },
         {
             "name": "filament/filament",
-            "version": "v3.3.42",
+            "version": "v3.3.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/panels.git",
@@ -1368,16 +1442,16 @@
         },
         {
             "name": "filament/forms",
-            "version": "v3.3.42",
+            "version": "v3.3.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/forms.git",
-                "reference": "3a42f619157c6101c3f5a4d0620f05bd9c687d62"
+                "reference": "da5401bf3684b6abc6cf1d8e152f01b25d815319"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/forms/zipball/3a42f619157c6101c3f5a4d0620f05bd9c687d62",
-                "reference": "3a42f619157c6101c3f5a4d0620f05bd9c687d62",
+                "url": "https://api.github.com/repos/filamentphp/forms/zipball/da5401bf3684b6abc6cf1d8e152f01b25d815319",
+                "reference": "da5401bf3684b6abc6cf1d8e152f01b25d815319",
                 "shasum": ""
             },
             "require": {
@@ -1420,11 +1494,11 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2025-09-28T22:06:25+00:00"
+            "time": "2025-10-06T21:42:10+00:00"
         },
         {
             "name": "filament/infolists",
-            "version": "v3.3.42",
+            "version": "v3.3.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/infolists.git",
@@ -1475,7 +1549,7 @@
         },
         {
             "name": "filament/notifications",
-            "version": "v3.3.42",
+            "version": "v3.3.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/notifications.git",
@@ -1527,7 +1601,7 @@
         },
         {
             "name": "filament/support",
-            "version": "v3.3.42",
+            "version": "v3.3.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/support.git",
@@ -1586,7 +1660,7 @@
         },
         {
             "name": "filament/tables",
-            "version": "v3.3.42",
+            "version": "v3.3.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/tables.git",
@@ -1638,7 +1712,7 @@
         },
         {
             "name": "filament/widgets",
-            "version": "v3.3.42",
+            "version": "v3.3.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/widgets.git",
@@ -11349,7 +11423,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.2||^8.3||^8.4",
+        "php": "^8.2",
         "ext-json": "*"
     },
     "platform-dev": {},

@@ -15,7 +15,12 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->foreignId('user_id')->index();
             $table->string('name');
-            $table->boolean('personal_account');
+            $table->string('slug')->unique();
+            $table->string('description')->nullable();
+            $table->string('logo_path')->nullable();
+            $table->string('contact_name')->nullable();
+            $table->string('tax_id')->nullable();
+            $table->boolean('personal_account')->nullable()->default(true);
             $table->timestamps();
         });
     }
