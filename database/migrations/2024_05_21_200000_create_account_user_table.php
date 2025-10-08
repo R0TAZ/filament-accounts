@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('account_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignUlid('account_id');
+            $table->foreignId('account_id');
             $table->foreignId('user_id');
             $table->string('role')->nullable();
             $table->timestamps();

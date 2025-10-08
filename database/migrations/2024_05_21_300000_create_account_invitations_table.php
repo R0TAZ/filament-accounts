@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('account_invitations', function (Blueprint $table) {
             $table->id();
-            $table->foreignUlid('account_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('account_id')->constrained()->cascadeOnDelete();
             $table->string('email');
             $table->string('role')->nullable();
             $table->timestamps();

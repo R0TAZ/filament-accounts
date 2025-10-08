@@ -12,11 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('accounts', function (Blueprint $table) {
-            $table->ulid('id')->primary();
+            $table->id();
             $table->foreignId('user_id')->index();
             $table->string('name');
-            $table->string('slug')->unique();
-            $table->string('description')->nullable();
+            $table->ulid('slug')->unique()->nullable();
             $table->string('logo_path')->nullable();
             $table->string('contact_name')->nullable();
             $table->string('tax_id')->nullable();

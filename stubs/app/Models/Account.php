@@ -13,7 +13,6 @@ use Rotaz\FilamentAccounts\Events\AccountUpdated;
 class Account extends FilamentAccountsAccount implements HasAvatar
 {
     use HasFactory;
-    use HasUlids;
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +22,8 @@ class Account extends FilamentAccountsAccount implements HasAvatar
     protected $fillable = [
         'name',
         'personal_account',
+        'slug',
+        'contact_name'
     ];
 
     /**
