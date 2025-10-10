@@ -29,7 +29,6 @@
     "ext-json": "*",
     "filament/filament": "^3.2.29",
     "illuminate/console": "^11.36",
-    "filabiz/filabiz": "*",
     "illuminate/contracts": "^11.36",
     "illuminate/support": "^11.36",
     "laravel/socialite": "^5.12",
@@ -43,15 +42,6 @@
     "orchestra/testbench": "^9.0|^10.0",
     "phpunit/phpunit": "^10.5|^11.5.3"
   },
-  "repositories": [
-    {
-      "type": "path",
-      "url": "/home/rotaz/rotaz-projects/filabiz/app-modules/*",
-      "options": {
-        "symlink": true
-      }
-    }
-  ],
   "autoload": {
     "psr-4": {
       "Rotaz\\FilamentAccounts\\": "src/"
