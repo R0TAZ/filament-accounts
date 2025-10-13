@@ -5,12 +5,10 @@ namespace Rotaz\FilamentAccounts\Pages\Auth;
 use App\Models\Account;
 use App\Models\User;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
-use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Events\Auth\Registered;
 use Filament\Facades\Filament;
 use Filament\Forms\Form;
 use Filament\Http\Responses\Auth\Contracts\RegistrationResponse;
-use Filament\Pages\SimplePage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -19,7 +17,6 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Rotaz\FilamentAccounts\FilamentAccounts;
 use Rotaz\FilamentAccounts\Pages\Auth\Trait\HasWizardRegisterForm;
-use Rotaz\FilamentAccounts\Pages\Auth\Trait\WithAccountRegisterAction;
 
 /**
  * @property Form $form
@@ -42,13 +39,13 @@ class Register extends AccountRegister
     {
         Log::debug('Registering filament companies');
 
-        /* try {
-             $this->rateLimit(2);
-         } catch (TooManyRequestsException $exception) {
-             $this->getRateLimitedNotification($exception)?->send();
+        try {
+            $this->rateLimit(2);
+        } catch (TooManyRequestsException $exception) {
+            $this->getRateLimitedNotification($exception)?->send();
 
-             return null;
-         }*/
+            return null;
+        }
 
         $user = $this->wrapInDatabaseTransaction(function (): Model {
 
@@ -86,6 +83,8 @@ class Register extends AccountRegister
 
     protected function handleRegistration(array $data): Model
     {
+        Log::debug('Call handleRegistration ', $data);
+
         return $this->create($data);
     }
 
@@ -128,7 +127,7 @@ class Register extends AccountRegister
             'document' => data_get($formData, 'document'),
             'tenant' => Str::ulid(),
             'name' => strtoupper(data_get($formData, 'company_name')),
-            'personal_company' => true,
+            'personal_account' => true,
         ]));
     }
 }

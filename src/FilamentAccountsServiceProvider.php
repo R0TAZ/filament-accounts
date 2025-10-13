@@ -88,7 +88,7 @@ class FilamentAccountsServiceProvider extends ServiceProvider
         ], 'filament-accounts-seeder');
 
         $this->publishes([
-            __DIR__ . '/../public' => public_path('vendor/filament-accounts'),
+            __DIR__ . '/../public' => public_path(),
         ], 'filament-accounts-public');
 
     }
