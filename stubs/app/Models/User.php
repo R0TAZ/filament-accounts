@@ -20,8 +20,8 @@ use Rotaz\FilamentAccounts\SetsProfilePhotoFromUrl;
 
 class User extends Authenticatable implements FilamentUser, HasAvatar, HasDefaultTenant, HasTenants
 {
-    use HasApiTokens;
     use HasAccounts;
+    use HasApiTokens;
     use HasConnectedAccounts;
     use HasFactory;
     use HasProfilePhoto;
@@ -37,7 +37,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasDefaul
         'name',
         'email',
         'password',
-        'phone'
+        'phone',
     ];
 
     /**

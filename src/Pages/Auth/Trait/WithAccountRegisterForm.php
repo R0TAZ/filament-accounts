@@ -2,19 +2,23 @@
 
 namespace Rotaz\FilamentAccounts\Pages\Auth\Trait;
 
-use Filament\Actions\Action;
+use App\Models\Account;
+use App\Models\Company;
+use App\Models\User;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Component;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Auth\SessionGuard;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 
 trait WithAccountRegisterForm
 {
-    use WithAccountRegisterAction;
 
     protected function getForms(): array
     {
@@ -59,7 +63,6 @@ trait WithAccountRegisterForm
             ->validationAttribute(__('filament-panels::pages/auth/register.form.password.validation_attribute'));
     }
 
-
     protected function getPasswordConfirmationFormComponent(): Component
     {
         return TextInput::make('passwordConfirmation')
@@ -72,7 +75,7 @@ trait WithAccountRegisterForm
 
     protected function handleRegistration(array $data): Model
     {
-        return $this->getUserModel()::create($data);
+        return $this->create($data);
     }
 
     protected function getUserModel(): string
@@ -99,4 +102,46 @@ trait WithAccountRegisterForm
         return $data;
     }
 
+    public function create(array $input): ?User
+    {
+        Log::debug('Call create .. ', $input);
+
+        try {
+
+            return DB::transaction(function () use ($input) {
+                return tap(User::create([
+                    'name' => strtoupper(data_get($input, 'company_contact')),
+                    'email' => data_get($input, 'email'),
+                    'phone' => data_get($input, 'phone'),
+                    'password' => Hash::make($input['password']),
+                ]), function (User $user) use ($input) {
+                    $this->createAccount($user, $input);
+                });
+            });
+
+        } catch (\Throwable $exception) {
+            Log::error('Erro create ' . $exception->getMessage());
+
+        }
+
+        return null;
+
+    }
+
+    /**
+     * Create a personal account for the user.
+     */
+    protected function createAccount(User $user, array $formData): void
+    {
+        Log::debug('Call createCompany .. ', $formData);
+
+        $user->ownedAccounts()->save(Account::forceCreate([
+            'user_id' => $user->id,
+            'account_type' => data_get($formData, 'account_type'),
+            'document' => data_get($formData, 'document'),
+            'tenant' => Str::ulid(),
+            'name' => strtoupper(data_get($formData, 'company_name')),
+            'personal_company' => true,
+        ]));
+    }
 }

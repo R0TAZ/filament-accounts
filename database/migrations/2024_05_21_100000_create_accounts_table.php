@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->index();
             $table->string('name');
-            $table->ulid('slug')->unique()->nullable();
+            $table->string('account_type');
+            $table->string('tenant')->unique();
             $table->string('logo_path')->nullable();
-            $table->string('contact_name')->nullable();
-            $table->string('tax_id')->nullable();
+            $table->string('document')->unique()->nullable();
             $table->boolean('personal_account')->nullable()->default(true);
             $table->timestamps();
         });

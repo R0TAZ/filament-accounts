@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Filament\Models\Contracts\HasAvatar;
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Rotaz\FilamentAccounts\Account as FilamentAccountsAccount;
 use Rotaz\FilamentAccounts\Events\AccountCreated;
@@ -22,8 +21,8 @@ class Account extends FilamentAccountsAccount implements HasAvatar
     protected $fillable = [
         'name',
         'personal_account',
-        'slug',
-        'contact_name'
+        'account_type',
+        'document',
     ];
 
     /**

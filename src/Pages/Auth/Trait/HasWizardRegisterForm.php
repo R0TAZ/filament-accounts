@@ -2,17 +2,21 @@
 
 namespace Rotaz\FilamentAccounts\Pages\Auth\Trait;
 
-use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Components\Wizard;
 use Filament\Resources\Pages\CreateRecord\Concerns\HasWizard;
 use Filament\Support\Enums\IconPosition;
+use Joinapi\FilamentUtility\Form\Document;
+use Joinapi\FilamentUtility\Form\PersonNameField;
+use Joinapi\FilamentUtility\Form\PhoneNumber;
+use Rotaz\FilamentAccounts\Utils\FormUtils;
 
 trait HasWizardRegisterForm
 {
     use HasWizard;
 
-    public function getWizardFormSchema()
+    public function getWizardFormSchema(): array
     {
         return [
             Wizard::make([
@@ -50,19 +54,19 @@ trait HasWizardRegisterForm
 
     }
 
-    public function getWizardFormActions()
+    public function getWizardFormActions(): array
     {
         return [
             'submit' => 'Cadastrar',
         ];
     }
 
-    public function getWizardFormStatePath()
+    public function getWizardFormStatePath(): string
     {
         return 'wizard';
     }
 
-    public function getRegisterFormSchema($type)
+    public function getRegisterFormSchema($type): array
     {
         $schema = $type == 'personal' ? $this->getPersonalAccountFormSchema() : $this->getGroupAccountFormSchema();
 
@@ -75,25 +79,27 @@ trait HasWizardRegisterForm
         return 'next';
     }
 
-    public function getPersonalAccountFormSchema()
+    public function getPersonalAccountFormSchema(): array
     {
         return [
-            $this->getNameFormComponent()
+            PersonNameField::make('company_contact')
+                ->extraInputAttributes(FormUtils::getTextFormUpper())
                 ->label('NOME'),
-            TextInput::make('phone')
-                ->label('TELEFONE')
-                ->tel()
-                ->mask('(99) 99999-9999')
-                ->maxLength(255),
-            TextInput::make('cpf')
-                ->label('CPF')
-                ->maxLength(255),
+            Grid::make()
+                ->schema([
+                    PhoneNumber::make('phone')
+                        ->format('(99)99999-9999')
+                        ->label('TELEFONE'),
+                    Document::make('document')
+                        ->cpf()
+                        ->label('CPF'),
+                ]),
 
         ];
 
     }
 
-    protected function getCommonFormSchema()
+    protected function getCommonFormSchema(): array
     {
         return [
 
@@ -111,34 +117,38 @@ trait HasWizardRegisterForm
 
     }
 
-    public function getPersonalAccountFormActions()
+    public function getPersonalAccountFormActions(): array
     {
         return [
             'submit' => 'Cadastrar',
         ];
     }
 
-    public function getPersonalAccountFormStatePath()
+    public function getPersonalAccountFormStatePath(): string
     {
         return 'personalAccount';
     }
 
-    public function getGroupAccountFormSchema()
+    public function getGroupAccountFormSchema(): array
     {
         return [
-            $this->getNameFormComponent()
-                ->label('NOME'),
-            TextInput::make('tax_id')
-                ->label('CNPJ')
-                ->maxLength(255),
-            TextInput::make('company_contact')
-                ->label('RESPONSAVEL')
-                ->maxLength(255),
+            PersonNameField::make('company_name')
+                ->extraInputAttributes(FormUtils::getTextFormUpper())
+                ->label('EMPRESA'),
+            Grid::make()
+                ->schema([
+                    Document::make('document')
+                        ->cnpj()
+                        ->label('CNPJ'),
+                    PersonNameField::make('company_contact')
+                        ->extraInputAttributes(FormUtils::getTextFormUpper())
+                        ->label('RESPONSAVEL'),
+                ]),
         ];
 
     }
 
-    public function getLegalPartyAccountFormActions()
+    public function getLegalPartyAccountFormActions(): array
     {
         return [
             'submit' => 'Cadastrar',
