@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Rotaz\FilamentAccounts\Events\AccountCreated;
 use Rotaz\FilamentAccounts\FilamentAccounts;
 use Rotaz\FilamentAccounts\Pages\Auth\Trait\HasWizardRegisterForm;
 
@@ -37,7 +38,7 @@ class Register extends AccountRegister
 
     public function register(): ?RegistrationResponse
     {
-        Log::debug('Registering filament companies');
+        Log::debug('Registering filament account');
 
         try {
             $this->rateLimit(2);
@@ -119,15 +120,19 @@ class Register extends AccountRegister
 
     protected function createAccount(User $user, array $formData): void
     {
-        Log::debug('Call createCompany .. ', $formData);
+        Log::debug('Call createAccount .. ', $formData);
 
-        $user->ownedAccounts()->save(Account::forceCreate([
+        $account = Account::forceCreate([
             'user_id' => $user->id,
             'account_type' => data_get($formData, 'account_type'),
             'document' => data_get($formData, 'document'),
             'tenant' => Str::ulid(),
             'name' => strtoupper(data_get($formData, 'company_name')),
             'personal_account' => true,
-        ]));
+        ]);
+
+        AccountCreated::dispatch($account);
+
+        $user->ownedAccounts()->save($account);
     }
 }
