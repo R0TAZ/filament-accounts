@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use Rotaz\FilamentAccounts\Events\AccountCreated;
 use Rotaz\FilamentAccounts\FilamentAccounts;
 use Rotaz\FilamentAccounts\Pages\Auth\Trait\HasWizardRegisterForm;
 
@@ -122,17 +121,13 @@ class Register extends AccountRegister
     {
         Log::debug('Call createAccount .. ', $formData);
 
-        $account = Account::forceCreate([
+        $user->ownedAccounts()->save(Account::forceCreate([
             'user_id' => $user->id,
             'account_type' => data_get($formData, 'account_type'),
             'document' => data_get($formData, 'document'),
             'tenant' => Str::ulid(),
             'name' => strtoupper(data_get($formData, 'company_name')),
             'personal_account' => true,
-        ]);
-
-        AccountCreated::dispatch($account);
-
-        $user->ownedAccounts()->save($account);
+        ]));
     }
 }
