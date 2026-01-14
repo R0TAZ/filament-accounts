@@ -15,6 +15,7 @@ use Rotaz\FilamentAccounts\Utils\FormUtils;
 trait HasWizardRegisterForm
 {
     use HasWizard;
+    use WithAccountRegisterFields;
 
     public function getWizardFormSchema(): array
     {
@@ -79,43 +80,6 @@ trait HasWizardRegisterForm
         return 'next';
     }
 
-    public function getPersonalAccountFormSchema(): array
-    {
-        return [
-            PersonNameField::make('company_contact')
-                ->extraInputAttributes(FormUtils::getTextFormUpper())
-                ->label('NOME'),
-            Grid::make()
-                ->schema([
-                    PhoneNumber::make('phone')
-                        ->format('(99)99999-9999')
-                        ->label('TELEFONE'),
-                    Document::make('document')
-                        ->cpf()
-                        ->label('CPF'),
-                ]),
-
-        ];
-
-    }
-
-    protected function getCommonFormSchema(): array
-    {
-        return [
-
-            $this->getEmailFormComponent()
-                ->label('E-MAIL')
-                ->required(false),
-            $this->getPasswordFormComponent()
-                ->dehydrateStateUsing(fn ($state) => $state)
-                ->label('SENHA'),
-            $this->getPasswordConfirmationFormComponent()
-                ->dehydrateStateUsing(fn ($state) => $state)
-                ->label('CONFIRMAR SENHA'),
-
-        ];
-
-    }
 
     public function getPersonalAccountFormActions(): array
     {
@@ -127,25 +91,6 @@ trait HasWizardRegisterForm
     public function getPersonalAccountFormStatePath(): string
     {
         return 'personalAccount';
-    }
-
-    public function getGroupAccountFormSchema(): array
-    {
-        return [
-            PersonNameField::make('company_name')
-                ->extraInputAttributes(FormUtils::getTextFormUpper())
-                ->label('EMPRESA'),
-            Grid::make()
-                ->schema([
-                    Document::make('document')
-                        ->cnpj()
-                        ->label('CNPJ'),
-                    PersonNameField::make('company_contact')
-                        ->extraInputAttributes(FormUtils::getTextFormUpper())
-                        ->label('RESPONSAVEL'),
-                ]),
-        ];
-
     }
 
     public function getLegalPartyAccountFormActions(): array

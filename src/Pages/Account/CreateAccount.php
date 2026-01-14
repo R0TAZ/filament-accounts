@@ -2,26 +2,20 @@
 
 namespace Rotaz\FilamentAccounts\Pages\Account;
 
-use App\Models\User;
 use Filament\Facades\Filament;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
-use Filament\Support\Exceptions\Halt;
+use Filament\Pages\Auth\Register as FilamentRegister;
 use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Auth\SessionGuard;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Rotaz\FilamentAccounts\Events\AddingAccount;
 use Rotaz\FilamentAccounts\FilamentAccounts;
-use Filament\Pages\Auth\Register as FilamentRegister;
+
 class CreateAccount extends FilamentRegister
 {
-
-
     protected function handleRegistration(array $data): Model
     {
         $user = Auth::user();
@@ -69,5 +63,4 @@ class CreateAccount extends FilamentRegister
             ->body(Str::inlineMarkdown(__('filament-accounts::default.notifications.account_created.body', compact('name'))))
             ->send();
     }
-
 }
