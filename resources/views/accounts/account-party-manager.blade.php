@@ -167,11 +167,11 @@
                                     <!-- Manage Account Employee Role -->
                                     @if (Gate::check('updateAccountParty', $account) && Rotaz\FilamentAccounts\FilamentAccounts::hasRoles())
                                         <x-filament::button size="sm" outlined="true" color="primary" wire:click="manageRole('{{ $user->id }}')">
-                                            {{ Rotaz\FilamentAccounts\FilamentAccounts::findRole($user->employeeship->role)->name }}
+                                            {{ Rotaz\FilamentAccounts\FilamentAccounts::findRole($user->party->role)->name }}
                                         </x-filament::button>
                                     @elseif (Rotaz\FilamentAccounts\FilamentAccounts::hasRoles())
                                         <x-filament::button size="sm" disabled="true" outlined="true" color="gray">
-                                            {{ Rotaz\FilamentAccounts\FilamentAccounts::findRole($user->employeeship->role)->name }}
+                                            {{ Rotaz\FilamentAccounts\FilamentAccounts::findRole($user->party->role)->name }}
                                         </x-filament::button>
                                     @endif
 
@@ -181,7 +181,7 @@
                                             {{ __('filament-accounts::default.buttons.leave') }}
                                         </x-filament::button>
 
-                                        <!-- Remove Account Employee -->
+                                        <!-- Remove Account Party -->
                                     @elseif (Gate::check('removeAccountParty', $account))
                                         <x-filament::button size="sm" color="danger" wire:click="confirmAccountPartyRemoval('{{ $user->id }}')">
                                             {{ __('filament-accounts::default.buttons.remove') }}

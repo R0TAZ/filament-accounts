@@ -80,6 +80,7 @@ trait WithAccountRegisterFields
         return [
             PersonNameField::make('company_contact')
                 ->extraInputAttributes(FormUtils::getTextFormUpper())
+                ->required()
                 ->label('NOME'),
             Grid::make()
                 ->schema([
@@ -103,6 +104,7 @@ trait WithAccountRegisterFields
         return [
             PersonNameField::make('company_name')
                 ->extraInputAttributes(FormUtils::getTextFormUpper())
+                ->required()
                 ->label('EMPRESA'),
             Grid::make()
                 ->schema([
