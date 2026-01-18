@@ -234,7 +234,7 @@ return [
     ],
 
     'action_section_titles' => [
-        'account_party' => 'Account Employees',
+        'account_partys' => 'Account Employees',
         'connected_accounts' => 'Connected Accounts',
         'delete_account' => 'Delete Account',
         'pending_account_invitations' => 'Pending Account Invitations',

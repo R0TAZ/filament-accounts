@@ -233,14 +233,14 @@ return [
     ],
 
     'action_section_titles' => [
-        'account_party' => 'Funcionários da Conta',
+        'account_partys' => 'Funcionários da Conta',
         'connected_accounts' => 'Contas Conectadas',
         'delete_account' => 'Excluir Conta',
         'pending_account_invitations' => 'Convites Pendentes para a Conta',
     ],
 
     'action_section_descriptions' => [
-        'account_party' => 'Todas as pessoas que fazem parte desta empresa.',
+        'account_partys' => 'Todas as pessoas que fazem parte desta empresa.',
         'connected_accounts' => 'Gerencie e remova suas contas conectadas.',
         'delete_account' => 'Excluir permanentemente esta empresa.',
         'pending_account_invitations' => 'Essas pessoas foram convidadas para sua empresa e receberam um email de convite. Elas podem se juntar à empresa aceitando o convite do email.',
