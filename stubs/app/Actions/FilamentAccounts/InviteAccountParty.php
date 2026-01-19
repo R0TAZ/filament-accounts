@@ -36,8 +36,9 @@ class InviteAccountParty implements InvitesAccountParties
             'email' => $email,
             'role' => $role,
         ]);
+        $mailableClass = config('filament-accounts.account.invitations.invite_mail_template', AccountInvitation::class);
 
-        Mail::to($email)->send(new AccountInvitation($invitation));
+        Mail::to($email)->send(new $mailableClass($invitation));
     }
 
     /**

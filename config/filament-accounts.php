@@ -12,7 +12,16 @@ return [
             'social' => false,
             'other' => false,
         ],
-        'model' => Filabiz\Security\Services\Auth\AbstractFilabizUser::class,
+        'model' => \App\Models\User::class,
+    ],
+    'account' => [
+        'model' => \App\Models\Account::class,
+        'party_model' => \App\Models\Party::class,
+        'invitations' => [
+            'invite_mail_template' => \Rotaz\FilamentAccounts\Mail\AccountInvitation::class,
+            'accept_url_callback' => fn () => filament()->getPanel('user')->getRegistrationUrl(),
+            'expires_in_minutes' => 60 * 24 * 7, // 7 days
+        ],
     ],
 
 ];
