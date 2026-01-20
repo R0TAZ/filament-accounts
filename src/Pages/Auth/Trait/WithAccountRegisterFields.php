@@ -150,7 +150,7 @@ trait WithAccountRegisterFields
     {
         return ViewField::make('common')
             ->hiddenLabel()
-            ->view('filament-panels::components.generic-form-field', [
+            ->view('filament-accounts::components.generic-form-field', [
                 'message' => $message,
             ]);
 
