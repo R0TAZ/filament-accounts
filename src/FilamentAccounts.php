@@ -17,6 +17,7 @@ use Rotaz\FilamentAccounts\Http\Responses\Auth\FilamentAccountsRegistrationRespo
 use Rotaz\FilamentAccounts\Listeners\SwitchCurrentAccount;
 use Rotaz\FilamentAccounts\Pages\Account\AccountSettings;
 use Rotaz\FilamentAccounts\Pages\Account\CreateAccount;
+use Rotaz\FilamentAccounts\Pages\Auth\PartyRegister;
 
 class FilamentAccounts implements Plugin
 {
@@ -59,6 +60,7 @@ class FilamentAccounts implements Plugin
         if (static::hasAccountFeatures()) {
             Livewire::component('filament.pages.accounts.create_account', CreateAccount::class);
             Livewire::component('filament.pages.accounts.accounts_settings', AccountSettings::class);
+            Livewire::component('filament.pages.auth.party_register', PartyRegister::class);
         }
 
         app()->bind(RegistrationResponseContract::class, FilamentAccountsRegistrationResponse::class);

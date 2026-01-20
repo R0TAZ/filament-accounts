@@ -30,7 +30,7 @@ class PartyRegister extends SimplePage
     use WithAccountRegisterFields;
     use WithRateLimiting;
 
-    protected static string $view = 'filament-accounts::auth.party-register';
+    protected static string $view = 'filament-accounts::auth.party_register';
 
     public bool $hasUser = false;
 
@@ -170,7 +170,7 @@ class PartyRegister extends SimplePage
                 'redirect_label' => 'Voltar ao Login',
             ];
 
-            return 'filament-accounts::auth.invite-error';
+            return 'filament-accounts::auth.invite_error';
         }
 
         return static::$view;
