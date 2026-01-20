@@ -9,6 +9,7 @@ use Filament\Forms\Form;
 use Filament\Pages\Tenancy\RegisterTenant;
 use Filament\Support\Exceptions\Halt;
 use Filament\Support\Facades\FilamentView;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -165,5 +166,15 @@ class RegisterAccount extends RegisterTenant
         $data['account_type'] = 'business';
 
         return $data;
+    }
+
+    public static function canView(): bool
+    {
+        try {
+            $tenant = Filament::getTenant();
+            return auth()->user()->ownedAccounts()->count() > 0;
+        } catch (AuthorizationException $exception) {
+            return $exception->toResponse()->allowed();
+        }
     }
 }

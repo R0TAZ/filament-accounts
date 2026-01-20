@@ -3,10 +3,14 @@
 namespace Rotaz\FilamentAccounts\Pages\Auth\Trait;
 
 use App\Models\Account;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Component;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ViewField;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\HtmlString;
 use Illuminate\Validation\Rules\Password;
 use Joinapi\FilamentUtility\Form\Document;
 use Joinapi\FilamentUtility\Form\PersonNameField;
@@ -20,7 +24,8 @@ trait WithAccountRegisterFields
         return TextInput::make('name')
             ->label(__('filament-panels::pages/auth/register.form.name.label'))
             ->required()
-            ->maxLength(255)
+            ->extraInputAttributes(FormUtils::getTextFormAutoCompleteOff())
+            ->maxLength(100)
             ->autofocus();
     }
 
@@ -75,6 +80,18 @@ trait WithAccountRegisterFields
 
     }
 
+    protected function getPasswordLoginFormComponent(): Component
+    {
+        return TextInput::make('password')
+            ->label(__('filament-panels::pages/auth/login.form.password.label'))
+            ->hint(filament()->hasPasswordReset() ? new HtmlString(Blade::render('<x-filament::link :href="filament()->getRequestPasswordResetUrl()" tabindex="3"> {{ __(\'filament-panels::pages/auth/login.actions.request_password_reset.label\') }}</x-filament::link>')) : null)
+            ->password()
+            ->revealable(filament()->arePasswordsRevealable())
+            ->autocomplete('current-password')
+            ->required()
+            ->extraInputAttributes(['tabindex' => 2]);
+    }
+
     public function getPersonalAccountFormSchema(): array
     {
         return [
@@ -120,6 +137,22 @@ trait WithAccountRegisterFields
                         ->label('RESPONSAVEL'),
                 ]),
         ];
+
+    }
+
+    protected function getRememberFormComponent(): Component
+    {
+        return Checkbox::make('remember')
+            ->label(__('filament-panels::pages/auth/login.form.remember.label'));
+    }
+
+    protected function getCommonFormComponent(?string $message = null): Component
+    {
+        return ViewField::make('common')
+            ->hiddenLabel()
+            ->view('filament-panels::components.generic-form-field', [
+                'message' => $message,
+            ]);
 
     }
 }

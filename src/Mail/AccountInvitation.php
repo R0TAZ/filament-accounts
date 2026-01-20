@@ -33,7 +33,7 @@ class AccountInvitation extends Mailable
      */
     public function build(): static
     {
-        $acceptUrl = FilamentAccounts::generateAcceptInvitationUrl($this->invitation);
+        $acceptUrl = FilamentAccounts::generatePartyRegisterUrl($this->invitation);
 
         return $this->markdown('filament-accounts::mail.account-invitation', compact('acceptUrl'))
             ->subject(__('Account Invitation'));

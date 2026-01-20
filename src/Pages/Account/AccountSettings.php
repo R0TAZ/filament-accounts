@@ -21,7 +21,7 @@ class AccountSettings extends BaseEditTenantProfile
     public static function canView(Model $tenant): bool
     {
         try {
-            return authorize('view', $tenant)->allowed();
+            return auth()->check() && auth()->user()->ownsAccount($tenant);
         } catch (AuthorizationException $exception) {
             return $exception->toResponse()->allowed();
         }

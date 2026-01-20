@@ -7,13 +7,12 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Rotaz\FilamentAccounts\Http\Controllers\AccountInvitationController;
 use Rotaz\FilamentAccounts\Http\Controllers\OAuthController;
+use Rotaz\FilamentAccounts\Pages\Auth\PartyRegister;
 use Rotaz\FilamentAccounts\Pages\Auth\PrivacyPolicy;
 use Rotaz\FilamentAccounts\Pages\Auth\Terms;
 
-
 trait HasRoutes
 {
-
     public static bool $registersRoutes = true;
 
     public function ignoreRoutes(): static
@@ -34,6 +33,8 @@ trait HasRoutes
             Route::get(Terms::getSlug(), Terms::class)->name(Terms::getRouteName());
             Route::get(PrivacyPolicy::getSlug(), PrivacyPolicy::class)->name(PrivacyPolicy::getRouteName());
         }
+
+        Route::get(PartyRegister::getSlug(), PartyRegister::class)->name(PartyRegister::getRouteName());
     }
 
     protected function registerAuthenticatedRoutes(): void
@@ -63,5 +64,17 @@ trait HasRoutes
     public static function generateAcceptInvitationUrl(AccountInvitation $invitation): string
     {
         return URL::signedRoute(static::generateRouteName('invitations.accept'), compact('invitation'));
+    }
+
+    public static function generatePartyRegisterUrl(AccountInvitation $invitation): string
+    {
+        return config('app.url') . URL::temporarySignedRoute(
+            static::generateRouteName('party.register'),
+            expiration: now()->addDays(5),
+            parameters: [
+                'h' => encrypt($invitation->getKey(), false),
+            ],
+            absolute: false
+        );
     }
 }

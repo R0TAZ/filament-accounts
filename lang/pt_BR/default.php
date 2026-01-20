@@ -94,6 +94,7 @@ return [
         'user_belongs_to_account' => 'Este usuário já pertence à empresa.',
         'valid_role' => 'O :attribute deve ser uma função válida.',
         'terms' => 'Termos de Serviço e Política de Privacidade',
+        'invite_expired' => 'O link de cadastro que você usou é inválido ou expirou. Solicite um novo link de cadastro ou entre em contato com o suporte para obter ajuda.',
     ],
 
     'descriptions' => [
@@ -325,6 +326,7 @@ return [
             'forgot_password' => 'Basta nos informar seu endereço de email e nós lhe enviaremos um link para redefinir a senha que permitirá que você escolha uma nova.',
             'login' => 'Ou',
             'register' => 'Eu concordo com os :terms_of_service e com a :privacy_policy',
+            'invalid_link' => 'Link de registro de conta inválido',
         ],
 
         'profile' => [
