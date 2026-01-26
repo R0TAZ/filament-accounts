@@ -86,6 +86,8 @@ class InstallCommand extends Command
         // Update Welcome Page...
         $this->updateWelcomePage();
 
+        $this->updateDefaultPanel();
+
         $this->updateVite();
 
         // Configure Session...
@@ -175,6 +177,28 @@ class InstallCommand extends Command
             $this->replaceInFile("{{ route('login') }}", '{{ filament()->getLoginUrl() }}', $filePath);
             $this->replaceInFile("{{ route('register') }}", '{{ filament()->getRegistrationUrl() }}', $filePath);
         }
+    }
+
+    protected function updateDefaultPanel(): void
+    {
+        $filePath = base_path('bootstrap/providers.php');
+
+        if( file_exists($filePath) ) {
+
+            $fileContents = file_get_contents($filePath);
+
+            $exists = Str::contains($fileContents, 'App\Providers\Filament\AdminPanelProvider::class');
+
+            if($exists) {
+                $this->replaceInFile(
+                    "App\Providers\Filament\AdminPanelProvider::class",
+                    "// App\Providers\Filament\AdminPanelProvider::class",
+                    $filePath
+                );
+            }
+        }
+
+
     }
 
     protected function updateVite(): void

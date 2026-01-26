@@ -109,9 +109,9 @@ add_composer_repository() {
 
 
 # Define experimental features
-LARAMENT_PATH="/home/rotaz/rotaz-projects/workspace/larament-3.3.zip"
-EXPERIMENTAL_PATH="/home/rotaz/rotaz-projects/workspace/build"
-PROJECT_PATH="/home/rotaz/rotaz-projects/workspace/build"
+LARAMENT_PATH="/media/rotaz/projects/rotaz/workspace/larament-3.zip"
+EXPERIMENTAL_PATH="/media/rotaz/projects/rotaz/workspace/build"
+PROJECT_PATH="/media/rotaz/projects/rotaz/workspace/"
 PROJECT_NAME="$1"
 #PROJECT_NAME="OK"
 

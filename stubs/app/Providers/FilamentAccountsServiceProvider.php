@@ -43,7 +43,7 @@ use Rotaz\FilamentAccounts\Enums\Provider;
 use Rotaz\FilamentAccounts\FilamentAccounts;
 use Rotaz\FilamentAccounts\Pages\Account\AccountSettings;
 use Rotaz\FilamentAccounts\Pages\Account\CreateAccount;
-use Rotaz\FilamentAccounts\Pages\Auth\AccountRegister;
+use Rotaz\FilamentAccounts\Pages\Auth\Register;
 use Rotaz\FilamentAccounts\Pages\Auth\Login;
 use Rotaz\FilamentAccounts\Pages\User\Profile;
 
@@ -88,7 +88,7 @@ class FilamentAccountsServiceProvider extends PanelProvider
                         features: [Feature::RememberSession, Feature::ProviderAvatars],
                     ),
             )
-            ->registration(AccountRegister::class)
+            ->registration(Register::class)
             ->colors([
                 'primary' => Color::Amber,
             ])
