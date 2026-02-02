@@ -12,12 +12,17 @@ use Rotaz\FilamentAccounts\Contracts\CreatesConnectedAccounts;
 use Rotaz\FilamentAccounts\Contracts\CreatesUserFromProvider;
 use Rotaz\FilamentAccounts\Contracts\HandlesInvalidState;
 use Rotaz\FilamentAccounts\Contracts\UpdatesConnectedAccounts;
+use Rotaz\FilamentAccounts\Enums\Feature;
 use Rotaz\FilamentAccounts\Http\Controllers\OAuthController;
+use Rotaz\FilamentAccounts\Http\Middleware\TenantSubscriptionFilter;
 use Rotaz\FilamentAccounts\Http\Responses\Auth\FilamentAccountsRegistrationResponse;
 use Rotaz\FilamentAccounts\Listeners\SwitchCurrentAccount;
 use Rotaz\FilamentAccounts\Pages\Account\AccountSettings;
 use Rotaz\FilamentAccounts\Pages\Account\CreateAccount;
+use Rotaz\FilamentAccounts\Pages\Account\RegisterAccount;
 use Rotaz\FilamentAccounts\Pages\Auth\PartyRegister;
+use Rotaz\FilamentAccounts\Pages\Billing\Subscription;
+use Rotaz\FilamentAccounts\Services\BillingService;
 
 class FilamentAccounts implements Plugin
 {
@@ -34,6 +39,8 @@ class FilamentAccounts implements Plugin
     use Concerns\Base\HasPermissions;
     use Concerns\Base\HasRoutes;
     use Concerns\Base\HasTermsAndPrivacyPolicy;
+    use Concerns\Billing\HasBillingActionBindings;
+    use Concerns\Billing\HasBillingModels;
     use Concerns\ManagesProfileComponents;
     use Concerns\Socialite\CanEnableSocialite;
     use Concerns\Socialite\HasConnectedAccountModel;
@@ -63,6 +70,16 @@ class FilamentAccounts implements Plugin
             Livewire::component('filament.pages.auth.party_register', PartyRegister::class);
         }
 
+        if (static::isFeatureEnabled(Feature::TenantBilling)) {
+
+            $panel->pages([Subscription::class]);
+            $panel->tenantBillingProvider(new BillingService);
+            $panel->tenantMiddleware([
+                TenantSubscriptionFilter::class,
+            ], isPersistent: true);
+
+        }
+
         app()->bind(RegistrationResponseContract::class, FilamentAccountsRegistrationResponse::class);
 
         if (static::hasSocialiteFeatures()) {
@@ -80,6 +97,12 @@ class FilamentAccounts implements Plugin
             $panel->routes(fn () => $this->registerPublicRoutes());
             $panel->authenticatedRoutes(fn () => $this->registerAuthenticatedRoutes());
         }
+
+        $panel
+            ->tenantMenu()
+            ->tenantRegistration(RegisterAccount::class)
+            ->tenantProfile(AccountSettings::class);
+
     }
 
     public function boot(\Filament\Panel $panel): void

@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
-abstract class Account extends Model
+use Rotaz\FilamentAccounts\Contracts\HasBilling;
+
+abstract class Account extends Model implements HasBilling
 {
+    use CanBilling;
     public function owner(): BelongsTo
     {
         return $this->belongsTo(FilamentAccounts::userModel(), 'user_id');

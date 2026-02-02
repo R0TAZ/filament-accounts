@@ -6,6 +6,10 @@ use App\Models\Account;
 use App\Models\AccountInvitation;
 use App\Models\Party;
 use App\Models\User;
+use Rotaz\FilamentAccounts\BillingPlan;
+use Rotaz\FilamentAccounts\Subscriber;
+use Rotaz\FilamentAccounts\Subscription;
+use Rotaz\FilamentAccounts\SubscriptionInvoice;
 
 trait HasBaseModels
 {
@@ -98,4 +102,5 @@ trait HasBaseModels
     {
         return static::newUserModel()->where('email', $email)->firstOrFail();
     }
+
 }

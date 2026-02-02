@@ -17,7 +17,6 @@ use App\Actions\FilamentAccounts\UpdateAccountName;
 use App\Actions\FilamentAccounts\UpdateConnectedAccount;
 use App\Actions\FilamentAccounts\UpdateUserPassword;
 use App\Actions\FilamentAccounts\UpdateUserProfileInformation;
-
 use App\Models\Account;
 use Filament\Facades\Filament;
 use Filament\Http\Middleware\Authenticate;
@@ -37,14 +36,14 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Rotaz\FilamentAccounts\Actions\CreateSubscription;
 use Rotaz\FilamentAccounts\Actions\GenerateRedirectForProvider;
 use Rotaz\FilamentAccounts\Enums\Feature;
 use Rotaz\FilamentAccounts\Enums\Provider;
 use Rotaz\FilamentAccounts\FilamentAccounts;
-use Rotaz\FilamentAccounts\Pages\Account\AccountSettings;
 use Rotaz\FilamentAccounts\Pages\Account\CreateAccount;
-use Rotaz\FilamentAccounts\Pages\Auth\Register;
 use Rotaz\FilamentAccounts\Pages\Auth\Login;
+use Rotaz\FilamentAccounts\Pages\Auth\Register;
 use Rotaz\FilamentAccounts\Pages\User\Profile;
 
 class FilamentAccountsServiceProvider extends PanelProvider
@@ -152,6 +151,8 @@ class FilamentAccountsServiceProvider extends PanelProvider
         FilamentAccounts::setUserPasswordsUsing(SetUserPassword::class);
         FilamentAccounts::handlesInvalidStateUsing(HandleInvalidState::class);
         FilamentAccounts::generatesProvidersRedirectsUsing(GenerateRedirectForProvider::class);
+
+        FilamentAccounts::createSubscriptionsUsing(CreateSubscription::class);
     }
 
     /**

@@ -8,6 +8,7 @@ return [
         'name' => 'Name',
         'password' => 'Password',
         'recovery_code' => 'Recovery Code',
+        'choicer' => 'Choice',
     ],
 
     'buttons' => [
@@ -19,7 +20,6 @@ return [
         'create' => 'Create',
         'create_token' => 'Create Token',
         'delete' => 'Delete',
-        'delete_account' => 'Delete Account',
         'delete_account' => 'Delete Account',
         'disable' => 'Disable',
         'done' => 'Done.',
@@ -67,6 +67,11 @@ return [
         'token_name' => 'Token Name',
         'unknown' => 'Unknown',
         'updated_at' => 'Updated at',
+        'subscription' => 'Subscription',
+        'invoices' => 'Invoices',
+        'pay' => 'Pay',
+        'link_copy' => 'Link copy',
+        'qrcode' => 'Qr Code',
     ],
 
     'links' => [
@@ -183,6 +188,16 @@ return [
             'title' => 'Verification link sent',
             'body' => 'A new verification link has been sent to the email address provided.',
         ],
+
+        'subscription_created' => [
+            'title' => 'Your subscription has been created.',
+            'body' => 'You have successfully subscribed :BillingPlan to your account.',
+        ],
+
+        'subscription_cancelled' => [
+            'title' => 'Subcription removed',
+            'body' => 'The account subscription been removed successfully.',
+        ],
     ],
 
     'navigation' => [
@@ -253,7 +268,6 @@ return [
         'confirm_password' => 'Confirm Password',
         'delete_token' => 'Delete Personal Access Token',
         'delete_account' => 'Delete Account',
-        'delete_account' => 'Delete Account',
         'leave_account' => 'Leave Account',
         'logout_browser_sessions' => 'Log Out Other Browser Sessions',
         'manage_role' => 'Manage Role',
@@ -265,7 +279,6 @@ return [
     'modal_descriptions' => [
         'copy_token' => "Please copy your new Personal Access Token. For your security, it won't be shown again.",
         'confirm_password' => 'For your security, please confirm your password to continue.',
-        'delete_account' => 'Please enter your password to confirm you would like to delete your account.',
         'delete_token' => 'Are you sure you would like to delete this Personal Access Token?',
         'delete_account' => 'Are you sure you want to delete this account?',
         'leave_account' => 'Are you sure you would like to leave this account?',
@@ -348,4 +361,9 @@ return [
             'delete_account' => 'Once a account is deleted, all of its resources and data will be permanently deleted. Before deleting this account, please download any data or information regarding this account that you wish to retain.',
         ],
     ],
+    'general' => [
+        'info' => [
+            'link_copy_ok' => 'Copy ok'
+        ]
+    ]
 ];

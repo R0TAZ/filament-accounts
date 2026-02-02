@@ -4,8 +4,6 @@ namespace Rotaz\FilamentAccounts;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Carbon;
-use Rotaz\FilamentAccounts\Credentials;
 
 abstract class ConnectedAccount extends Model
 {

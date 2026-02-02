@@ -13,6 +13,7 @@ enum Feature: string implements HasLabel
     case GenerateMissingEmails = 'generate-missing-emails';
     case LoginOnRegistration = 'login-on-registration';
     case CreateAccountOnFirstLogin = 'create-account-on-first-login';
+    case TenantBilling = 'tenant-billing';
 
     public function getLabel(): ?string
     {
@@ -23,6 +24,7 @@ enum Feature: string implements HasLabel
             self::GenerateMissingEmails => 'Generate Missing Emails',
             self::LoginOnRegistration => 'Login on Registration',
             self::CreateAccountOnFirstLogin => 'Create Account on First Login',
+            self::TenantBilling => 'Tenant Billing',
         };
     }
 
