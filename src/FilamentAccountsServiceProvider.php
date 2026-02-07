@@ -13,6 +13,7 @@ use Rotaz\FilamentAccounts\Http\Livewire\SetPasswordForm;
 use Rotaz\FilamentAccounts\Http\Livewire\UpdateAccountNameForm;
 use Rotaz\FilamentAccounts\Http\Livewire\UpdatePasswordForm;
 use Rotaz\FilamentAccounts\Http\Livewire\UpdateProfileInformationForm;
+use Rotaz\FilamentAccounts\Providers\Wso2Provider;
 
 class FilamentAccountsServiceProvider extends ServiceProvider
 {
@@ -102,5 +103,17 @@ class FilamentAccountsServiceProvider extends ServiceProvider
         $this->commands([
             Console\InstallCommand::class,
         ]);
+    }
+
+    private function bootWSo2Socialite()
+    {
+        $socialite = $this->app->make('Laravel\Socialite\Contracts\Factory');
+        $socialite->extend(
+            'wso2',
+            function ($app) use ($socialite) {
+                $config = $app['config']['services.wso2'];
+                return $socialite->buildProvider(Wso2Provider::class, $config);
+            }
+        );
     }
 }

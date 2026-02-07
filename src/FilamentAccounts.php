@@ -13,6 +13,7 @@ use Rotaz\FilamentAccounts\Contracts\CreatesUserFromProvider;
 use Rotaz\FilamentAccounts\Contracts\HandlesInvalidState;
 use Rotaz\FilamentAccounts\Contracts\UpdatesConnectedAccounts;
 use Rotaz\FilamentAccounts\Enums\Feature;
+use Rotaz\FilamentAccounts\Enums\Provider;
 use Rotaz\FilamentAccounts\Http\Controllers\OAuthController;
 use Rotaz\FilamentAccounts\Http\Middleware\TenantSubscriptionFilter;
 use Rotaz\FilamentAccounts\Http\Responses\Auth\FilamentAccountsRegistrationResponse;
@@ -22,6 +23,7 @@ use Rotaz\FilamentAccounts\Pages\Account\CreateAccount;
 use Rotaz\FilamentAccounts\Pages\Account\RegisterAccount;
 use Rotaz\FilamentAccounts\Pages\Auth\PartyRegister;
 use Rotaz\FilamentAccounts\Pages\Billing\Subscription;
+use Rotaz\FilamentAccounts\Providers\Wso2Provider;
 use Rotaz\FilamentAccounts\Services\BillingService;
 
 class FilamentAccounts implements Plugin
@@ -109,6 +111,18 @@ class FilamentAccounts implements Plugin
     {
         if (static::switchesCurrentAccount()) {
             Event::listen(TenantSet::class, SwitchCurrentAccount::class);
+        }
+
+        if (static::isProviderEnabled(Provider::Wso2)) {
+            $socialite = app()->make('Laravel\Socialite\Contracts\Factory');
+            $socialite->extend(
+                'wso2',
+                function ($app) use ($socialite) {
+                    $config = $app['config']['services.wso2'];
+
+                    return $socialite->buildProvider(Wso2Provider::class, $config);
+                }
+            );
         }
     }
 }

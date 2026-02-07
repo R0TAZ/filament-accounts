@@ -14,8 +14,6 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Contracts\User as ProviderUser;
 use Laravel\Socialite\Two\InvalidStateException;
-use Rotaz\FilamentAccounts\Pages\User\Profile;
-use Symfony\Component\HttpFoundation\RedirectResponse as SymfonyRedirectResponse;
 use Rotaz\FilamentAccounts\ConnectedAccount;
 use Rotaz\FilamentAccounts\Contracts\CreatesConnectedAccounts;
 use Rotaz\FilamentAccounts\Contracts\CreatesUserFromProvider;
@@ -25,7 +23,8 @@ use Rotaz\FilamentAccounts\Contracts\ResolvesSocialiteUsers;
 use Rotaz\FilamentAccounts\Contracts\UpdatesConnectedAccounts;
 use Rotaz\FilamentAccounts\Enums\Feature;
 use Rotaz\FilamentAccounts\FilamentAccounts;
-
+use Rotaz\FilamentAccounts\Pages\User\Profile;
+use Symfony\Component\HttpFoundation\RedirectResponse as SymfonyRedirectResponse;
 
 class OAuthController extends Controller
 {
