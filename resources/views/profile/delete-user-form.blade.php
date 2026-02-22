@@ -48,7 +48,7 @@
                         </x-filament::button>
                     @endif
 
-                    <x-filament::button color="danger" wire:click="deleteUser">
+                    <x-filament::button color="danger" c>
                         {{ __('filament-accounts::default.buttons.delete_account') }}
                     </x-filament::button>
                 </x-slot>

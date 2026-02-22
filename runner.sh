@@ -78,7 +78,7 @@ setup_laravel() {
 
   #add_local_composer_repository_on_composer_json_seed "/home/rotaz/rotaz-projects/filament-accounts"
 
-  composer require rotaz/filament-accounts:* || handle_error $? "Failed to require filament-accounts package"
+  composer require rotaz/filament-accounts || handle_error $? "Failed to require filament-accounts package"
 
   log "Laravel setup completed successfully in $project_path" "success"
 

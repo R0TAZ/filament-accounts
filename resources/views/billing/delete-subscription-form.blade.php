@@ -42,7 +42,7 @@
                         </x-filament::button>
                     @endif
 
-                    <x-filament::button color="danger" wire:click="deleteSubscription">
+                    <x-filament::button color="danger" wire:click="confirmingSubscriptionDeletion">
                         Excluir subscrição
                     </x-filament::button>
                 </x-slot>

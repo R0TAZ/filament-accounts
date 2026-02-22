@@ -25,9 +25,17 @@ class DeleteSubscriptionForm extends Component
     {
         $this->subscription = $subscription;
     }
+    public function confirmingSubscriptionDeletion(): void
+    {
 
+        $this->dispatch('open-modal', id: 'confirmingSubscriptionDeletion');
+
+    }
     public function deleteSubscription(): void
     {
+
+
+
 
         $this->subscription->cancel();
 

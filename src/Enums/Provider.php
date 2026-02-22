@@ -19,7 +19,7 @@ enum Provider: string implements HasLabel
     case Slack = 'slack';
     case Twitter = 'twitter';
     case TwitterOAuth2 = 'twitter-oauth-2';
-    case Wso2 = 'wso2';
+    case Wso2is = 'wso2is';
 
     public function getLabel(): string
     {
@@ -32,7 +32,7 @@ enum Provider: string implements HasLabel
             self::LinkedIn, self::LinkedInOpenId => 'LinkedIn',
             self::Slack => 'Slack',
             self::Twitter, self::TwitterOAuth2 => 'X',
-            self::Wso2 => 'WSO2',
+            self::Wso2is => 'Wso2is',
         };
     }
 
@@ -52,7 +52,7 @@ enum Provider: string implements HasLabel
             self::LinkedIn, self::LinkedInOpenId => 'filament-accounts::components.socialite-icons.linkedin',
             self::Slack => 'filament-accounts::components.socialite-icons.slack',
             self::Twitter, self::TwitterOAuth2 => 'filament-accounts::components.socialite-icons.twitter',
-            self::Wso2 => 'filament-accounts::components.socialite-icons.wso2',
+            self::Wso2is => 'filament-accounts::components.socialite-icons.wso2',
         };
 
         return view($viewName);
