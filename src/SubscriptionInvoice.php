@@ -9,16 +9,21 @@ use Rotaz\FilamentAccounts\Enums\SubscriptionInvoiceStatus;
 class SubscriptionInvoice extends Model
 {
     protected $casts = [
-        'status' => SubscriptionInvoiceStatus::class,
+        'status'  => SubscriptionInvoiceStatus::class,
         'payload' => 'array',
+        'paid_at' => 'datetime',
+        'due_at'  => 'datetime',
     ];
 
     protected $fillable = [
-        'due_at',
         'invoice_id',
+        'type',
+        'subscription_id',
+        'payload',
         'amount',
         'status',
-        'payload',
+        'paid_at',
+        'due_at',
     ];
 
     public function subscription(): BelongsTo

@@ -10,6 +10,7 @@ use Rotaz\FilamentAccounts\BillingPlan;
 use Rotaz\FilamentAccounts\Contracts\CreatesSubscription;
 use Rotaz\FilamentAccounts\Contracts\HasBilling;
 use Rotaz\FilamentAccounts\Enums\SubscriptionCycle;
+use Rotaz\FilamentAccounts\Enums\SubscriptionStatus;
 use Rotaz\FilamentAccounts\Subscriber;
 use Rotaz\FilamentAccounts\Subscription;
 use Rotaz\FilamentAccounts\SubscriptionInvoice;
@@ -25,6 +26,10 @@ trait HasBillingModels
     public static string $subscriptionModel = Subscription::class;
 
     public static string $subscriptionInvoiceModel = SubscriptionInvoice::class;
+
+    public static ?int $initialSubscriptionPlanId = null;
+
+    public static string $paymentGateway = \Rotaz\FilamentAccounts\Gateways\PixGateway::class;
 
     public static function findBillingPlans(): mixed
     {
@@ -54,13 +59,16 @@ trait HasBillingModels
 
     public static function subscriptionEnded(): bool
     {
-        $subscription = filament()->getTenant()->subscription;
+        $subscription = filament()->getTenant()->currentSubscription;
         if (! $subscription) {
             return true;
         }
 
-        return Carbon::now()->isAfter($subscription->ends_at);
+        if ($subscription->status === SubscriptionStatus::TRIALING) {
+            return Carbon::now()->isAfter($subscription->trial_ends_at);
+        }
 
+        return Carbon::now()->isAfter($subscription->ends_at);
     }
 
     /**
@@ -110,6 +118,20 @@ trait HasBillingModels
     public static function useSubscriptionInvoiceModel(string $model): static
     {
         static::$subscriptionInvoiceModel = $model;
+
+        return new static;
+    }
+
+    public static function createInitialSubscriptionWith(int $planId): static
+    {
+        static::$initialSubscriptionPlanId = $planId;
+
+        return new static;
+    }
+
+    public static function usePaymentGateway(string $class): static
+    {
+        static::$paymentGateway = $class;
 
         return new static;
     }

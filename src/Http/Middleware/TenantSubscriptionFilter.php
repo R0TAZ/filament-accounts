@@ -14,16 +14,20 @@ class TenantSubscriptionFilter
     {
         $ended = FilamentAccounts::subscriptionEnded();
         Log::debug('TenantSubscriptionFilter::handle', [
-            'path' => $request->path(),
-            'url' => $request->url(),
+            'path'  => $request->path(),
+            'url'   => $request->url(),
             'ended' => $ended,
         ]);
 
-        /*if ($ended) {
-            return redirect(filament()->getCurrentPanel()->getTenantBillingUrl(filament()->getTenant()));
-        }*/
+        if ($ended) {
+            $billingUrl = filament()->getCurrentPanel()->getTenantBillingUrl(filament()->getTenant());
+
+            // Avoid redirect loop: let billing-related routes through
+            if ($billingUrl && ! str_starts_with($request->url(), $billingUrl)) {
+                return redirect($billingUrl);
+            }
+        }
 
         return $next($request);
-
     }
 }

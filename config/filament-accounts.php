@@ -23,5 +23,14 @@ return [
             'expires_in_minutes' => 60 * 24 * 7, // 7 days
         ],
     ],
+    'billing' => [
+        'trial_days' => env('BILLING_TRIAL_DAYS', 30),
+        'pix_key'    => env('BILLING_PIX_KEY', ''),
+        'bank' => [
+            'acct_id'     => env('BILLING_BANK_ACCT_ID', '001'),
+            'acct_number' => env('BILLING_BANK_ACCT_NUMBER', '001'),
+            'acct_name'   => env('BILLING_BANK_ACCT_NAME', ''),
+        ],
+    ],
 
 ];

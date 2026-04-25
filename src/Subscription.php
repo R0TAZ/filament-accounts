@@ -4,6 +4,7 @@ namespace Rotaz\FilamentAccounts;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Rotaz\FilamentAccounts\Contracts\PaymentGateway;
 use Rotaz\FilamentAccounts\Enums\SubscriptionCycle;
 use Rotaz\FilamentAccounts\Enums\SubscriptionInvoiceStatus;
 use Rotaz\FilamentAccounts\Enums\SubscriptionStatus;
@@ -34,9 +35,11 @@ class Subscription extends Model
     ];
 
     protected $casts = [
-        'status' => SubscriptionStatus::class,
-        'cycle' => SubscriptionCycle::class,
-        'cancelled_at' => 'datetime',
+        'status'          => SubscriptionStatus::class,
+        'cycle'           => SubscriptionCycle::class,
+        'trial_ends_at'   => 'datetime',
+        'ends_at'         => 'datetime',
+        'cancelled_at'    => 'datetime',
         'last_payment_at' => 'datetime',
         'next_payment_at' => 'datetime',
     ];
@@ -63,9 +66,12 @@ class Subscription extends Model
 
     }
 
-    public function cancel(): void
+    public function cancel(bool $immediately = false): void
     {
         $this->status = SubscriptionStatus::CANCELLED;
+        if ($immediately) {
+            $this->ends_at = Carbon::now();
+        }
         $this->invoices()->whereNot('status', SubscriptionInvoiceStatus::PAID)->update([
             'status' => SubscriptionInvoiceStatus::CANCELLED,
         ]);
@@ -82,50 +88,38 @@ class Subscription extends Model
     {
         $dn = Carbon::now();
         $ts = $dn->getTimestamp();
+
         if ($this->cycle == SubscriptionCycle::YEAR) {
             $price = $this->amount / 12;
 
             for ($month = 0; $month < 12; $month++) {
                 $invoice_id = FormatterUtil::format_invoice_id($this->id, $month + 1, $ts);
-                $data = [
-                    'due_at' => $dn->addMonths($month + 1),
-                    'amount' => $price,
-                    'payload' => $this->generatePayment($invoice_id, $price),
-                    'status' => SubscriptionInvoiceStatus::CREATED,
+                /** @var SubscriptionInvoice $invoice */
+                $invoice = $this->invoices()->create([
+                    'due_at'     => $dn->copy()->addMonths($month + 1),
+                    'amount'     => $price,
+                    'status'     => SubscriptionInvoiceStatus::CREATED,
                     'invoice_id' => $invoice_id,
-                ];
-                $this->invoices()->create($data);
+                ]);
+                $invoice->payload = $this->generatePayment($invoice);
+                $invoice->save();
             }
         } else {
             $invoice_id = FormatterUtil::format_invoice_id($this->id, 1, $ts);
-            $data = [
-                'due_at' => $dn->addMonth(),
-                'status' => SubscriptionInvoiceStatus::CREATED,
-                'payload' => $this->generatePayment($invoice_id, $this->amount),
-                'amount' => $this->amount,
-                'invoice_id' => FormatterUtil::format_invoice_id($this->id, 1),
-            ];
-            $this->invoices()->create($data);
+            /** @var SubscriptionInvoice $invoice */
+            $invoice = $this->invoices()->create([
+                'due_at'     => $dn->copy()->addMonth(),
+                'status'     => SubscriptionInvoiceStatus::CREATED,
+                'amount'     => $this->amount,
+                'invoice_id' => $invoice_id,
+            ]);
+            $invoice->payload = $this->generatePayment($invoice);
+            $invoice->save();
         }
-
     }
 
-    protected function generatePayment($invoice, $amount)
+    protected function generatePayment(SubscriptionInvoice $invoice): array
     {
-        $link = FormatterUtil::format_pix([
-            'key' => 'acpte@g',
-            'invoice_id' => $invoice,
-            'amount' => $amount,
-        ]);
-
-        return [
-            'pix_link' => $link,
-            'bank_data' => [
-                'acct_id' => '001',
-                'acct_number' => '001',
-                'acct_name' => 'KICONTA',
-            ],
-        ];
-
+        return app(PaymentGateway::class)->createCharge($this, $invoice);
     }
 }

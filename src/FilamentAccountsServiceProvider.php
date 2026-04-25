@@ -2,9 +2,14 @@
 
 namespace Rotaz\FilamentAccounts;
 
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
+use Rotaz\FilamentAccounts\Contracts\PaymentGateway;
+use Rotaz\FilamentAccounts\Events\AccountCreated;
+use Rotaz\FilamentAccounts\FilamentAccounts;
 use Rotaz\FilamentAccounts\Http\Livewire\AccountPartyManager;
+use Rotaz\FilamentAccounts\Listeners\CreateInitialSubscription;
 use Rotaz\FilamentAccounts\Http\Livewire\ConnectedAccountsForm;
 use Rotaz\FilamentAccounts\Http\Livewire\DeleteAccountForm;
 use Rotaz\FilamentAccounts\Http\Livewire\DeleteUserForm;
@@ -19,11 +24,15 @@ class FilamentAccountsServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        //
+        $this->app->singleton(PaymentGateway::class, function () {
+            return app(FilamentAccounts::$paymentGateway);
+        });
     }
 
     public function boot(): void
     {
+        Event::listen(AccountCreated::class, CreateInitialSubscription::class);
+
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'filament-accounts');
 
         $this->loadTranslationsFrom(__DIR__ . '/../lang', 'filament-accounts');

@@ -22,26 +22,29 @@ class CreateSubscription implements CreatesSubscription
             'plan' => $billingPlan,
         ]);
 
-        $end_at = $cycle == SubscriptionCycle::YEAR ? Carbon::now()->addYear() : Carbon::now()->addMonth();
-        $amount = $billingPlan->{$cycle->getFieldPrefix()};
+        $amount   = $billingPlan->{$cycle->getFieldPrefix()};
+        $isTrial  = (bool) $billingPlan->trial;
+        $end_at   = $isTrial ? null : ($cycle == SubscriptionCycle::YEAR ? Carbon::now()->addYear() : Carbon::now()->addMonth());
 
         try {
 
-            $subscription = DB::transaction(function () use ($billingPlan, $cycle, $billable, $amount, $end_at) {
+            $subscription = DB::transaction(function () use ($billingPlan, $cycle, $billable, $amount, $isTrial, $end_at) {
                 $subscription = $billable->subscriptions()->create([
-
-                    'billable_type' => FilamentAccounts::subscriberModel(),
-                    'billable_id' => $billable->modelKey(),
-                    'billing_plan_id' => $billingPlan->getKey(),
-                    'vendor_slug' => 'default',
-                    'cycle' => $cycle,
-                    'amount' => $amount,
-                    'status' => SubscriptionStatus::ACTIVE,
-                    'seats' => 1,
-                    'ends_at' => $end_at,
+                    'billable_type'  => FilamentAccounts::subscriberModel(),
+                    'billable_id'    => $billable->modelKey(),
+                    'billing_plan_id'=> $billingPlan->getKey(),
+                    'vendor_slug'    => 'default',
+                    'cycle'          => $cycle,
+                    'amount'         => $amount,
+                    'status'         => $isTrial ? SubscriptionStatus::TRIALING : SubscriptionStatus::ACTIVE,
+                    'trial_ends_at'  => $isTrial ? Carbon::now()->addDays(config('filament-accounts.billing.trial_days', 30)) : null,
+                    'seats'          => 1,
+                    'ends_at'        => $end_at,
                 ]);
 
-                $subscription->createInvoices();
+                if ($amount > 0) {
+                    $subscription->createInvoices();
+                }
 
                 return $subscription;
             });
