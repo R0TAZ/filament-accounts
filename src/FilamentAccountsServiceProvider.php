@@ -24,6 +24,8 @@ class FilamentAccountsServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
+        $this->mergeConfigFrom(__DIR__ . '/../config/filament-accounts.php', 'filament-accounts');
+
         $this->app->singleton(PaymentGateway::class, function () {
             return app(FilamentAccounts::$paymentGateway);
         });

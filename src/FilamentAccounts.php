@@ -113,7 +113,7 @@ class FilamentAccounts implements Plugin
             Event::listen(TenantSet::class, SwitchCurrentAccount::class);
         }
 
-        if (static::isProviderEnabled(Provider::Wso2)) {
+        if (static::isProviderEnabled(Provider::Wso2is)) {
             $socialite = app()->make('Laravel\Socialite\Contracts\Factory');
             $socialite->extend(
                 'wso2',
